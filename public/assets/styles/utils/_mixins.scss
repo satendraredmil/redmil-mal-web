@@ -1,0 +1,35 @@
+/* Reusable mixins */
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @mixin responsive($breakpoint) {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  }
+  
+
+
+
+  // _mixins.scss // for theme change code
+@mixin theme($theme) {
+  @if $theme == 'dark' {
+    background-color: $background-color-dark;
+    color: $text-color-dark;
+  } @else if $theme == 'light' {
+    background-color: $background-color-light;
+    color: $text-color-light;
+  }
+}
+
+@mixin custom-background($theme) {
+  @if $theme == 'dark' {
+    background-color: $custom-background-dark;
+  } @else if $theme == 'light' {
+    background-color: $custom-background-light;
+  }
+}

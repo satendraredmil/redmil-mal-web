@@ -1,0 +1,31 @@
+{
+    "LOGIN_PAGE":{
+        "HELLO": "Bonjour",
+        "WELCOME": "Bienvenue",
+        "EMAIL": "EMAIL ID",
+        "MOBILE": "Mobile Number ",
+        "PASSWORD": "Password",
+        "LOGIN": "Login"
+    },
+
+    "HEADER":{
+        "JOIN": "JOIN US",
+        "LOGIN_FORM_TOP_MESSAGE": "WELCOME BACK TO YOUR BANKING POINT!",
+        "LOGIN_FORM_MOBILE":"Enter your mobile number",
+        "LOGIN_FORM_PIN": "Enter your PIN Number",
+        "LOGIN_FORM_Forgot_PIN":"Forget PIN Number",
+        "LOGIN_FORM_FORGET":"Resent OTP",
+        "LOGIN_FORM_OTP_Message":"OTP has been sent on your registered mobile number xxxxxx6678",
+        "LOGIN_FORM_OTP_Message_1":".",
+        "LOGIN_OTP_VERIFY":"Verify OTP",
+        "MOBILE_required":"Mobile number is required",
+        "MOBILE_valid":"Enter a valid 10-digit mobile number",
+        "MOBILE_numeric":"Only numeric values are allowed",
+        "PIN_required":"PIN is required",
+        "PIN_valid":"PIN must be at least 4 digits",
+        "PIN_numeric":"Only numeric values are allowed",
+        "OTP_required":"All OTP fields are required"
+    }
+}
+
+

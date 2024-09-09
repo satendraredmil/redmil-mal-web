@@ -1,0 +1,19 @@
+/* Styles for card components */
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card__title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+  
+  .card__content {
+    font-size: 1rem;
+  }
+  

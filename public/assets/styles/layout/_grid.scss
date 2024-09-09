@@ -1,0 +1,24 @@
+/* Grid system styles */
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+  }
+  
+  .col {
+    padding: 0 15px;
+    flex: 1;
+  
+    &--half {
+      flex: 0 0 50%;
+    }
+  }
+  

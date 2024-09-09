@@ -1,0 +1,31 @@
+{
+    "LOGIN_PAGE":{
+        "HELLO": "हिंदी ",
+    "WELCOME": "स्वागत",
+    "EMAIL": "ईमेल पता ",
+    "MOBILE": "मोबाइल नंबर",
+    "PASSWORD": "पासवर्ड",
+    "LOGIN": "लॉग इन करें"
+    
+    },
+
+    "HEADER":{
+       "JOIN": "हमसे जुड़ें",
+       "LOGIN_FORM_TOP_MESSAGE":"आपका बैंकिंग पॉइंट में फिर से स्वागत है!",
+       "LOGIN_FORM_MOBILE":"अपना मोबाइल नंबर दर्ज करें",
+       "LOGIN_FORM_PIN":"अपना पिन नंबर दर्ज करें",
+       "LOGIN_FORM_Forgot_PIN":"पिन रीसेट करें?",
+       "LOGIN_FORM_FORGET":"OTP पुनः भेजें?",
+       "LOGIN_FORM_OTP_Message":"ओटीपी आपके पंजीकृत मोबाइल नंबर xxxxxx6678",
+       "LOGIN_FORM_OTP_Message_1":"पर भेजा गया है",
+       "LOGIN_OTP_VERIFY":"ओटीपी सत्यापित करें",
+       "MOBILE_required":"मोबाइल नंबर आवश्यक है",
+       "MOBILE_valid":"कृपया मान्य 10-अंकों का मोबाइल नंबर दर्ज करें",
+       "MOBILE_numeric":"केवल मोबाइल नंबर दर्ज करें",
+       "PIN_required":"पिन नंबर आवश्यक है",
+       "PIN_valid":"पिन कम से कम 4 अंकों का होना चाहिए",
+       "PIN_numeric":"केवल पिन नंबर ही दर्ज करें",
+       "OTP_required":"सभी OTP फ़ील्ड आवश्यक हैं"
+       
+    }
+}

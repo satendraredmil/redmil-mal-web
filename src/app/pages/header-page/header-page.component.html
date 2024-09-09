@@ -1,0 +1,54 @@
+<header class="flex justify-between items-center">
+    <div class="redmil-logo">
+        <div class="logo">
+            <a href=""><img src="/assets/images/global/logo.svg" alt=""></a>
+        </div>
+        <div class="join">
+            <!-- <a href=""><img src="/images/Join_US.svg" alt=""></a> -->
+            <a href="https://play.google.com/store/apps/details?id=com.wts.redmilapp" target="_blank" style="text-decoration: none; ">
+                <span>{{'HEADER.JOIN' | pchangelanguage }}</span>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="redmil-right">
+        <div class="redmil-icons">
+            <a href="https://www.instagram.com/redmilbusinessmall/"><img src="/assets/icons/social/instagram.svg"
+                    alt=""></a>
+            <a href="https://www.facebook.com/RedmilGroup"><img src="/assets/icons/social/facebook.svg" alt=""></a>
+            <a href="https://www.youtube.com/channel/UCgB1a9t-FKtYoG39QrBtgJQ"><img
+                    src="/assets/icons/social/youtube.svg" alt=""></a>
+            <a href="https://www.linkedin.com/company/redmil-group/posts/?feedView=all"><img
+                    src="/assets/icons/social/linkedin.svg" alt=""></a>
+        </div>
+
+        <div class="redmil-whatsapp">
+            <img src="/assets/icons/social/whatsapp.svg" alt="">
+            <a href="">91 81 82 83 84</a>
+        </div>
+
+
+        <!-- //theme button code when you impliment then uncomment it -->
+        <!-- <div class="theme" (click)="toggleTheme()">
+            @if (!isDarkMode) {
+                <span class="material-symbols-outlined" style="color: #fff;">
+                    light_mode
+                    </span>
+            }@else {
+            <span class="material-symbols-outlined" style="color: #fff;">
+                     dark_mode
+                </span>
+            }
+
+
+        </div> -->
+
+        <div class="toggle-container" [class.active]="isActive" (click)="toggleLanguage()">
+            <div class="toggle-button"></div>
+        </div>
+
+        <!-- <p style="color: aliceblue;">{{ 'HELLO' | translate    }}</p>
+    <p style="color: aliceblue;">{{ 'WELCOME' | translate }}</p> -->
+    </div>
+</header>
