@@ -1,0 +1,113 @@
+.dialog-container {
+    position: relative;
+    padding: 20px;
+    width: 100%;
+    max-width:max-content;
+    filter: drop-shadow(2px 4px 6px #012643);
+    color: #012643;
+  }
+  
+  .dialog-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+  }
+  
+  .dialog-content {
+    text-align: center;
+  
+    h2 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+  
+    p {
+      margin: 10px 0;
+      line-height: 1.5;
+      font-size: 16px;
+    }
+  }
+  
+  .close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #333;
+  }
+  
+  @media (max-width: 480px) {
+    .dialog-container {
+      max-width: 100%;
+      padding: 15px;
+    }
+  
+    .dialog-content h2 {
+      font-size: 20px;
+    }
+  
+    .dialog-content p {
+      font-size: 14px;
+    }
+  }
+  
+
+ 
+  
+
+
+  .custom-dialog-container {
+    animation: fadeIn 400ms ease-out, fadeOut 500ms ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }
+  
+
+  //Dynamic Classes 
+  .success-class {
+    color: green;
+  }
+  
+  .pending-class {
+    color: orange;
+    background-color: #fff5e0;
+    border: 2px solid orange;
+  }
+  
+  .failed-class {
+    color: red;
+    background-color: #ffe0e0;
+    border: 2px solid red;
+  }
+  
+  .error-class {
+    color: darkred;
+    background-color: #ffe0e0;
+    border: 2px solid darkred;
+  }
+  

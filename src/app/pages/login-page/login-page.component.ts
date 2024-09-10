@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { AuthenticationapiService } from '../../core/services/authenticatioapi/authenticationapi.service';
 import { ToastrService } from 'ngx-toastr';
 import { ValidateOTPAnotherDeviceLoginClass, ValidateUser, ValidateUserMpin } from '../../core/models/classes/BaseModel';
+import { GetlocationService } from '../../core/services/location/getlocation.service';
 
 @Component({
   selector: 'app-login-page',
@@ -53,7 +54,8 @@ export class LoginPageComponent {
     private fb: FormBuilder,
     private _router: Router,
     private apiService: AuthenticationapiService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private geolocationService: GetlocationService
   ) {
     this.mobileForm = this.fb.group({
       Mobile: [
@@ -157,6 +159,7 @@ export class LoginPageComponent {
 
 
 
+
   // Function to submit the mobile number with API 
   submitMobile(): void {
     // Mark all fields as touched so validation errors show up if not valid
@@ -164,6 +167,7 @@ export class LoginPageComponent {
 
     // If the form is valid, proceed to the next step (Password)
     if (this.mobileForm.valid) {
+      
       debugger
       console.log(this.mobileForm.value);
       const Data: ValidateUser = new ValidateUser(this.mobileForm.get('Mobile')?.value)
@@ -177,7 +181,7 @@ export class LoginPageComponent {
             
             // console.log(this.UserNameValidate);
             this.step = 2;
-          } if (response.Statuscode === 'ERR') {
+          } else if (response.Statuscode === 'ERR') {
             this.toastr.error(response.Message)
           }
         },
@@ -263,6 +267,9 @@ export class LoginPageComponent {
         console.log('API Response:', response); // Handle the API response here
         if (response.Statuscode === "TXN") {
           this.toastr.success(response.Message)
+
+          //Set sessionStorage
+          sessionStorage.setItem("UserLogintoken", response.Data[0].UserLogintoken);
           this._router.navigate(['/dashboard'])
         } else {
           console.log("jkdjdsk");

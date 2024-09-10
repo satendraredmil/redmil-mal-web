@@ -1,0 +1,36 @@
+
+
+<div class="dialog-container" [@dialogAnimation]>
+
+  <button mat-icon-button class="close-icon" (click)="closeDialog()">
+    <mat-icon (click)="closeDialog()">close</mat-icon>
+  </button>
+    <br><br>
+    <!-- Title (Dynamic) -->
+    <!-- <h1 [ngClass]="{
+      'success-class': data.status === 'Success',
+      'pending-class': data.status === 'Pending',
+      'failed-class': data.status === 'Failed',
+      'error-class': data.status === 'Error'
+    }" class="heading_dialog">
+      {{ data.title }}
+    </h1> -->
+  
+    <!-- Image (Dynamic) -->
+    <div class="dialog-image">
+      <img [src]="data.imageUrl" alt="Image" />
+    </div>
+  
+    <!-- Message (Dynamic) -->
+    <p>{{ data.message }}</p>
+  
+    <!-- Additional Information (Dynamic) -->
+    <p>{{ data.additionalInfo }}</p>
+  
+    <!-- Dynamic List -->
+    <ul>
+      <li *ngFor="let item of data.list">{{ item }}</li>
+    </ul>
+
+  </div>
+  
