@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap, throwError } from 'rxjs';
 import { ChecksumService } from '../checksum/checksum.service';
-import { BaseModel_2 } from '../../models/classes/BaseModel';
-import { ValidateUser, ValidateUserMpin } from '../../models/interfaces/validateUser';
+import { ApiResponse, BaseModel_2, ValidateOTPAnotherDeviceLoginClass, ValidateUser, ValidateUserMpin } from '../../models/classes/BaseModel';
+
 
 @Injectable({
   providedIn: 'root'
@@ -43,12 +43,7 @@ export class AuthenticationapiService {
       this.checksumService.checksumKey,
       this.Userid, 
       Data.Mobile,
-      Data.AppId, 
-      Data.Version, 
-      Data.DeviceInfo, 
-      Data.checksum, 
-      Data.IpAddress, 
-      Data.MacAddress, 
+
     );
     Data.checksum = this.checksumService.convertStringToSHA512Hash(input);
     
@@ -60,7 +55,7 @@ export class AuthenticationapiService {
     });
 
     // Make the POST request
-    return this.http.post(apiUrl, Data, { headers });
+    return this.http.post<ApiResponse<ValidateUser>>(apiUrl, Data, { headers });
   }
 
 
@@ -77,17 +72,13 @@ export class AuthenticationapiService {
     const input = this.checksumService.makeChecksumString('Mpin', 
       this.checksumService.checksumKey,
       this.Userid, 
-      DataMpin.AppId, 
-      DataMpin.Version, 
-      DataMpin.DeviceInfo, 
-      DataMpin.checksum, 
-      DataMpin.IpAddress, 
+      DataMpin.Mobile,
       DataMpin.Mpin, 
+      DataMpin.IpAddress, 
       DataMpin.MacAddress, 
+      DataMpin.Version
      );
     DataMpin.checksum = this.checksumService.convertStringToSHA512Hash(input);
-    
-   
 
     // Set headers (adjust content-type based on your API)
     const headers = new HttpHeaders({
@@ -97,6 +88,65 @@ export class AuthenticationapiService {
     // Make the POST request
     return this.http.post(apiUrl, DataMpin, { headers });
   }
+
+
+   // Function to call the API with checksum and MPIN
+   UserSendOTP( DataOTP: ValidateUser): Observable<any> {
+    debugger
+    const endpoint = '/SendAnotherDeviceLoginOtp';
+    const apiUrl = this.baseUrl + endpoint;
+
+
+     // Ensure mobile is properly formatted as a string
+    // Mobile = Mobile.toString().toLowerCase(); // This ensures mobile is treated as a string
+    // Create checksum using ChecksumService
+    const input = this.checksumService.makeChecksumString('SendAnotherDeviceLoginOtp', 
+      this.checksumService.checksumKey,
+      this.Userid, 
+      DataOTP.Mobile,
+     );
+     DataOTP.checksum = this.checksumService.convertStringToSHA512Hash(input);
+    
+   
+
+    // Set headers (adjust content-type based on your API)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    // Make the POST request
+    return this.http.post(apiUrl, DataOTP, { headers });
+  }
+
+  ValidateOTPAnotherDeviceLogin(ValidateOTP:ValidateOTPAnotherDeviceLoginClass): Observable<any>{
+    debugger
+    const endpoint = '/ValidateOTPAnotherDeviceLogin';
+    const apiUrl = this.baseUrl + endpoint;
+
+     // Ensure mobile is properly formatted as a string
+    // Mobile = Mobile.toString().toLowerCase(); // This ensures mobile is treated as a string
+    // Create checksum using ChecksumService
+    const input = this.checksumService.makeChecksumString('ValidateOTPAnotherDeviceLogin', 
+      this.checksumService.checksumKey,
+      this.Userid, 
+      ValidateOTP.Mobile,
+      ValidateOTP.Otp,
+      ValidateOTP.AppId
+     );
+     ValidateOTP.checksum = this.checksumService.convertStringToSHA512Hash(input);
+    
+   
+
+    // Set headers (adjust content-type based on your API)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    // Make the POST request
+    return this.http.post(apiUrl, ValidateOTP, { headers });
+  
+}
+
 
 
 }

@@ -77,7 +77,7 @@
 
           <!-- Step 2: PIN Form with Icon -->
           <div *ngIf="step === 2">
-            <h2 class="step_first">{{'HEADER.LOGIN_FORM_TOP_MESSAGE'| pchangelanguage}}</h2>
+            <h2 class="step_first">{{'HEADER.LOGIN_FORM_TOP_MESSAGE'| pchangelanguage}} {{UserNameValidate}}</h2>
             <form [formGroup]="passwordForm" (ngSubmit)="submitPassword()">
               <div class="input-container">
                 <!-- PIN Icon (Font Awesome or SVG) -->

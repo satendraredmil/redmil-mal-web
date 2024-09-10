@@ -9,14 +9,14 @@ export class BaseModel_1 {
   Redmilweb?:string = 'Web'; //checking api comsumer
 
   constructor(
-    Id?:string,
-    UserId?: string,
-    Checksum?: string,
-    Wallet?: boolean,
-    Token ?: string,
-    UserLogintoken?: string,
-    UserLoginIDfortoken ?: string,
-    Redmilweb?:string
+    Id:string = "0",
+    UserId: string ="0",
+    Checksum: string ="NA",
+    Wallet: boolean =false,
+    Token : string = "NA",
+    UserLogintoken: string ="NA",
+    UserLoginIDfortoken: string ="NA",
+    Redmilweb:string="Web"
   ) {
     this.Id = Id;
     this.UserId = UserId;
@@ -41,14 +41,14 @@ export class BaseModel_2 {
     UserLoginIDfortoken?: string;  // Optional field
     Redmilweb?:string = 'Web'; //apichecking comsumer
     constructor(
-      Id?:string,
-      Userid?: string,
-      checksum?: string,
-      Wallet?: boolean,
-      Token ?: string,
-      UserLogintoken?: string,
-      UserLoginIDfortoken ?: string,
-      Redmilweb?:string
+      Id:string ="0",
+      Userid: string = "NA",
+      checksum: string ="NA",
+      Wallet: boolean = false,
+      Token : string = "", 
+      UserLogintoken: string ="",
+      UserLoginIDfortoken : string = "",
+      Redmilweb:string = "Web"
     ) {
       this.Id = Id;
       this.Userid = Userid;
@@ -62,6 +62,75 @@ export class BaseModel_2 {
 }
 
 
+export class ValidateUser extends BaseModel_2 { 
+  Mobile:string
+
+  constructor(
+    Mobile:string
+  ){
+    super();
+    this.Mobile = Mobile
+    
+  }
+}
+
+
+export interface ApiResponse<T>{
+  Statuscode?:boolean;
+  Message?:string;
+  Data:T;
+}
+
+export class ValidateUserMpin extends BaseModel_2 { 
+  Mpin:string;
+  Mobile:string;
+  AppId:string;
+  Version:string;
+  DeviceInfo:string;
+  IpAddress:string;
+  MacAddress:string;
+  
+  constructor(
+  Mpin:string ="",
+  Mobile:string="",
+  AppId:string ="",
+  Version:string="NA",
+  DeviceInfo:string="NA",
+  checksum:string="NA",
+  IpAddress:string = "",
+  MacAddress:string =""
+
+  ){
+    super();
+    this.Mpin = Mpin,
+    this.Mobile = Mobile,
+    this.AppId = AppId,
+    this.Version = Version,
+    this.DeviceInfo = DeviceInfo,
+    this.checksum = checksum,
+    this.IpAddress = IpAddress,
+    this.MacAddress = MacAddress
+
+  }
+}
+
+
+export class ValidateOTPAnotherDeviceLoginClass extends BaseModel_2 { 
+  Mobile:string;
+  Otp:string;
+  AppId:string;
+
+  constructor(
+    Mobile:string="",
+    Otp:string="",
+    AppId:string=""
+  ){
+    super();
+    this.Mobile = Mobile
+    this.Otp = Otp
+    this.AppId = AppId
+  }
+}
 
 
 

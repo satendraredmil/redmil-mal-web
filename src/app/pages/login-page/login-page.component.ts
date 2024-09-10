@@ -8,9 +8,11 @@ import { CommonModule } from '@angular/common';
 import { PchangelanguagePipe } from '../../shared/pipes/changelanguage/pchangelanguage.pipe';
 import { Router } from '@angular/router';
 import { AuthenticationapiService } from '../../core/services/authenticatioapi/authenticationapi.service';
-import { ValidateUser } from '../../core/models/interfaces/validateUser';
-import { BaseModel_2 } from '../../core/models/classes/BaseModel';
+
 import { ToastrService } from 'ngx-toastr';
+import { ValidateOTPAnotherDeviceLoginClass, ValidateUser, ValidateUserMpin } from '../../core/models/classes/BaseModel';
+import { error } from 'console';
+import { response } from 'express';
 
 @Component({
   selector: 'app-login-page',
@@ -37,6 +39,10 @@ export class LoginPageComponent {
 
   currentIndex = 0;
   slideInterval: any;
+  Mobile:string ="";
+  UserNameValidate:any;
+  UserMobileNumber:string = "";
+  UserMpin:string = ""
 
    //Form heading with validation and Services
    mobileForm!: FormGroup;
@@ -125,27 +131,20 @@ export class LoginPageComponent {
     if (this.mobileForm.valid) {
       debugger
       console.log(this.mobileForm.value);
-      const mobileNumber = this.mobileForm.get('Mobile')?.value;
-
-      // Create an instance of ValidateUser
-      const userData = new BaseModel_2(
-        mobileNumber,
-        this.apiService.Userid,
-        undefined, // Id
-        undefined, // Wallet
-        undefined, // Token
-        undefined, // UserLogintoken
-        undefined, // UserLoginIDfortoken
-        undefined // Redmilweb
-      );
-      
-      this.apiService.validateUser(this.mobileForm.value).subscribe(
+    const Data:ValidateUser = new ValidateUser (this.mobileForm.get('Mobile')?.value)
+      this.apiService.validateUser(Data).subscribe(
         (response) => {
-          console.log('API Response:', response); // Handle the API response here
+          console.log('API Response:', response, Data); // Handle the API response here
           if(response.Statuscode==='TXN'){
             this.toastr.success("User validation siu")
+            this.UserNameValidate = response.Data[0].Name
+            this.UserMobileNumber = response.Data[0].Mobileno
+            console.log(this.UserNameValidate);
+            
             this.step = 2;
-          }
+          }if (response.Statuscode==='ERR') {
+            this.toastr.error(response.Message)
+          } 
         },
         (error) => {
           console.error('API Error Login:', error); // Handle error
@@ -166,18 +165,18 @@ export class LoginPageComponent {
     if (this.passwordForm.valid) {
       debugger
       console.log(this.passwordForm.value);
-      const mobileNumber = this.passwordForm.get('Mpin')?.value;
+      const DataMpin:ValidateUserMpin = new ValidateUserMpin(this.passwordForm.get('Mpin')?.value,this.UserMobileNumber,"otpforweblogin");
 
-      this.apiService.validateUserMPIN(this.passwordForm.value).subscribe(
+      this.apiService.validateUserMPIN(DataMpin).subscribe(
         (response) => {
           console.log('API Response:', response); // Handle the API response here
-          if(response.Statuscode==="ERR"){
+          if(response.Statuscode==="ODL"){
             this.toastr.error(response.Message)
             this.passwordForm.reset()
+            this.SendOtpcode();
           }else{
-            this.step = 3;
+            console.log("jkdjdsk");
           }
-          
         },
         (error) => {
           console.error('API Error Login:', error); // Handle error
@@ -185,6 +184,17 @@ export class LoginPageComponent {
       );
       
     }
+  }
+
+  SendOtpcode(){
+  const DataMobile:ValidateUser = new ValidateUser(this.UserMobileNumber);
+  this.apiService.UserSendOTP(DataMobile).subscribe((response)=>{
+      if(response.Statuscode ==='OSS')
+      this.toastr.success(response.Message)
+      this.step = 3;
+  }, (error)=>{
+    console.log(`OTP API not working ${error}`);
+  })
   }
 
     // Submit password form on "Enter" keypress
@@ -231,9 +241,16 @@ moveToPrev(event: KeyboardEvent, currentFieldID: string, prevFieldID: string): v
       // Combine OTP values and submit
       const otp = `${this.otpForm.value.otp1}${this.otpForm.value.otp2}${this.otpForm.value.otp3}${this.otpForm.value.otp4}`;
       console.log('OTP Submitted:', this.otpForm.value, otp);
-      this.otpForm.reset();
-      this._router.navigate(['/dashboard'])
-      // Add your OTP submission logic here
+      const DataOTPverify:ValidateOTPAnotherDeviceLoginClass = new ValidateOTPAnotherDeviceLoginClass(this.UserMobileNumber, otp);
+      this.apiService.ValidateOTPAnotherDeviceLogin(DataOTPverify).subscribe((response)=>{
+        if(response == true){
+          this.otpForm.reset();
+          this._router.navigate(['/dashboard'])
+        }
+      }, (error)=>{
+        this.toastr.error(error)
+      })
+     
     }
   } 
 }
