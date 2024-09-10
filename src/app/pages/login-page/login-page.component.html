@@ -77,7 +77,7 @@
 
           <!-- Step 2: PIN Form with Icon -->
           <div *ngIf="step === 2">
-            <h2 class="step_first">{{'HEADER.LOGIN_FORM_TOP_MESSAGE'| pchangelanguage}} {{UserNameValidate}}</h2>
+            <h2 class="step_first">{{'HEADER.LOGIN_FORM_TOP_MESSAGE'| pchangelanguage}}</h2>
             <form [formGroup]="passwordForm" (ngSubmit)="submitPassword()">
               <div class="input-container">
                 <!-- PIN Icon (Font Awesome or SVG) -->
@@ -122,9 +122,9 @@
           <!-- Step 3: OTP Form with Four Input Fields -->
           <div *ngIf="step === 3">
             <div class="third_setp">
-              <h3>WELCOME, MANOHAR PRASAD</h3>
+              <h3>WELCOME, {{UserNameValidate}}</h3>
               <p>{{'HEADER.LOGIN_FORM_OTP_Message' | pchangelanguage}} 
-                <!-- Dynamic Mobile number -->
+                  {{UserMobileNumber[6]}}{{UserMobileNumber[7]}}{{UserMobileNumber[8]}}{{UserMobileNumber[9]}}
                 {{'HEADER.LOGIN_FORM_OTP_Message_1' | pchangelanguage}}</p>
             </div>
 

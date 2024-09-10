@@ -15,7 +15,7 @@
         "LOGIN_FORM_PIN": "Enter your PIN Number",
         "LOGIN_FORM_Forgot_PIN":"Forget PIN Number",
         "LOGIN_FORM_FORGET":"Resent OTP",
-        "LOGIN_FORM_OTP_Message":"OTP has been sent on your registered mobile number xxxxxx6678",
+        "LOGIN_FORM_OTP_Message":"OTP has been sent on your registered mobile number xxxxxx",
         "LOGIN_FORM_OTP_Message_1":".",
         "LOGIN_OTP_VERIFY":"Verify OTP",
         "MOBILE_required":"Mobile number is required",

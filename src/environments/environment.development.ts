@@ -1,4 +1,4 @@
 export const environment = {
     production:true,
-    baseUrl:""
+    baseUrl:"https://proapitest3.redmilbusinessmall.com/api"
 };

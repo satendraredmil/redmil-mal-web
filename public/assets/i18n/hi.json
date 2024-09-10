@@ -16,7 +16,7 @@
        "LOGIN_FORM_PIN":"अपना पिन नंबर दर्ज करें",
        "LOGIN_FORM_Forgot_PIN":"पिन रीसेट करें?",
        "LOGIN_FORM_FORGET":"OTP पुनः भेजें?",
-       "LOGIN_FORM_OTP_Message":"ओटीपी आपके पंजीकृत मोबाइल नंबर xxxxxx6678",
+       "LOGIN_FORM_OTP_Message":"ओटीपी आपके पंजीकृत मोबाइल नंबर xxxxxx",
        "LOGIN_FORM_OTP_Message_1":"पर भेजा गया है",
        "LOGIN_OTP_VERIFY":"ओटीपी सत्यापित करें",
        "MOBILE_required":"मोबाइल नंबर आवश्यक है",
