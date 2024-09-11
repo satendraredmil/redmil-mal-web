@@ -5,17 +5,20 @@
   padding: 0px !important;
   border-radius: 8px !important;
   color: #333 !important;
-  margin-top: 32px !important;
-  margin-left: -30px !important;
+  margin-top: 10px !important;
+  margin-left: -10px !important;
+  
 }
 
-
+.mat-expansion-indicator svg{
+  color: #fff !important;
+}
 .mat-mdc-menu-item {
   padding: 12px 20px !important;
   font-size: 16px !important;
   color: #333 !important;
   border-left: 5px solid transparent !important;
-
+  
   &:hover {
     border-left: 5px solid #00A9E1 !important;
     background: linear-gradient(90deg, #C4E8FF 20%, #FFFFFF 80%) !important;
@@ -23,9 +26,9 @@
 
   .mat-mdc-menu-item-text{
     display: flex !important;
-    justify-content: space-between !important;
+    justify-content: flex-start;
     align-items: center !important;
-    gap: 10px;
+    gap: 20px !important;
     img{
       width: 35.03px;
       height: 35.03px;

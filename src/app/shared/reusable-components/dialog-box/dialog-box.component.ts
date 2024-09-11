@@ -13,6 +13,7 @@ import {
 import { MateriallistModule } from '../../materiallist/materiallist.module';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-dialog-box',
   standalone: true,
@@ -82,7 +83,7 @@ import { CommonModule } from '@angular/common';
 export class DialogBoxComponent { 
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { title: string,status: string, message: string, imageUrl: string, additionalInfo: string, list: string[] }
+    @Inject(MAT_DIALOG_DATA) public data: { title: string,status: string, message: string,  imageUrl: string, additionalInfo: string, list: string[] }
   ) {}
 
   ngOnInit(): void {

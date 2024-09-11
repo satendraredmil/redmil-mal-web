@@ -4,16 +4,21 @@ import { PchangelanguagePipe } from '../../../shared/pipes/changelanguage/pchang
 import { MateriallistModule } from '../../../shared/materiallist/materiallist.module';
 import { DialogBoxComponent } from '../../../shared/reusable-components/dialog-box/dialog-box.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AnimationItem } from 'lottie-web';
+import { LottieComponent, AnimationOptions } from 'ngx-lottie';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-d-header',
   standalone: true,
-  imports: [PchangelanguagePipe, MateriallistModule],
+  imports: [PchangelanguagePipe, MateriallistModule, LottieComponent, CommonModule],
   templateUrl: './d-header.component.html',
   styleUrl: './d-header.component.scss'
 })
 export class DHeaderComponent {
-  readonly panelOpenState = signal(false);
+  panelOpenState:boolean = false;
+  menuOpenState: boolean = false;
+
   isActive: boolean = false;
   isDarkMode: boolean = false;
 
@@ -36,25 +41,14 @@ export class DHeaderComponent {
     this.translationService.toggleLanguage();
   }
 
-  OpenDialogBox(){
-    this.dialog.open(DialogBoxComponent, {
-      data: { 
-        title: 'Success', 
-        status: 'Success',
-        message: 'This is a success message!', 
-        imageUrl: 'path/to/image.jpg',
-        additionalInfo: 'This is additional dynamic content',
-        list: ['Item 1', 'Item 2', 'Item 3'] // You can also send lists or arrays
-      },
-      panelClass: 'custom-dialog-container',
-      enterAnimationDuration: '400ms',
-      exitAnimationDuration: '300ms',
-    });
-  }
-
-  
  
-  
+//Animation for Error 
+  options: AnimationOptions = {
+    path: '/assets/animation/Animation_Pending.json',
+  };
+  animationCreated(animationItem: AnimationItem): void {
+    console.log("hhsdjksasjkda",animationItem);
+  }
 
 
   // toggleTheme() {

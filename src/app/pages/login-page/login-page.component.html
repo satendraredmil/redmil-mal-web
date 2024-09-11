@@ -43,7 +43,7 @@
         <!-- Footer with Social Media Links and Copyright -->
         <div class="form_flex">
           <!-- Step 1: Mobile Number Form with Icon -->
-          <div *ngIf="step === 1">
+          <div *ngIf="step === 1" class="class_90">
             <h2 class="step_first">{{'HEADER.LOGIN_FORM_TOP_MESSAGE'| pchangelanguage}}</h2>
             <form [formGroup]="mobileForm" (ngSubmit)="submitMobile()">
               <div class="input-container">

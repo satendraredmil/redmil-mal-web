@@ -1,10 +1,12 @@
 .dialog-container {
-    position: relative;
-    padding: 20px;
-    width: 100%;
-    max-width:max-content;
-    filter: drop-shadow(2px 4px 6px #012643);
-    color: #012643;
+  position: relative;
+  padding: 20px;
+  width: 100%;
+  max-width: -webkit-fill-available;
+  color: #012643;
+  text-align: center;
+  font-weight: 600;
+
   }
   
   .dialog-image {
@@ -85,29 +87,5 @@
       opacity: 0;
       transform: translateY(-10px);
     }
-  }
-  
-
-  //Dynamic Classes 
-  .success-class {
-    color: green;
-  }
-  
-  .pending-class {
-    color: orange;
-    background-color: #fff5e0;
-    border: 2px solid orange;
-  }
-  
-  .failed-class {
-    color: red;
-    background-color: #ffe0e0;
-    border: 2px solid red;
-  }
-  
-  .error-class {
-    color: darkred;
-    background-color: #ffe0e0;
-    border: 2px solid darkred;
   }
   

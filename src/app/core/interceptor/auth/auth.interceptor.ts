@@ -13,7 +13,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     });
     return next(authReq);
   }else{
-    _router.navigate(['/login']);
+   // _router.navigate(['/login']);
     return next(req);
   }
 

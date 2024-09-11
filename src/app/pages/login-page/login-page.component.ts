@@ -10,6 +10,8 @@ import { AuthenticationapiService } from '../../core/services/authenticatioapi/a
 import { ToastrService } from 'ngx-toastr';
 import { ValidateOTPAnotherDeviceLoginClass, ValidateUser, ValidateUserMpin } from '../../core/models/classes/BaseModel';
 import { GetlocationService } from '../../core/services/location/getlocation.service';
+import { DialogBoxComponent } from '../../shared/reusable-components/dialog-box/dialog-box.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login-page',
@@ -55,7 +57,8 @@ export class LoginPageComponent {
     private _router: Router,
     private apiService: AuthenticationapiService,
     private toastr: ToastrService,
-    private geolocationService: GetlocationService
+    private geolocationService: GetlocationService,
+    private dialog : MatDialog
   ) {
     this.mobileForm = this.fb.group({
       Mobile: [
@@ -79,7 +82,6 @@ export class LoginPageComponent {
 
   ngOnInit() {
     this.startAutoSlide();
-
   }
 
   ngOnDestroy() {
@@ -175,14 +177,21 @@ export class LoginPageComponent {
         (response) => {
           console.log('API Response:', response, Data); // Handle the API response here
           if (response.Statuscode === 'TXN') {
-            this.toastr.success("Your Mobile is Valid")
             this.UserNameValidate = response.Data[0].Name
             this.UserMobileNumber = response.Data[0].Mobileno
-            
-            // console.log(this.UserNameValidate);
             this.step = 2;
           } else if (response.Statuscode === 'ERR') {
-            this.toastr.error(response.Message)
+            this.dialog.open(DialogBoxComponent, {
+              data: { 
+                status: 'Failed',
+                message: response.Message,  
+                imageUrl: '/assets/images/login/QR_code_for_mobile_app.svg',
+                additionalInfo: 'e.com/store/apps/details?id=com.wts.redmilapp&pli=1>App Link</a>.e.com/store/apps/details?id=com.wts.redmilapp&pli=1>App Link</a>e.com/store/apps/details?id=com.wts.redmilapp&pli=1>App Link</a>e.com/store/apps/details?id=com.wts.redmilapp&pli=1>App Link</a>',
+              },
+              panelClass: 'custom-dialog-container',
+              enterAnimationDuration: '400ms',
+              exitAnimationDuration: '300ms',
+            });
           }
         },
         (error) => {
@@ -267,9 +276,9 @@ export class LoginPageComponent {
         console.log('API Response:', response); // Handle the API response here
         if (response.Statuscode === "TXN") {
           this.toastr.success(response.Message)
-
           //Set sessionStorage
           sessionStorage.setItem("UserLogintoken", response.Data[0].UserLogintoken);
+          localStorage.setItem("UserLogintoken", response.Data[0].UserLogintoken);
           this._router.navigate(['/dashboard'])
         } else {
           console.log("jkdjdsk");

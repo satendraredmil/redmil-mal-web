@@ -7,6 +7,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { provideToastr } from 'ngx-toastr';
 import { authInterceptor } from './core/interceptor/auth/auth.interceptor';
+import { provideLottieOptions } from 'ngx-lottie';
+import player from 'lottie-web';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,5 +18,8 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
     provideToastr(),
+    provideLottieOptions({
+      player: () => player,
+    }),
   ]
 };

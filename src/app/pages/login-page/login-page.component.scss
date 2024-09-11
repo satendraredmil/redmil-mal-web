@@ -147,6 +147,10 @@
         align-items: center;
         gap: 50px;
 
+        .class_90{
+          width: 90%;
+        }
+
         form {
           display: flex;
           flex-direction: column;
@@ -1674,6 +1678,10 @@
           justify-content: space-around;
           align-items: center;
           gap: 20px;
+
+          .class_90{
+            width: 100%;
+          }
 
           form {
             display: flex;

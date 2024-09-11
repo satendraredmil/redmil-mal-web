@@ -1,40 +1,127 @@
 <header class="flex items-center">
-    <div class="redmil-logo">
-        <div class="logo">
-            <a href=""><img src="/assets/images/global/logo.svg" alt=""></a>
-        </div>
+  <div class="redmil-logo">
+    <div class="redmil-left">
+      <span class="material-symbols-outlined">
+        menu
+        </span>
     </div>
 
+    <div class="logo">
+      <a href=""><img src="/assets/images/global/logo.svg" alt=""></a>
+    </div>
+  </div>
 
-    <div class="redmil-right">
-        <div class="redmil-icons">
-                <button type="button" class="button_icons flex justify-between bg-btn-green text-white rounded-3xl py-1 px-2 space-x-4
+
+  <div class="redmil-right">
+    <div class="redmil-icons">
+      <button type="button" class="button_icons flex justify-between bg-btn-green text-white rounded-3xl py-1 px-2 space-x-4
                 ">
-                    <span class="material-symbols-outlined text-transparent bg-white  rounded-full" style="color: #03ab00;">
-                        add
-                        </span>
-                    <p>Add Money</p>
-                </button>
-        </div>
+        <span class="material-symbols-outlined text-transparent bg-white  rounded-full" style="color: #03ab00;">
+          add
+        </span>
+        <p class="mobile-desktop">Add Money</p>
+      </button>
+    </div>
 
-        <div class="redmil-icons">
-            <a href="https://www.instagram.com/redmilbusinessmall/"><img src="/assets/icons/social/instagram.svg"
-                    alt=""></a>
-            <a href="https://www.facebook.com/RedmilGroup"><img src="/assets/icons/social/facebook.svg" alt=""></a>
-            <a href="https://www.youtube.com/channel/UCgB1a9t-FKtYoG39QrBtgJQ"><img
-                    src="/assets/icons/social/youtube.svg" alt=""></a>
-            <a href="https://www.linkedin.com/company/redmil-group/posts/?feedView=all"><img
-                    src="/assets/icons/social/linkedin.svg" alt=""></a>
-        </div>
+    <mat-accordion>
+      <mat-expansion-panel #parent (opened)="panelOpenState=(true)" (closed)="panelOpenState=(false)"
+      [ngClass]="{'active-bg': panelOpenState && menuOpenState}"
+        [matMenuTriggerFor]="menu" >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="dheader-link">
+              <div class="dheader-icons"><img src="/assets/images/dashboard/cashwallet.svg" alt=""></div>
+              <div class="dheader-text">
+                <div class="cashwallet">Cash-wallet-Balance</div>
+                <div class="cashwalletamount" style="color: #FFCC00;">₹ 120000.68</div>
+              </div>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-menu #menu="matMenu" class="matmenu-drop"   
+        (menuOpened)="menuOpenState = true" 
+        (menuClosed)="menuOpenState = false">
+          <button mat-menu-item>
+            <img src="/assets/images/dashboard/wallettype1.png" alt="">
+            <div class="linkclass">
+              <span>Cash Wallet Balance</span>
+              <p>₹ 120000.68</p>
+            </div>
+          </button>
+          <button mat-menu-item>
+            <img src="/assets/images/dashboard/wallettyp2.png" alt="">
+            <div class="linkclass">
+              <span>Advance Limit Wallet</span>
+              <p>₹ 800</p>
+            </div>
+          </button>
+          <button mat-menu-item>
+            <img src="/assets/images/dashboard/wallettype3.png" alt="">
+            <div class="linkclass">
+              <span>Reward Wallet</span>
+              <p>₹ 200</p>
+            </div>
+          </button>
+        </mat-menu>
+      </mat-expansion-panel>
+    </mat-accordion>
 
-        <div class="redmil-whatsapp">
-            <img src="/assets/icons/social/whatsapp.svg" alt="" (click)="OpenDialogBox()">
-            <a href="">91 81 82 83 84</a>
-        </div>
+    <div class="redmil-iconss"> </div>
 
+    <mat-accordion class="mobile-desktop">
+      <mat-expansion-panel (opened)="panelOpenState=(true)" (closed)="panelOpenState=(false)"
+        [matMenuTriggerFor]="menu1">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="dheader-link">
+              <div class="dheader-icons"><img src="/assets/images/dashboard/user.svg" alt=""></div>
+              <div class="dheader-text">
+                <div class="cashwalletamount">Ramesh Pra...</div>
+                <div class="cashwallet" style="color: #FFCC00;">Distributor</div>
+              </div>
+            </div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-        <!-- //theme button code when you impliment then uncomment it -->
-        <!-- <div class="theme" (click)="toggleTheme()">
+        <mat-menu #menu1="matMenu" class="matmenu-drop">
+          <button mat-menu-item>
+            <img src="/assets/images/dashboard/wallettype1.png" alt="">
+            <div class="linkclass">
+              <span>Cash Wallet Balance</span>
+            </div>
+            <mat-divider></mat-divider>
+          </button>
+         
+          <button mat-menu-item>
+            <img src="/assets/images/dashboard/wallettyp2.png" alt="">
+            <div class="linkclass">
+              <span>Advance Limit Wallet</span>
+            </div>
+          </button>
+          <button mat-menu-item>
+            <img src="/assets/images/dashboard/wallettype3.png" alt="">
+            <div class="linkclass">
+              <span>Reward Wallet</span>
+            </div>
+          </button>
+        </mat-menu>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="redmil-iconss"> </div>
+
+    <div class="redmil-whatsapp">
+      <img src="/assets/images/dashboard/notification.svg" alt="">
+    </div>
+
+    <div class="redmil-whatsapp mobile-view">
+      <span class="material-symbols-outlined">
+        more_vert
+        </span>
+    </div>
+
+ <!-- //theme button code when you impliment then uncomment it -->
+    <!-- <div class="theme" (click)="toggleTheme()">
             @if (!isDarkMode) {
                 <span class="material-symbols-outlined" style="color: #fff;">
                     light_mode
@@ -44,55 +131,13 @@
                      dark_mode
                 </span>
             }
-
-
         </div> -->
 
-
-
-          
-          
-          <mat-accordion>
-            <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)"  [matMenuTriggerFor]="menu">
-              <mat-expansion-panel-header style="height:35px;">
-                <mat-panel-title> <div class="dheader-link">
-
-                </div> </mat-panel-title>
-              </mat-expansion-panel-header>
-            
-              <mat-menu #menu="matMenu" class="matmenu-drop">
-                <button mat-menu-item>
-                  <img src="/assets/images/dashboard/Cash-wallet-Icon.svg" alt="">
-                  <div class="linkclass">
-                    <span>Cash Wallet Balance</span>
-                    <p>₹ 120000.68</p>
-                  </div>
-                </button>
-                <button mat-menu-item>
-                  <img src="/assets/images/dashboard/Cash-wallet-Icon.svg" alt="">
-                  <div class="linkclass">
-                    <span>Advance Limit Wallet</span>
-                    <p>₹ 120000.68</p>
-                  </div>
-                </button>
-                <button mat-menu-item>
-                  <img src="/assets/images/dashboard/Cash-wallet-Icon.svg" alt="">
-                  <div class="linkclass">
-                    <span>Reward Wallet</span>
-                    <p>₹ 120000.68</p>
-                  </div>
-                </button>
-              </mat-menu>
-            </mat-expansion-panel>
-          </mat-accordion>
-          
-           
-            
-            
-            
-
-        <div class="toggle-container" [class.active]="isActive" (click)="toggleLanguage()">
-            <div class="toggle-button"></div>
-        </div>
+    <div class="toggle-container" [class.active]="isActive" (click)="toggleLanguage()">
+      <div class="toggle-button"></div>
     </div>
+
+  </div>
 </header>
+
+<!-- <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" />  -->
