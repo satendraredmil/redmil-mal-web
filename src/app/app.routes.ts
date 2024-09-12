@@ -7,7 +7,7 @@ export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full' },
     {path:'login', component:LoginPageComponent},
     { path: 'dashboard', component: DLayoutComponent, 
-        canActivate:[authGuard] ,
+        //canActivate:[authGuard] ,
         title:"Dashboard"
     },
 
