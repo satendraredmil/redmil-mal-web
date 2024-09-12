@@ -82,6 +82,8 @@ export class LoginPageComponent {
 
   ngOnInit() {
     this.startAutoSlide();
+    sessionStorage.clear();
+    localStorage.clear();
   }
 
   ngOnDestroy() {

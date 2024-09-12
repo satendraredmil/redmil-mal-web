@@ -1,7 +1,7 @@
 <header class="flex items-center">
   <div class="redmil-logo">
-    <div class="redmil-left">
-      <span class="material-symbols-outlined">
+    <div class="redmil-left" id="menu-btn" (click)="openMenu()">
+      <span class="material-symbols-outlined btn menu-btn" >
         menu
         </span>
     </div>
@@ -84,26 +84,36 @@
         </mat-expansion-panel-header>
 
         <mat-menu #menu1="matMenu" class="matmenu-drop">
-          <button mat-menu-item>
-            <img src="/assets/images/dashboard/wallettype1.png" alt="">
-            <div class="linkclass">
-              <span>Cash Wallet Balance</span>
-            </div>
-            <mat-divider></mat-divider>
-          </button>
-         
-          <button mat-menu-item>
-            <img src="/assets/images/dashboard/wallettyp2.png" alt="">
-            <div class="linkclass">
-              <span>Advance Limit Wallet</span>
-            </div>
-          </button>
-          <button mat-menu-item>
-            <img src="/assets/images/dashboard/wallettype3.png" alt="">
-            <div class="linkclass">
-              <span>Reward Wallet</span>
-            </div>
-          </button>
+          <div class="user_link" mat-menu-item>
+            <div class="user_link_icons"><img src="/assets/images/dashboard/user_profile.svg" alt=""></div>
+            <div class="user_link_href">My Profile</div>
+          </div>
+
+          <div class="user_link" mat-menu-item>
+            <div class="user_link_icons"><img src="/assets/images/dashboard/Upgrade.svg" alt=""></div>
+            <div class="user_link_href">Upgrade Subscription</div>
+          </div>
+
+          <div class="user_link" mat-menu-item>
+            <div class="user_link_icons"><img src="/assets/images/dashboard/certificate.svg" alt=""></div>
+            <div class="user_link_href">My Certificates</div>
+          </div>
+
+          <div class="user_link" mat-menu-item>
+            <div class="user_link_icons"><img src="/assets/images/dashboard/crown.svg" alt=""></div>
+            <div class="user_link_href">Apply for Distributor/ Franchise</div>
+          </div>
+
+          <div class="user_link" mat-menu-item>
+            <div class="user_link_icons"><img src="/assets/images/dashboard/delete.svg" alt=""></div>
+            <div class="user_link_href">Delete my account</div>
+          </div>
+
+          <div class="user_link" mat-menu-item>
+            <div class="user_link_icons"><img src="/assets/images/dashboard/logout.svg" alt=""></div>
+            <div class="user_link_href">Log out</div>
+          </div>
+
         </mat-menu>
       </mat-expansion-panel>
     </mat-accordion>
@@ -138,6 +148,134 @@
     </div>
 
   </div>
+
+  
+<nav>
+  <div class="wrapper">
+    <input type="radio" name="slider" id="menu-btn">
+    <input type="radio" name="slider" id="close-btn">
+      <ul class="nav-links">
+          <label for="close-btn" (click)="closeMenu()" class="btn close-btn">
+            <i><mat-icon style="color: #fff; margin-left: 115px; z-index: 9;">close</mat-icon></i>
+          </label>
+
+          <li><a routerLink="/dashboard_link"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Dashboard</a></li>
+
+          <li (click)="toggleDropdown()">
+              <a style="cursor: pointer;" class="desktop-item">Services
+              <mat-icon class=" arrow_rotate" [class.rotate]="isDropdownOpen" style="margin-top: 5px;">
+                  keyboard_arrow_down
+                  </mat-icon>
+          </a>
+              <input type="checkbox" id="showDropd" hidden>
+              <label for="showDropd" class="mobile-item" (click)="toggleDropdown()">Services<mat-icon class="arrow_rotate">arrow_drop_down</mat-icon></label>
+              <ul class="drop-menu" [class.show]="isDropdownOpen">
+                  <li class="demo-section"><a href="#" id="icons" target="_blank">
+                          <img src="assets/icons/html5.svg" alt="HTML Solution" width="50px" height="50px">
+                          <span> HTML Hindi Course</span>
+                      </a>
+                  </li>
+
+                  <li><a href="#" target="_blank" id="icons">
+                          <img src="assets/icons/css.svg" alt="CSS Solution" width="50px" height="50px">
+                          <span> CSS Hindi Course</span>
+                      </a>
+                  </li>
+
+                  <li><a href="#" target="_blank" id="icons">
+                          <img src="assets/icons/js.svg" alt="JavaScript Solution" width="50px" height="50px">
+                          <span>JavaScript Hindi Course </span>
+                      </a>
+                  </li>
+
+                  
+                  <li><a href="#" id="icons">
+                      <img src="assets/icons/typescript.svg" alt="MongoDB " width="50px" height="50px">
+                      <span>TypeScript Hindi Course</span>
+                  </a>
+                  </li>
+
+                  <li><a href="#" id="icons">
+                          <img src="assets/icons/angular.svg" alt="Angular Solution" width="50px" height="50px">
+                          <span>Angular Hindi Course</span>
+                      </a>
+                  </li>
+
+                  <li><a href="#" target="_blank" id="icons">
+                          <img src="assets/icons/node-js.svg" alt="Node Js" width="50px" height="50px">
+                          <span>Node js Hindi Course</span>
+                      </a>
+                  </li>
+
+                  <li><a href="#" id="icons">
+                          <img src="assets/icons/mongodb.svg" alt="MongoDB " width="50px" height="50px">
+                          <span>MongoDB Hindi Course</span>
+                      </a>
+                  </li>
+
+                  <li><a href="#" id="icons">
+                          <img src="assets/icons/excel.svg" alt="MongoDB " width="50px" height="50px">
+                          <span>Ad.Excel Hindi Course</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+
+          <li><a routerLink="/passbook" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Passbook</a></li>
+          <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">My Team Dashboard</a></li>
+          <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">My Business Report</a></li>
+          <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Commission Sheet</a></li>
+          <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">How to work</a></li>
+          <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Redmil Saarthi</a></li>
+
+          
+          <li (click)="toggleDropdown1()">
+              <a style="cursor: pointer;" class="desktop-item">User Info & Policies
+              <mat-icon class="arrow_rotate" [class.rotate1]="isDropdownOpen1" style="margin-top: 5px;">
+                  keyboard_arrow_down
+                  </mat-icon>
+          </a>
+              <input type="checkbox" id="showDropd" hidden>
+              <label for="showDropd" class="mobile-item" (click)="toggleDropdown1()">User Info & Policies<mat-icon class="arrow_rotate1">arrow_drop_down</mat-icon></label>
+              <ul class="drop-menu" [class.show1]="isDropdownOpen1">
+                  <li class="demo-section"><a href="#" id="icons" target="_blank">
+                          <img src="assets/icons/html5.svg" alt="HTML Solution" width="50px" height="50px">
+                          <span>  Hindi Course</span>
+                      </a>
+                  </li>
+
+                  <li><a href="#" target="_blank" id="icons">
+                          <img src="assets/icons/css.svg" alt="CSS Solution" width="50px" height="50px">
+                          <span> Hindi Course</span>
+                      </a>
+                  </li>
+
+                  <li><a href="#" target="_blank" id="icons">
+                          <img src="assets/icons/js.svg" alt="JavaScript Solution" width="50px" height="50px">
+                          <span> Hindi Course </span>
+                      </a>
+                  </li>
+
+                  
+                  <li><a href="#" id="icons">
+                      <img src="assets/icons/typescript.svg" alt="MongoDB " width="50px" height="50px">
+                      <span> Hindi Course</span>
+                  </a>
+                  </li>
+
+                  <li><a href="#" id="icons">
+                          <img src="assets/icons/angular.svg" alt="Angular Solution" width="50px" height="50px">
+                          <span> Hindi Course</span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+      <label  for="menu-btn" class="btn menu-btn"><i><mat-icon>menu</mat-icon></i></label>
+  </div>
+</nav>
 </header>
 
 <!-- <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" />  -->
+
+
