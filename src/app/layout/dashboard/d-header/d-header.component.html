@@ -7,7 +7,7 @@
     </div>
 
     <div class="logo">
-      <a href=""><img src="/assets/images/global/logo.svg" alt=""></a>
+      <img src="/assets/images/global/logo.svg" alt="">
     </div>
   </div>
 
@@ -68,14 +68,14 @@
 
     <div class="redmil-iconss"> </div>
 
-    <mat-accordion class="mobile-desktop">
+    <mat-accordion>
       <mat-expansion-panel (opened)="panelOpenState=(true)" (closed)="panelOpenState=(false)"
         [matMenuTriggerFor]="menu1">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div class="dheader-link">
               <div class="dheader-icons"><img src="/assets/images/dashboard/user.svg" alt=""></div>
-              <div class="dheader-text">
+              <div class="dheader-text mobile-desktop">
                 <div class="cashwalletamount">Ramesh Pra...</div>
                 <div class="cashwallet" style="color: #FFCC00;">Distributor</div>
               </div>
