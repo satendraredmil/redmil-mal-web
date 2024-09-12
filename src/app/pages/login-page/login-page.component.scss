@@ -1,6 +1,6 @@
 .login-page {
   width: 100%;
-  height: 100% !important;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,17 +25,21 @@
     }
   }
 
+
+  .main-login{
+    margin-top: 77.77px;
+  }
   .container_Login {
     width: 100% !important;
     height: 100%;
     margin: 0% 2% 0% 2%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     flex-wrap: nowrap;
     flex-direction: row;
     gap: 0px;
-    top: 0%;
+   position: relative;
     
     .slider-section {
       width: 100%;
@@ -129,12 +133,12 @@
     /* Form Container for input field and icon */
     .form-section {
       width: 100%;
-      height: 82%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: normal;
       align-items: stretch;
-      row-gap: 18px;
+      row-gap: 20px;
       padding: 0px 40px;
       //background-color: #f4f4f4;
       border-radius: 10px;
