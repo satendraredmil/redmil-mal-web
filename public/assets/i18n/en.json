@@ -25,6 +25,18 @@
         "PIN_valid":"PIN must be at least 4 digits",
         "PIN_numeric":"Only numeric values are allowed",
         "OTP_required":"All OTP fields are required"
+    },
+
+    "DASHBOARD_First":{
+        "Dashboard":"Dashboard",
+        "Passbook":"Passbook",
+        "Services":"Services",
+        "My_Team_Dashboard":"My Team Dashboard",
+        "My_Business_Report":"My Business Report",
+        "Commission_Sheet":"Commission Sheet",
+        "How_to_work":"How to work",
+        "Redmil_Saarthi":"Redmil Saarthi",
+        "user_info_policies":"User Info & Policies"
     }
 }
 

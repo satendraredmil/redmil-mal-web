@@ -27,5 +27,17 @@
        "PIN_numeric":"केवल पिन नंबर ही दर्ज करें",
        "OTP_required":"सभी OTP फ़ील्ड आवश्यक हैं"
        
+    },
+
+    "DASHBOARD_First":{
+        "Dashboard":"डैशबोर्ड",
+        "Passbook":"पासबुक",
+        "Services":"सेवाएं",
+        "My_Team_Dashboard":"मेरी टीम डैशबोर्ड",
+        "My_Business_Report":"मेरी बिज़नेस रिपोर्ट",
+        "Commission_Sheet":"कमीशन शीट",
+        "How_to_work":"काम कैसे करें",
+        "Redmil_Saarthi":"रेडमिल सारथी",
+        "user_info_policies":"यूजर की जानकारी और नीतियां"
     }
 }

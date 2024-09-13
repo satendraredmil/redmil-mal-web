@@ -85,6 +85,7 @@ handleOutsideClick(event: Event) {
   if (!this.eRef.nativeElement.contains(event.target)) {
     this.isDropdownOpen = false;
     this.isDropdownOpen1 = false;
+    this.closeMenu();
   }
 }
 
