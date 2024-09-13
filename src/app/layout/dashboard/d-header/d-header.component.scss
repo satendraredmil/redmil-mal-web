@@ -637,22 +637,24 @@ mat-icon {
 
     
   .nav-links li {
-    margin: 15px 10px;
+    margin: 10px 0px !important;
     padding: 0 10px;
     display: block;
     font-size: 20px;
 
     a {
-      padding: 0 20px;
+      padding: 0 10px !important;
       display: block;
-      font-size: 20px;
+      font-size: 20px !important;
+      color: #fff !important;
+      border-radius: 10px !important;
     }
 
     .mobile-item {
       display: block;
       color: #fff;
       font-size: 20px;
-      padding-left: 20px;
+      padding-left: 10px;
       cursor: pointer;
       border-radius: 5px;
       transition: all 0.3s ease;
@@ -669,18 +671,18 @@ mat-icon {
       position: relative;
       top: 0;
       width: 100%;
-      background: #fff; /* Adjust background if necessary */
-      padding: 10px;
+      background: transparent; /* Adjust background if necessary */
+      padding: 0px;
       box-shadow: none;
 
       li {
         display: block;
-        padding: 15px 0;
+        padding: 0px 0;
         margin: 0;
 
         a {
           border-radius: 5px;
-          font-size: 18px;
+          font-size: 20px;
         }
       }
     }
@@ -700,7 +702,7 @@ mat-icon {
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #ff4500;
+    background: #fff;
     border-radius: 10px;
   }
 
