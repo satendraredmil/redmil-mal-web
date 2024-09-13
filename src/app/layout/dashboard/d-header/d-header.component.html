@@ -156,67 +156,37 @@
 
           <li><a routerLink="/dashboard"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.Dashboard' | pchangelanguage }}</a></li>
 
-          <li (click)="toggleDropdown()">
-              <a style="cursor: pointer;" class="desktop-item">{{'DASHBOARD_First.Services' | pchangelanguage }}
-              <mat-icon class=" arrow_rotate" [class.rotate]="isDropdownOpen" style="margin-top: 5px;">
-                  keyboard_arrow_down
-                  </mat-icon>
-          </a>
-              <input type="checkbox" id="showDropd" hidden>
-              <label for="showDropd" class="mobile-item" (click)="toggleDropdown()">{{'DASHBOARD_First.Services' | pchangelanguage }}<mat-icon class=" arrow_rotate" [class.rotate]="isDropdownOpen" style="margin-top: 5px;">
+          @for (item of mainMenu; track $index) {
+            <li (click)="toggleDropdownMega()">
+              <a style="cursor: pointer;" class="desktop-item">{{'DASHBOARD_First.Services' | pchangelanguage }}  <mat-icon class=" arrow_rotate" [class.rotate1]="isDropdownOpenMega" style="margin-top: 5px;">
                 keyboard_arrow_down
-                </mat-icon></label>
-              <ul class="drop-menu" [class.show]="isDropdownOpen">
-                  <li class="demo-section"><a href="#" id="icons" target="_blank">
-                          <img src="assets/icons/html5.svg" alt="HTML Solution" width="50px" height="50px">
-                          <span> Passbook_1</span>
-                      </a>
-                  </li>
+                </mat-icon></a>
+                <input type="checkbox" [id]="item.showMega" style="display: none;">
+                <label [for]="item.showMega" (click)="toggleDropdownMega()"
+                    class="mobile-item">{{'DASHBOARD_First.Services' | pchangelanguage }} <mat-icon class=" arrow_rotate" [class.rotate1]="isDropdownOpenMega" style="margin-top: 5px;">
+                      keyboard_arrow_down
+                      </mat-icon></label>
+                <div class="mega-box" [class.open]="isDropdownOpenMega">
+                    <div class="content">
+                        @for (subitem of item.subMenu; track $index) {
+                        <div class="row">
+                            <h4 class="import-heading"><b>{{subitem.heading}}</b></h4>
+                            @for (Megaitem of subitem.megaLink; track $index) {
+                            <ul class="mega-links">
+                                <li [title]="Megaitem.mega_name"><a [href]="Megaitem.mega_link" id="icons">
+                                        <img [src]="Megaitem.mega_icons"
+                                            [alt]="Megaitem.mega_name"><span>{{Megaitem.mega_name}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            }
 
-                  <li><a href="#" target="_blank" id="icons">
-                          <img src="assets/icons/css.svg" alt="CSS Solution" width="50px" height="50px">
-                          <span> CSS Hindi Course</span>
-                      </a>
-                  </li>
-
-                  <li><a href="#" target="_blank" id="icons">
-                          <img src="assets/icons/js.svg" alt="JavaScript Solution" width="50px" height="50px">
-                          <span>JavaScript Hindi Course </span>
-                      </a>
-                  </li>
-
-                  
-                  <li><a href="#" id="icons">
-                      <img src="assets/icons/typescript.svg" alt="MongoDB " width="50px" height="50px">
-                      <span>TypeScript Hindi Course</span>
-                  </a>
-                  </li>
-
-                  <li><a href="#" id="icons">
-                          <img src="assets/icons/angular.svg" alt="Angular Solution" width="50px" height="50px">
-                          <span>Angular Hindi Course</span>
-                      </a>
-                  </li>
-
-                  <li><a href="#" target="_blank" id="icons">
-                          <img src="assets/icons/node-js.svg" alt="Node Js" width="50px" height="50px">
-                          <span>Node js Hindi Course</span>
-                      </a>
-                  </li>
-
-                  <li><a href="#" id="icons">
-                          <img src="assets/icons/mongodb.svg" alt="MongoDB " width="50px" height="50px">
-                          <span>MongoDB Hindi Course</span>
-                      </a>
-                  </li>
-
-                  <li><a href="#" id="icons">
-                          <img src="assets/icons/excel.svg" alt="MongoDB " width="50px" height="50px">
-                          <span>Ad.Excel Hindi Course</span>
-                      </a>
-                  </li>
-              </ul>
-          </li>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </li>
+            }
 
           <li><a routerLink="/passbook" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.Passbook' | pchangelanguage }}</a></li>
           <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.My_Team_Dashboard' | pchangelanguage }}</a></li>
@@ -224,51 +194,70 @@
           <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.Commission_Sheet' | pchangelanguage }}</a></li>
           <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.How_to_work' | pchangelanguage }}</a></li>
           <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.Redmil_Saarthi' | pchangelanguage }}</a></li>
-
-          
-          <li (click)="toggleDropdown1()">
-              <a style="cursor: pointer;" class="desktop-item">{{'DASHBOARD_First.user_info_policies' | pchangelanguage }}
-              <mat-icon class="arrow_rotate" [class.rotate1]="isDropdownOpen1" style="margin-top: 5px;">
-                  keyboard_arrow_down
-                  </mat-icon>
-          </a>
-              <input type="checkbox" id="showDropd" hidden>
-              <label for="showDropd" class="mobile-item" (click)="toggleDropdown1()">{{'DASHBOARD_First.user_info_policies' | pchangelanguage }}<mat-icon class=" arrow_rotate" [class.rotate]="isDropdownOpen" style="margin-top: 5px;">
+     
+          <li (click)="toggleDropdown()">
+            <a style="cursor: pointer;" class="desktop-item">{{'DASHBOARD_First.user_info_policies' | pchangelanguage }}
+            <mat-icon class=" arrow_rotate" [class.rotate]="isDropdownOpen" style="margin-top: 5px;">
                 keyboard_arrow_down
-                </mat-icon></label>
-              <ul class="drop-menu" [class.show1]="isDropdownOpen1">
-                  <li class="demo-section"><a href="#" id="icons" target="_blank">
-                          <img src="assets/icons/html5.svg" alt="HTML Solution" width="50px" height="50px">
-                          <span>  Hindi Course</span>
-                      </a>
-                  </li>
+                </mat-icon>
+        </a>
+            <input type="checkbox" id="showDropd" hidden>
+            <label for="showDropd" class="mobile-item" (click)="toggleDropdown()">{{'DASHBOARD_First.user_info_policies' | pchangelanguage }}<mat-icon class=" arrow_rotate" [class.rotate]="isDropdownOpen" style="margin-top: 5px;">
+              keyboard_arrow_down
+              </mat-icon></label>
+            <ul class="drop-menu" [class.show]="isDropdownOpen">
+                <li class="demo-section"><a href="#" id="icons" target="_blank">
+                        <img src="assets/icons/html5.svg" alt="HTML Solution" width="50px" height="50px">
+                        <span> Passbook_1</span>
+                    </a>
+                </li>
 
-                  <li><a href="#" target="_blank" id="icons">
-                          <img src="assets/icons/css.svg" alt="CSS Solution" width="50px" height="50px">
-                          <span> Hindi Course</span>
-                      </a>
-                  </li>
+                <li><a href="#" target="_blank" id="icons">
+                        <img src="assets/icons/css.svg" alt="CSS Solution" width="50px" height="50px">
+                        <span> CSS Hindi Course</span>
+                    </a>
+                </li>
 
-                  <li><a href="#" target="_blank" id="icons">
-                          <img src="assets/icons/js.svg" alt="JavaScript Solution" width="50px" height="50px">
-                          <span> Hindi Course </span>
-                      </a>
-                  </li>
+                <li><a href="#" target="_blank" id="icons">
+                        <img src="assets/icons/js.svg" alt="JavaScript Solution" width="50px" height="50px">
+                        <span>JavaScript Hindi Course </span>
+                    </a>
+                </li>
 
-                  
-                  <li><a href="#" id="icons">
-                      <img src="assets/icons/typescript.svg" alt="MongoDB " width="50px" height="50px">
-                      <span> Hindi Course</span>
-                  </a>
-                  </li>
+                
+                <li><a href="#" id="icons">
+                    <img src="assets/icons/typescript.svg" alt="MongoDB " width="50px" height="50px">
+                    <span>TypeScript Hindi Course</span>
+                </a>
+                </li>
 
-                  <li><a href="#" id="icons">
-                          <img src="assets/icons/angular.svg" alt="Angular Solution" width="50px" height="50px">
-                          <span> Hindi Course</span>
-                      </a>
-                  </li>
-              </ul>
-          </li>
+                <li><a href="#" id="icons">
+                        <img src="assets/icons/angular.svg" alt="Angular Solution" width="50px" height="50px">
+                        <span>Angular Hindi Course</span>
+                    </a>
+                </li>
+
+                <li><a href="#" target="_blank" id="icons">
+                        <img src="assets/icons/node-js.svg" alt="Node Js" width="50px" height="50px">
+                        <span>Node js Hindi Course</span>
+                    </a>
+                </li>
+
+                <li><a href="#" id="icons">
+                        <img src="assets/icons/mongodb.svg" alt="MongoDB " width="50px" height="50px">
+                        <span>MongoDB Hindi Course</span>
+                    </a>
+                </li>
+
+                <li><a href="#" id="icons">
+                        <img src="assets/icons/excel.svg" alt="MongoDB " width="50px" height="50px">
+                        <span>Ad.Excel Hindi Course</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
       </ul>
       <label  for="menu-btn" class="btn menu-btn"><i><mat-icon>menu</mat-icon></i></label>
   </div>
