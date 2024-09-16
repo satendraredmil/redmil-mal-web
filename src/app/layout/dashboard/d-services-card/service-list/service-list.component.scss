@@ -10,6 +10,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 20px;
 
         @media screen and (max-device-width: 480px) {
             display: flex;
@@ -48,6 +49,7 @@
                 gap: 20px;
                 padding-bottom: 1%;
                 color: #012643;
+                font-weight: 500;
 
                 .text {
                     padding: 0 10px;
@@ -115,6 +117,20 @@
                     font-size: 10px;
                 }
 
+                .top-text-coming {
+                    background-color: #FFCC00;
+                    color: #000;
+                    padding: 3px 4px;
+                    position: absolute;
+                    top: -10px;
+                    left: 15%;
+                    width: 70%;
+                    text-align: center;
+                    margin: auto;
+                    border-radius: 20px;
+                    font-size: 10px;
+                }
+
                 .center-image {
                     //position: absolute;
                     margin-top: 0px;
@@ -156,3 +172,9 @@
         }
     }
 }
+
+
+.dynamic-class {
+    background-color: yellow; /* Yahan aap apni desired styles de sakte hain */
+    color: black;
+  }

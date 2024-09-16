@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ChartConfiguration, ChartOptions, ChartType } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
@@ -5,11 +6,25 @@ import { NgChartsModule } from 'ng2-charts';
 @Component({
   selector: 'app-service-chart',
   standalone: true,
-  imports: [NgChartsModule],
+  imports: [NgChartsModule, CommonModule],
   templateUrl: './service-chart.component.html',
   styleUrl: './service-chart.component.scss'
 })
 export class ServiceChartComponent {
+
+
+  activeTime: string = '1week'; // Default active time
+  activeTime_1: string = '1week'; // Default active time
+
+
+  setActiveTime(time: string) {
+    this.activeTime = time; // Set the active time
+  }
+  setActiveTime_1(timea: string) {
+    this.activeTime_1 = timea; // Set the active time
+  }
+
+
    // Bar chart options
    public barChartOptions: ChartOptions<'pie'> = {
     responsive: true,
@@ -38,10 +53,16 @@ export class ServiceChartComponent {
 
   // Bar chart data
   public barChartData_1: ChartConfiguration<'bar'>['data'] = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ['AePS', 'DMT', 'Recharges', 'BBPS', 'Micro ATM', 'Account ...', 'Credit Car...', 'Travel Ser...', 'Loans', 'CMS'],
     datasets: [
-      { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-      { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+      { data: [65, 59, 80, 81, 56, 55, 40], label: 'AePS' },
+      { data: [28, 48, 40, 19, 86, 27, 970], label: 'DMT' },
+      { data: [65, 59, 80, 81, 56, 55, 450], label: 'Recharges' },
+      { data: [28, 48, 40, 19, 86, 27, 990],  label: 'BBPS' },
+      { data: [65, 59, 840, 81, 56, 55, 440],label: 'Micro ATM' },
+      { data: [28, 48, 40, 19, 86, 27, 390], label: 'Account' },
+      { data: [65, 59, 80, 81, 56, 55, 440], label: 'Credit' },
+      { data: [28, 48, 640, 19, 86, 27, 900], label: 'Travel' }
     ]
   };
 
@@ -56,7 +77,7 @@ export class ServiceChartComponent {
 
   // Line chart data
   public lineChartData_2: ChartConfiguration<'line'>['data'] = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+    labels: ['1', '5', '10', '15', '20', '25', '30'],
     datasets: [
       {
         label: 'Sample Data',

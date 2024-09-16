@@ -1,59 +1,31 @@
 <div class="d-services-list">
-        <div class="d-services-list-row">
+    <div class="d-services-list-row">
+        @for (item of All_services; track item) {
             <div class="services-list-card">
                 <div class="services-card-img">
                     <div class="list-card-heading">
                         <span class="line"></span>
-                        <span class="text">Recharges</span>
+                        <span class="text">{{item.name}}</span>
                         <span class="line"></span>
                     </div>
     
-                    <div class="img-container">
-                        <a href="">
-                        <div class="img-loop">
-                            <div class="top-text">Earn upto 6%</div>
-                            <img class="center-image" src="/assets/images/dashboard/Mobile-Prepaid.png" alt="Image">
-                            <div class="bottom-text">Mobile Prepaid</div>
-                        </div></a>
-                       
-                        <a href="">
-                        <div class="img-loop">
-                            <!-- <div class="top-text">Earn upto 6%</div> -->
-                            <img class="center-image" src="/assets/images/dashboard/Mobile-Postpaid.png" alt="Image">
-                            <div class="bottom-text">Mobile Postpaid</div>
-                        </div></a>
-
-                        <div class="img-loop">
-                            <!-- <div class="top-text">Earn upto 6%</div> -->
-                            <img class="center-image" src="/assets/images/dashboard/DTH.png" alt="Image">
-                            <div class="bottom-text">DTH Recharge</div>
+                 
+                        <div class="img-container">
+                            @for (subitem of item.List_of_recharges; track $index) {
+                            <a [href]="subitem.Urlbase">
+                                <div class="img-loop">
+                                    <div  *ngIf="subitem.status"  [class]="subitem.classadd">{{subitem.message_eran}}</div>
+                                    <img class="center-image" [src]="subitem.center_image" alt="Image">
+                                    <div class="bottom-text">{{subitem.bottom_text}}</div>
+                                </div>
+                            </a>
+                        }
                         </div>
-
-                        <div class="img-loop">
-                            <!-- <div class="top-text">Earn upto 6%</div> -->
-                            <img class="center-image" src="/assets/images/dashboard/Fastag.png" alt="Image">
-                            <div class="bottom-text">Fastag Recharge</div>
-                        </div>
-
-                        <div class="img-loop">
-                            <!-- <div class="top-text">Earn upto 6%</div> -->
-                            <img class="center-image" src="/assets/images/dashboard/Mobile-Prepaid.png" alt="Image">
-                            <div class="bottom-text">BBPS</div>
-                        </div>
-
-                        <div class="img-loop">
-                            <div class="top-text">Earn upto 6%</div>
-                            <img class="center-image" src="/assets/images/dashboard/Mobile-Prepaid.png" alt="Image">
-                            <div class="bottom-text">Mobile Prepaid</div>
-                        </div>
-
-                        <!-- <div class="img-loop">
-                            <div class="top-text">Earn upto 6%</div>
-                            <img class="center-image" src="/assets/images/dashboard/Mobile-Prepaid.png" alt="Image">
-                            <div class="bottom-text">Mobile Prepaid</div>
-                        </div> -->
-                    </div>
+                    
+                    
                 </div>
             </div>
-        </div>
+        }
+       
+    </div>
 </div>

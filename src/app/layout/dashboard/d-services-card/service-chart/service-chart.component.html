@@ -4,6 +4,17 @@
     <!-- your-chart.component.html -->
     <canvas baseChart [data]="lineChartData_2" [options]="lineChartOptions_2" [type]="'line'">
     </canvas>
+
+    <div class="chart_link">
+      <ul class="time-list">
+        <li [ngClass]="{'active': activeTime === '1week'}" (click)="setActiveTime('1week')">1 Week</li>
+        <li [ngClass]="{'active': activeTime === '1month'}" (click)="setActiveTime('1month')">1 Month</li>
+        <li [ngClass]="{'active': activeTime === '6months'}" (click)="setActiveTime('6months')">6 Months</li>
+        <li [ngClass]="{'active': activeTime === '1year'}" (click)="setActiveTime('1year')">1 Year</li>
+        <li [ngClass]="{'active': activeTime === 'alltime'}" (click)="setActiveTime('alltime')">All Time</li>
+      </ul>
+      
+    </div>
   </div>
 
   <div class="line_graph">
@@ -11,6 +22,17 @@
     <!-- your-chart.component.html -->
     <canvas baseChart [data]="barChartData_1" [options]="barChartOptions_1" [type]="'bar'">
     </canvas>
+
+    <div class="chart_link">
+      <ul class="time-list">
+        <li [ngClass]="{'active': activeTime_1 === '1week'}" (click)="setActiveTime_1('1week')">1 Week</li>
+        <li [ngClass]="{'active': activeTime_1 === '1month'}" (click)="setActiveTime_1('1month')">1 Month</li>
+        <li [ngClass]="{'active': activeTime_1 === '6months'}" (click)="setActiveTime_1('6months')">6 Months</li>
+        <li [ngClass]="{'active': activeTime_1 === '1year'}" (click)="setActiveTime_1('1year')">1 Year</li>
+        <li [ngClass]="{'active': activeTime_1 === 'alltime'}" (click)="setActiveTime_1('alltime')">All Time</li>
+      </ul>
+      
+    </div>
   </div>
 </div>
 
