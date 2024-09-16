@@ -1,0 +1,47 @@
+.d-services{
+    width: 100%;
+    height: auto;
+    margin: auto;
+    position: relative;
+    padding-bottom: 30px;
+
+    .d-services-row{
+        width: 95%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        flex-direction: row;
+        align-items: baseline;
+        @media screen and (max-device-width: 480px){
+            width: 95%;
+            height: 100%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
+        .d-services-left{
+            flex-basis: 74%;
+           
+            @media screen and (max-device-width: 480px){
+                width: 100%;
+                flex-basis: auto;
+            }
+        }
+
+        .d-services-right{
+            flex-basis: 24%;
+            // background-color: lightcoral;
+            // position: -webkit-sticky;
+            position: sticky;
+            top: 120px;
+            @media screen and (max-device-width: 480px){
+                width: 100%;
+                flex-basis: auto;
+            }
+        }
+    }
+}

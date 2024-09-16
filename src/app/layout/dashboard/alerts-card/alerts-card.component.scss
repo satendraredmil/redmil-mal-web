@@ -1,0 +1,35 @@
+.alerts-container{
+    width: 100%;
+    height: max-content;
+    margin: 2% 0%;
+    margin-top: 130px;
+    @media screen and (max-device-width: 480px){
+        width: 100%;
+        margin-top: 100px;
+    }
+
+    .alert-row{
+        width: 95%;
+        margin: auto;
+        background-color: #fff;
+        border: 2px solid #C7C7C7;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .alerts-right{
+            padding: 5px 10px;
+            background-color:#012643;
+            border-bottom-left-radius: 70px;
+            border-top-left-radius: 70px;
+            border: 2px solid #012643;
+        }
+
+        .align-middle{
+            display: inline-block;
+            @media screen and (max-device-width: 480px){
+                font-size: 14px;
+            }
+        }
+    }
+}

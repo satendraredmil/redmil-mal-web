@@ -227,12 +227,12 @@ header {
     height: 76.67px;
     margin: auto;
     background-color: #012643;
-    position: fixed;
+    position: fixed !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 0;
-    position: relative;
+    z-index: 999;
+  
 
     .redmil-logo {
       // width: 350px;

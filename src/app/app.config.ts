@@ -10,6 +10,7 @@ import { authInterceptor } from './core/interceptor/auth/auth.interceptor';
 import { provideLottieOptions } from 'ngx-lottie';
 import player from 'lottie-web';
 
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }), 
@@ -21,5 +22,8 @@ export const appConfig: ApplicationConfig = {
     provideLottieOptions({
       player: () => player,
     }),
+    
   ]
 };
+
+

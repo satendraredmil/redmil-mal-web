@@ -1,0 +1,21 @@
+<div class="chart-container">
+  <div class="line_graph">
+    <div class="chart-heading">Your Earnings</div>
+    <!-- your-chart.component.html -->
+    <canvas baseChart [data]="lineChartData_2" [options]="lineChartOptions_2" [type]="'line'">
+    </canvas>
+  </div>
+
+  <div class="line_graph">
+    <div class="chart-heading">Service-wise Overview</div>
+    <!-- your-chart.component.html -->
+    <canvas baseChart [data]="barChartData_1" [options]="barChartOptions_1" [type]="'bar'">
+    </canvas>
+  </div>
+</div>
+
+
+
+<!-- your-chart.component.html -->
+<!-- <canvas baseChart [data]="barChartData" [options]="barChartOptions" [type]="'pie'">
+</canvas> -->
