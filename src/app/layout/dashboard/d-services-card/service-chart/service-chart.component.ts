@@ -25,30 +25,37 @@ export class ServiceChartComponent {
   }
 
 
-   // Bar chart options
-   public barChartOptions_1: ChartOptions<'bar'> = {
-    responsive: true,
-  };
 
+  public barChartOptions_1: ChartOptions<'bar'> = {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        suggestedMax: 25000, // Adjust this value according to the largest dataset
+      }
+    }
+  };
+  
   // Bar chart type
   public barChartType_1: ChartType = 'bar';
-
-  // Bar chart data
+  
+  // Bar chart data with corresponding data for each service
   public barChartData_1: ChartConfiguration<'bar'>['data'] = {
     labels: ['AePS', 'DMT', 'Recharges', 'BBPS', 'Micro ATM', 'Account...', 'Credit Car...', 'Travel Ser...', 'Loans', 'CMS'],
     datasets: [
-      { data: [100, 2000, 80, 81, 56, 55, 40], label: 'AePS' },
-      { data: [28, 48, 40, 19, 86, 27, 970], label: 'DMT' },
-      { data: [65, 59, 80, 81, 56, 55, 450], label: 'Recharges' },
-      { data: [28, 48, 40, 19, 86, 27, 990],  label: 'BBPS' },
-      { data: [65, 59, 840, 81, 56, 55, 440],label: 'Micro ATM' },
-      { data: [28, 48, 40, 19, 86, 27, 390], label: 'Account...' },
-      { data: [65, 59, 80, 81, 56, 55, 440], label: 'Credit' },
-      { data: [28, 48, 640, 19, 86, 27, 900], label: 'Travel' },
-      { data: [28, 48, 640, 19, 86, 27, 900], label: 'Loans' },
-      { data: [28, 48, 640, 19, 86, 27, 900], label: 'CMS' }
+      { data: [100, 0, 0, 0, 0, 0, 0, 0, 0, 0], label: 'AePS', backgroundColor: 'rgba(255, 99, 132, 0.8)', borderColor: 'rgba(255, 99, 132, 1)', borderWidth: 2 },
+      { data: [0, 2000, 0, 0, 0, 0, 0, 0, 0, 0], label: 'DMT', backgroundColor: 'rgba(54, 162, 235, 0.8)', borderColor: 'rgba(54, 162, 235, 1)', borderWidth: 2 },
+      { data: [0, 0, 80, 0, 0, 0, 0, 0, 0, 0], label: 'Recharges', backgroundColor: 'rgba(75, 192, 192, 0.8)', borderColor: 'rgba(75, 192, 192, 1)', borderWidth: 2 },
+      { data: [0, 0, 0, 81, 0, 0, 0, 0, 0, 0], label: 'BBPS', backgroundColor: 'rgba(153, 102, 255, 0.8)', borderColor: 'rgba(153, 102, 255, 1)', borderWidth: 2 },
+      { data: [0, 0, 0, 0, 56, 0, 0, 0, 0, 0], label: 'Micro ATM', backgroundColor: 'rgba(255, 159, 64, 0.8)', borderColor: 'rgba(255, 159, 64, 1)', borderWidth: 2 },
+      { data: [0, 0, 0, 0, 0, 55, 0, 0, 0, 0], label: 'Account...', backgroundColor: 'rgba(255, 205, 86, 0.8)', borderColor: 'rgba(255, 205, 86, 1)', borderWidth: 2 },
+      { data: [0, 0, 0, 0, 0, 0, 40, 0, 0, 0], label: 'Credit Car...', backgroundColor: 'rgba(201, 203, 207, 0.8)', borderColor: 'rgba(201, 203, 207, 1)', borderWidth: 2 },
+      { data: [0, 0, 0, 0, 0, 0, 0, 70, 0, 0], label: 'Travel Ser...', backgroundColor: 'rgba(54, 162, 235, 0.8)', borderColor: 'rgba(54, 162, 235, 1)', borderWidth: 2 },
+      { data: [0, 0, 0, 0, 0, 0, 0, 0, 100, 0], label: 'Loans', backgroundColor: 'rgba(255, 99, 132, 0.8)', borderColor: 'rgba(255, 99, 132, 1)', borderWidth: 2 },
+      { data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 50], label: 'CMS', backgroundColor: 'rgba(153, 102, 255, 0.8)', borderColor: 'rgba(153, 102, 255, 1)', borderWidth: 2 }
     ]
   };
+  
 
 
 
