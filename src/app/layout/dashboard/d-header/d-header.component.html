@@ -148,10 +148,14 @@
       <!-- <input type="radio" name="slider" id="menu-btn">
     <input type="radio" name="slider" id="close-btn"> -->
       <ul class="nav-links">
-        <label for="close-btn" (click)="closeMenu()" class="btn close-btn">
-          <i><mat-icon style="color: #fff; margin-left: 115px; z-index: 9;">close</mat-icon></i>
-        </label>
+        <!-- <label for="close-btn" class="btn close-btn">
+        <mat-icon style="color: #fff; margin-left: 115px; z-index: 99;">close</mat-icon>
+        </label> -->
 
+        <div class="mobile-menu-tab">
+          <img src="/assets/images/global/logo.svg" alt="">
+          <mat-icon style="color: #fff;  z-index: 99;" (click)="closeMenu()">close</mat-icon>
+        </div>
         <li><a routerLink="/dashboard" routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.Dashboard' | pchangelanguage }}</a></li>
 
