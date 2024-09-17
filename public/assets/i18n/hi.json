@@ -42,6 +42,15 @@
     },
 
     "DASHBOARD_menu_services":{
+            "BankingServices":"Banking Services",
+            "Recharges":"Recharges",
+            "PaymentServices":"Payment Services",
+            "DistributionServices":"Distribution Services",
+            "InvestmentServices":"Investment Services",
+            "BusinessSolutionServices":"Business Solution Services",
+            "TravelServices":"Travel Services",
+            "LoanServices":"Loan Services",
+            "BillPayments":"Bill Payments",
             "AadharATM": "Aadhar ATM",
             "AadhaarPay": "Aadhaar Pay",
             "DTM": "DTM 2.0",
