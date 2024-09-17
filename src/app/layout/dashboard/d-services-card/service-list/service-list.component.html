@@ -8,8 +8,6 @@
                         <span class="text">{{item.name}}</span>
                         <span class="line"></span>
                     </div>
-    
-                 
                         <div class="img-container">
                             @for (subitem of item.List_of_recharges; track $index) {
                             <a [href]="subitem.Urlbase">
@@ -21,8 +19,6 @@
                             </a>
                         }
                         </div>
-                    
-                    
                 </div>
             </div>
         }

@@ -1,7 +1,7 @@
 .d-services-list {
     width: 100%;
     height: 100%;
-    margin: 5% 10px;
+    margin: 0% 10px;
     //background-color: #f0f0f0;
 
     .d-services-list-row {
@@ -132,11 +132,9 @@
                 }
 
                 .center-image {
-                    //position: absolute;
-                    margin-top: 0px;
-                    padding: 0px;
-                    // left: 50%;
-                    //transform: translate(-50%, -50%);
+                    padding: 10px;
+                    width: 120px;
+                    margin: auto;
 
                     @media screen and (max-width:480px) {
                         padding: 0px;

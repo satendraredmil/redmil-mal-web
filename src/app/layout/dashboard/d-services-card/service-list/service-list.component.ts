@@ -17,7 +17,7 @@ export class ServiceListComponent {
         {
           "Urlbase":"",
           "message_eran":"Earn upto 6%",
-          "center_image":"/assets/images/dashboard/Mobile-Prepaid.png",
+          "center_image":"/assets/images/dashboard/Recharge_Prepaid.svg",
           "bottom_text":"Mobile Prepaid",
           "classadd":"top-text",
           status:true
@@ -25,26 +25,26 @@ export class ServiceListComponent {
         {
           "Urlbase":"",
           "message_eran":"",
-          "center_image":"/assets/images/dashboard/Mobile-Postpaid.png",
+          "center_image":"/assets/images/dashboard/mobile_postpaid.svg",
           "bottom_text":"Mobile Postpaid",
            
         },
         {
           "Urlbase":"",
           "message_eran":"",
-          "center_image":"/assets/images/dashboard/DTH.png",
+          "center_image":"/assets/images/dashboard/DTH.svg",
           "bottom_text":"DTH Recharge"
         },
         {
           "Urlbase":"",
           "message_eran":"",
-          "center_image":"/assets/images/dashboard/Fastag.png",
+          "center_image":"/assets/images/dashboard/fastag_recharge.svg",
           "bottom_text":"Fastag Recharge"
         },
         {
           "Urlbase":"",
           "message_eran":"",
-          "center_image":"/assets/images/dashboard/Mobile-Prepaid.png",
+          "center_image":"/assets/images/dashboard/BBPS.svg",
           "bottom_text":"BBPS"
         }
         // {

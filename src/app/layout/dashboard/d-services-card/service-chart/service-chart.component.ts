@@ -26,24 +26,6 @@ export class ServiceChartComponent {
 
 
    // Bar chart options
-   public barChartOptions: ChartOptions<'pie'> = {
-    responsive: true,
-  };
-
-  // Bar chart type
-  public barChartType: ChartType = 'pie';
-
-  // Bar chart data
-  public barChartData: ChartConfiguration<'pie'>['data'] = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-      { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-      { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
-    ]
-  };
-
-
-   // Bar chart options
    public barChartOptions_1: ChartOptions<'bar'> = {
     responsive: true,
   };
@@ -53,16 +35,18 @@ export class ServiceChartComponent {
 
   // Bar chart data
   public barChartData_1: ChartConfiguration<'bar'>['data'] = {
-    labels: ['AePS', 'DMT', 'Recharges', 'BBPS', 'Micro ATM', 'Account ...', 'Credit Car...', 'Travel Ser...', 'Loans', 'CMS'],
+    labels: ['AePS', 'DMT', 'Recharges', 'BBPS', 'Micro ATM', 'Account...', 'Credit Car...', 'Travel Ser...', 'Loans', 'CMS'],
     datasets: [
-      { data: [65, 59, 80, 81, 56, 55, 40], label: 'AePS' },
+      { data: [100, 2000, 80, 81, 56, 55, 40], label: 'AePS' },
       { data: [28, 48, 40, 19, 86, 27, 970], label: 'DMT' },
       { data: [65, 59, 80, 81, 56, 55, 450], label: 'Recharges' },
       { data: [28, 48, 40, 19, 86, 27, 990],  label: 'BBPS' },
       { data: [65, 59, 840, 81, 56, 55, 440],label: 'Micro ATM' },
-      { data: [28, 48, 40, 19, 86, 27, 390], label: 'Account' },
+      { data: [28, 48, 40, 19, 86, 27, 390], label: 'Account...' },
       { data: [65, 59, 80, 81, 56, 55, 440], label: 'Credit' },
-      { data: [28, 48, 640, 19, 86, 27, 900], label: 'Travel' }
+      { data: [28, 48, 640, 19, 86, 27, 900], label: 'Travel' },
+      { data: [28, 48, 640, 19, 86, 27, 900], label: 'Loans' },
+      { data: [28, 48, 640, 19, 86, 27, 900], label: 'CMS' }
     ]
   };
 
@@ -81,7 +65,7 @@ export class ServiceChartComponent {
     datasets: [
       {
         label: 'Sample Data',
-        data: [45, 25, 60, 40, 80, 50, 90],
+        data: [1000, 2000, 1500, 4500, 999, 5100, 900],
         borderColor: 'blue',
         borderWidth: 2,
         fill: true,
