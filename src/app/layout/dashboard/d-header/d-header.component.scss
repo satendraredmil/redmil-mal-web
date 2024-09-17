@@ -573,6 +573,20 @@ nav {
     align-content: flex-start;
     align-items: flex-start;
   }
+
+      /* custom scroll bar */
+      .content::-webkit-scrollbar {
+        width: 10px;
+      }
+    
+      .content::-webkit-scrollbar-track {
+        background: transparent;
+      }
+    
+      .content::-webkit-scrollbar-thumb {
+        background: #012643;
+        border-radius: 10px;
+      }
   
   .mega-box .content .row {
     // width: calc(25% - 30px);
@@ -604,7 +618,7 @@ nav {
     bottom: -2px;
     height: 2px;
     width: 65px;
-    background: #26A69A;
+    background: #012643;
   }
   
   .content .row .mega-links {
