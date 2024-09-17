@@ -9,5 +9,10 @@
 
   .d_dashboard__main{
     margin-top: 110px;
+
+    @media screen and  (max-width: 480px) {
+      margin-top: 0px;
+      
+    }
   }
 }
