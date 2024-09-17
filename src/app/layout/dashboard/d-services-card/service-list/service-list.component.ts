@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { PchangelanguagePipe } from '../../../../shared/pipes/changelanguage/pchangelanguage.pipe';
 
 @Component({
   selector: 'app-service-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PchangelanguagePipe],
   templateUrl: './service-list.component.html',
   styleUrl: './service-list.component.scss'
 })
@@ -78,7 +79,7 @@ export class ServiceListComponent {
           "Urlbase":"",
           "message_eran":"",
           "center_image":"/assets/images/dashboard/DTH.png",
-          "bottom_text":"DMT 2.0"
+          "bottom_text":"DMT"
         },
         {
           "Urlbase":"",

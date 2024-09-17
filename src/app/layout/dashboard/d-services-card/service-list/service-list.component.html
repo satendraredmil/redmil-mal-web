@@ -14,7 +14,7 @@
                                 <div class="img-loop">
                                     <div  *ngIf="subitem.status"  [class]="subitem.classadd">{{subitem.message_eran}}</div>
                                     <img class="center-image" [src]="subitem.center_image" alt="Image">
-                                    <div class="bottom-text">{{subitem.bottom_text}}</div>
+                                    <div class="bottom-text"> {{'DASHBOARD_services.' + subitem.bottom_text | pchangelanguage }}</div>
                                 </div>
                             </a>
                         }

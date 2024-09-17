@@ -3,7 +3,7 @@
     <div class="redmil-left">
       <span class="material-symbols-outlined" id="menu-btn" (click)="openMenu()">
         menu
-        </span>
+      </span>
     </div>
 
     <div class="logo">
@@ -25,8 +25,7 @@
 
     <mat-accordion>
       <mat-expansion-panel #parent (opened)="panelOpenState=(true)" (closed)="panelOpenState=(false)"
-      [ngClass]="{'active-bg': panelOpenState && menuOpenState}"
-        [matMenuTriggerFor]="menu" >
+        [ngClass]="{'active-bg': panelOpenState && menuOpenState}" [matMenuTriggerFor]="menu">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div class="dheader-link">
@@ -38,9 +37,8 @@
             </div>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <mat-menu #menu="matMenu" class="matmenu-drop"   
-        (menuOpened)="menuOpenState = true" 
-        (menuClosed)="menuOpenState = false">
+        <mat-menu #menu="matMenu" class="matmenu-drop" (menuOpened)="menuOpenState = true"
+          (menuClosed)="menuOpenState = false">
           <button mat-menu-item>
             <img src="/assets/images/dashboard/wallettype1.png" alt="">
             <div class="linkclass">
@@ -125,7 +123,7 @@
     </div>
 
 
- <!-- //theme button code when you impliment then uncomment it -->
+    <!-- //theme button code when you impliment then uncomment it -->
     <!-- <div class="theme" (click)="toggleTheme()">
             @if (!isDarkMode) {
                 <span class="material-symbols-outlined" style="color: #fff;">
@@ -144,126 +142,467 @@
 
   </div>
 
-  
-<nav>
-  <div class="wrapper">
-    <!-- <input type="radio" name="slider" id="menu-btn">
+
+  <nav>
+    <div class="wrapper">
+      <!-- <input type="radio" name="slider" id="menu-btn">
     <input type="radio" name="slider" id="close-btn"> -->
       <ul class="nav-links">
-          <label for="close-btn" (click)="closeMenu()" class="btn close-btn">
-            <i><mat-icon style="color: #fff; margin-left: 115px; z-index: 9;">close</mat-icon></i>
-          </label>
+        <label for="close-btn" (click)="closeMenu()" class="btn close-btn">
+          <i><mat-icon style="color: #fff; margin-left: 115px; z-index: 9;">close</mat-icon></i>
+        </label>
 
-          <li><a routerLink="/dashboard"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.Dashboard' | pchangelanguage }}</a></li>
+        <li><a routerLink="/dashboard" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.Dashboard' | pchangelanguage }}</a></li>
 
-          @for (item of mainMenu; track $index) {
-            <li (click)="toggleDropdownMega()">
-              <a style="cursor: pointer;" class="desktop-item">{{'DASHBOARD_First.Services' | pchangelanguage }}  <mat-icon class=" arrow_rotate" [class.rotate1]="isDropdownOpenMega" style="margin-top: 5px;">
-                keyboard_arrow_down
-                </mat-icon></a>
-                <input type="checkbox" [id]="item.showMega" style="display: none;">
-                <label [for]="item.showMega" (click)="toggleDropdownMega()"
-                    class="mobile-item">{{'DASHBOARD_First.Services' | pchangelanguage }} <mat-icon class=" arrow_rotate" [class.rotate1]="isDropdownOpenMega" style="margin-top: 5px;">
-                      keyboard_arrow_down
-                      </mat-icon></label>
-                <div class="mega-box" [class.open]="isDropdownOpenMega">
-                    <div class="content">
-                        @for (subitem of item.subMenu; track $index) {
-                        <div class="row">
-                            <h4 class="import-heading"><b>{{subitem.heading}}</b></h4>
-                            @for (Megaitem of subitem.megaLink; track $index) {
-                            <ul class="mega-links">
-                                <li [title]="Megaitem.mega_name"><a [href]="Megaitem.mega_link" id="icons">
-                                        <img [src]="Megaitem.mega_icons"
-                                            [alt]="Megaitem.mega_name"><span>{{Megaitem.mega_name}}</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            }
 
-                        </div>
-                        }
-                    </div>
-                </div>
-            </li>
-            }
-
-          <li><a routerLink="/passbook" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.Passbook' | pchangelanguage }}</a></li>
-          <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.My_Team_Dashboard' | pchangelanguage }}</a></li>
-          <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.My_Business_Report' | pchangelanguage }}</a></li>
-          <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.Commission_Sheet' | pchangelanguage }}</a></li>
-          <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.How_to_work' | pchangelanguage }}</a></li>
-          <li><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.Redmil_Saarthi' | pchangelanguage }}</a></li>
-     
-          <li (click)="toggleDropdown()">
-            <a style="cursor: pointer;" class="desktop-item">{{'DASHBOARD_First.user_info_policies' | pchangelanguage }}
-            <mat-icon class=" arrow_rotate" [class.rotate]="isDropdownOpen" style="margin-top: 5px;">
-                keyboard_arrow_down
-                </mat-icon>
-        </a>
-            <input type="checkbox" id="showDropd" hidden>
-            <label for="showDropd" class="mobile-item" (click)="toggleDropdown()">{{'DASHBOARD_First.user_info_policies' | pchangelanguage }}<mat-icon class=" arrow_rotate" [class.rotate]="isDropdownOpen" style="margin-top: 5px;">
+        <li (click)="toggleDropdownMega()">
+          <a style="cursor: pointer;" class="desktop-item">{{'DASHBOARD_First.Services' | pchangelanguage }} <mat-icon
+              class=" arrow_rotate" [class.rotate1]="isDropdownOpenMega" style="margin-top: 5px;">
               keyboard_arrow_down
-              </mat-icon></label>
-            <ul class="drop-menu" [class.show]="isDropdownOpen">
-                <li class="demo-section"><a href="#" id="icons" target="_blank">
-                        <img src="assets/icons/html5.svg" alt="HTML Solution" width="50px" height="50px">
-                        <span> Passbook_1</span>
-                    </a>
-                </li>
+            </mat-icon></a>
+          <input type="checkbox" id="showMega" style="display: none;">
+          <label for="showMega" (click)="toggleDropdownMega()" class="mobile-item">{{'DASHBOARD_First.Services' |
+            pchangelanguage }} <mat-icon class=" arrow_rotate" [class.rotate1]="isDropdownOpenMega"
+              style="margin-top: 5px;">
+              keyboard_arrow_down
+            </mat-icon></label>
+          <div class="mega-box" [class.open]="isDropdownOpenMega">
+            <div class="content">
 
-                <li><a href="#" target="_blank" id="icons">
-                        <img src="assets/icons/css.svg" alt="CSS Solution" width="50px" height="50px">
-                        <span> CSS Hindi Course</span>
-                    </a>
-                </li>
 
-                <li><a href="#" target="_blank" id="icons">
-                        <img src="assets/icons/js.svg" alt="JavaScript Solution" width="50px" height="50px">
-                        <span>JavaScript Hindi Course </span>
+              <div class="row">
+                <h4 class="import-heading"><b>Banking Services</b></h4>
+                <ul class="mega-links">
+                  <li title="Aadhar ATM"><a href="/" id="icons">
+                      <img src="" alt="Aadhar ATM"><span>{{'DASHBOARD_menu_services.AadharATM' | pchangelanguage}}</span>
                     </a>
-                </li>
-
-                
-                <li><a href="#" id="icons">
-                    <img src="assets/icons/typescript.svg" alt="MongoDB " width="50px" height="50px">
-                    <span>TypeScript Hindi Course</span>
-                </a>
-                </li>
-
-                <li><a href="#" id="icons">
-                        <img src="assets/icons/angular.svg" alt="Angular Solution" width="50px" height="50px">
-                        <span>Angular Hindi Course</span>
+                  </li>
+                  <li title="Aadhaar Pay"><a href="/" id="icons">
+                      <img src="" alt="Aadhaar Pay"><span>{{'DASHBOARD_menu_services.AadhaarPay' | pchangelanguage}}</span>
                     </a>
-                </li>
+                  </li>
 
-                <li><a href="#" target="_blank" id="icons">
-                        <img src="assets/icons/node-js.svg" alt="Node Js" width="50px" height="50px">
-                        <span>Node js Hindi Course</span>
+                  <li title="DTM 2.0"><a href="/" id="icons">
+                      <img src="" alt="DTM 2.0"><span>{{'DASHBOARD_menu_services.DTM' | pchangelanguage}}</span>
                     </a>
-                </li>
+                  </li>
 
-                <li><a href="#" id="icons">
-                        <img src="assets/icons/mongodb.svg" alt="MongoDB " width="50px" height="50px">
-                        <span>MongoDB Hindi Course</span>
+                  <li title="Micro ATM"><a href="/" id="icons">
+                      <img src="" alt="Micro ATM"><span>{{'DASHBOARD_menu_services.MicroATM' | pchangelanguage}}</span>
                     </a>
-                </li>
+                  </li>
 
-                <li><a href="#" id="icons">
-                        <img src="assets/icons/excel.svg" alt="MongoDB " width="50px" height="50px">
-                        <span>Ad.Excel Hindi Course</span>
+                  <li title="DTM Yes Bank"><a href="/" id="icons">
+                      <img src="" alt="DTM Yes Bank"><span>{{'DASHBOARD_menu_services.DTMYesBank' | pchangelanguage}}</span>
                     </a>
-                </li>
-            </ul>
+                  </li>
+
+                  <li title="Credit Card 2.0"><a href="/" id="icons">
+                      <img src="" alt="Credit Card 2.0"><span>{{'DASHBOARD_menu_services.CreditCard' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Saving Account"><a href="/" id="icons">
+                      <img src="" alt="Saving Account"><span>{{'DASHBOARD_menu_services.SavingAccount' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+
+                  <li title="Salary Account"><a href="/" id="icons">
+                      <img src="" alt="Salary Account"><span>{{'DASHBOARD_menu_services.SalaryAccount' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Current Account"><a href="/" id="icons">
+                      <img src="" alt="Current Account"><span>{{'DASHBOARD_menu_services.CurrentAccount' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+
+                  <li title="Individual Current Account"><a href="/" id="icons">
+                      <img src="" alt="Individual Current Account"><span>{{'DASHBOARD_menu_services.IndividualCurrentAccount' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Aadhaar Cash Deposit"><a href="/" id="icons">
+                      <img src="" alt="Aadhaar Cash Deposit"><span>{{'DASHBOARD_menu_services.AadhaarCashDeposit' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Credit Card"><a href="/" id="icons">
+                      <img src="" alt="Credit Card"><span>{{'DASHBOARD_menu_services.CreditCardSingle' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="EMI Cards"><a href="/" id="icons">
+                      <img src="" alt="EMI Cards"><span>{{'DASHBOARD_menu_services.EMICards' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Cash Collection"><a href="/" id="icons">
+                      <img src="" alt="Cash Collection"><span>{{'DASHBOARD_menu_services.CashCollection' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Credit Card Bill Payment"><a href="/" id="icons">
+                      <img src="" alt="Credit Card Bill Payment"><span>{{'DASHBOARD_menu_services.CreditCardBillPayment' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Upi Onboarding"><a href="/" id="icons">
+                      <img src="" alt="Upi Onboarding"><span>{{'DASHBOARD_menu_services.UPIOnboarding' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="row">
+                <h4 class="import-heading"><b>Recharges</b></h4>
+                <ul class="mega-links">
+                  <li title="Mobile Prepaid"><a href="/" id="icons">
+                      <img src="" alt="Mobile Prepaid"><span>{{'DASHBOARD_menu_services.MobilePrepaid' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Mobile Postpaid"><a href="/" id="icons">
+                      <img src="" alt="Mobile Postpaid"><span>{{'DASHBOARD_menu_services.MobilePostpaid' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Mobile Postpaid"><a href="/" id="icons">
+                      <img src="" alt="Mobile Postpaid"><span>{{'DASHBOARD_menu_services.DTHRecharge' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Mobile Postpaid"><a href="/" id="icons">
+                      <img src="" alt="Mobile Postpaid"><span>{{'DASHBOARD_menu_services.FastagRecharge' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                </ul>
+
+                <h4 class="import-heading"><b>Payment Services</b></h4>
+                <ul class="mega-links">
+                  <li title="Accept Card payment (POS)"><a href="/" id="icons">
+                      <img src="" alt="Accept Card payment (POS)"><span>{{'DASHBOARD_menu_services.AcceptCardPaymentPOS' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="SMS Payments"><a href="/" id="icons">
+                      <img src="" alt="SMS Payments"><span>{{'DASHBOARD_menu_services.SMSPayments' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Hisab Kitab"><a href="/" id="icons">
+                      <img src="" alt="Hisab Kitab"><span>{{'DASHBOARD_menu_services.HisabKitab' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Buy Now Pay Later"><a href="/" id="icons">
+                      <img src="" alt="Buy Now Pay Later"><span>{{'DASHBOARD_menu_services.BuyNowPayLater' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                </ul>
+
+                <h4 class="import-heading"><b>Distribution Services</b></h4>
+                <ul class="mega-links">
+                  <li title="Courier Services"><a href="/" id="icons">
+                      <img src="" alt="Courier Services"><span>{{'DASHBOARD_menu_services.CourierServices' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Amazon Pay Gift Card"><a href="/" id="icons">
+                      <img src="" alt="Amazon Pay Gift Card"><span>{{'DASHBOARD_menu_services.AmazonPayGiftCard' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+
+              <div class="row">
+                <h4 class="import-heading"><b>Investment Services</b></h4>
+                <ul class="mega-links">
+                  <li title="Fixed Deposit"><a href="/" id="icons">
+                      <img src="" alt="Fixed Deposit"><span>{{'DASHBOARD_menu_services.FixedDeposit' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Gold Investment"><a href="/" id="icons">
+                      <img src="" alt="Gold Investment"><span>{{'DASHBOARD_menu_services.GoldInvestment' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Demat Account"><a href="/" id="icons">
+                      <img src="" alt="Demat Account"><span>{{'DASHBOARD_menu_services.DematAccount' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Insurance 2.0"><a href="/" id="icons">
+                      <img src="" alt="Insurance 2.0"><span>{{'DASHBOARD_menu_services.Insurance2_0' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                </ul>
+
+                <h4 class="import-heading"><b>Business Solution Services</b></h4>
+                <ul class="mega-links">
+                  <li title="Instant PAN card NSDL"><a href="/" id="icons">
+                      <img src="" alt="Instant PAN card NSDL"><span>{{'DASHBOARD_menu_services.InstantPANCardsNSDL' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Digital Marketing"><a href="/" id="icons">
+                      <img src="" alt="Digital Marketing"><span>{{'DASHBOARD_menu_services.DigitalMarketing' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Legal Services"><a href="/" id="icons">
+                      <img src="" alt="Legal Services"><span>{{'DASHBOARD_menu_services.LegalServices' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="ISO Services"><a href="/" id="icons">
+                      <img src="" alt="ISO Services"><span>{{'DASHBOARD_menu_services.ISOServices' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Web Development"><a href="/" id="icons">
+                      <img src="" alt="Web Development"><span>{{'DASHBOARD_menu_services.WebDevelopment' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Softwares"><a href="/" id="icons">
+                      <img src="" alt="Softwares"><span>{{'DASHBOARD_menu_services.Softwares' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Copyright & Trademark"><a href="/" id="icons">
+                      <img src="" alt="Copyright & Trademark"><span>{{'DASHBOARD_menu_services.CopyrightTrademark' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
+
+              <div class="row">
+                <h4 class="import-heading"><b>Travel Services</b></h4>
+                <ul class="mega-links">
+                  <li title="Hotel Booking"><a href="/" id="icons">
+                      <img src="" alt="Hotel Booking"><span>{{'DASHBOARD_menu_services.HotelBooking' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Bus Booking"><a href="/" id="icons">
+                      <img src="" alt="Bus Booking"><span>{{'DASHBOARD_menu_services.BusBooking' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Railway Booking"><a href="/" id="icons">
+                      <img src="" alt="Railway Booking"><span>{{'DASHBOARD_menu_services.RailwayBooking' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Flight Booking"><a href="/" id="icons">
+                      <img src="" alt="Flight Booking"><span>{{'DASHBOARD_menu_services.FlightBooking' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                </ul>
+
+                <h4 class="import-heading"><b>Loan Services</b></h4>
+                <ul class="mega-links">
+                  <li title="Commercial Loan"><a href="/" id="icons">
+                      <img src="" alt="Commercial Loan"><span>{{'DASHBOARD_menu_services.CommercialLoan' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Home Loan"><a href="/" id="icons">
+                      <img src="" alt="Home Loan"><span>{{'DASHBOARD_menu_services.HomeLoan' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Instant Loan"><a href="/" id="icons">
+                      <img src="" alt="Instant Loan"><span>{{'DASHBOARD_menu_services.InstantLoan' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Instant Loan 2.0"><a href="/" id="icons">
+                      <img src="" alt="Instant Loan 2.0"><span>{{'DASHBOARD_menu_services.InstantLoan2_0' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Gold Loan"><a href="/" id="icons">
+                      <img src="" alt="Gold Loan"><span>{{'DASHBOARD_menu_services.GoldLoan' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Digital Business Loan"><a href="/" id="icons">
+                      <img src="" alt="Digital Business Loan"><span>{{'DASHBOARD_menu_services.DigitalBusinessLoan' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="row">
+                <h4 class="import-heading"><b>Bill Payments</b></h4>
+                <ul class="mega-links">
+                  <li title="Electricity Bill"><a href="/" id="icons">
+                      <img src="" alt="Electricity Bill"><span>{{'DASHBOARD_menu_services.ElectricityBill' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Gas Bill"><a href="/" id="icons">
+                      <img src="" alt="Gas Bill"><span>{{'DASHBOARD_menu_services.GasBill' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Water Bill"><a href="/" id="icons">
+                      <img src="" alt="Water Bill"><span>{{'DASHBOARD_menu_services.WaterBill' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="LPG "><a href="/" id="icons">
+                      <img src="" alt="LPG "><span>{{'DASHBOARD_menu_services.LPG' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Landline"><a href="/" id="icons">
+                      <img src="" alt="Landline"><span>{{'DASHBOARD_menu_services.Landline' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Cable TV"><a href="/" id="icons">
+                      <img src="" alt="Cable TV"><span>{{'DASHBOARD_menu_services.CableTV' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Broadband"><a href="/" id="icons">
+                      <img src="" alt="Broadband"><span>{{'DASHBOARD_menu_services.Broadband' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Life Insurance"><a href="/" id="icons">
+                      <img src="" alt="Life Insurance"><span>{{'DASHBOARD_menu_services.LifeInsurance' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                  <li title="Health"><a href="/" id="icons">
+                      <img src="" alt="Health"><span>{{'DASHBOARD_menu_services.Health' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Loan Repayment"><a href="/" id="icons">
+                      <img src="" alt="Loan Repayment"><span>{{'DASHBOARD_menu_services.LoanRepayment' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Credit Card"><a href="/" id="icons">
+                      <img src="" alt="Credit Card"><span>{{'DASHBOARD_menu_services.CreditCardSingle' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Hospital"><a href="/" id="icons">
+                      <img src="" alt="Hospital"><span>{{'DASHBOARD_menu_services.Hospital' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Housing Society"><a href="/" id="icons">
+                      <img src="" alt="Housing Society"><span>{{'DASHBOARD_menu_services.HousingSociety' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Insurance"><a href="/" id="icons">
+                      <img src="" alt="Insurance"><span>{{'DASHBOARD_menu_services.Insurance' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Municipal Services"><a href="/" id="icons">
+                      <img src="" alt="Municipal Services"><span>{{'DASHBOARD_menu_services.MunicipalService' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Municipal Taxes"><a href="/" id="icons">
+                      <img src="" alt="Municipal Taxes"><span>{{'DASHBOARD_menu_services.MunicipalTaxes' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Subscriptions"><a href="/" id="icons">
+                      <img src="" alt="Subscriptions"><span>{{'DASHBOARD_menu_services.Subscriptions' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Club & Association"><a href="/" id="icons">
+                      <img src="" alt="Club & Association"><span>{{'DASHBOARD_menu_services.ClubAssociation' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="LIC India"><a href="/" id="icons">
+                      <img src="" alt="LIC India"><span>{{'DASHBOARD_menu_services.LICIndia' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+                  <li title="Rent Payment"><a href="/" id="icons">
+                      <img src="" alt="Health"><span>{{'DASHBOARD_menu_services.RentPayment' | pchangelanguage}}</span>
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li><a routerLink="/passbook" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.Passbook' | pchangelanguage }}</a></li>
+        <li><a routerLink="" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.My_Team_Dashboard' | pchangelanguage }}</a>
+        </li>
+        <li><a routerLink="" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.My_Business_Report' | pchangelanguage }}</a>
+        </li>
+        <li><a routerLink="" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.Commission_Sheet' | pchangelanguage }}</a>
+        </li>
+        <li><a routerLink="" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.How_to_work' | pchangelanguage }}</a></li>
+        <li><a routerLink="" routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">{{'DASHBOARD_First.Redmil_Saarthi' | pchangelanguage }}</a></li>
+
+        <li (click)="toggleDropdown()">
+          <a style="cursor: pointer;" class="desktop-item">{{'DASHBOARD_First.user_info_policies' | pchangelanguage }}
+            <mat-icon class=" arrow_rotate" [class.rotate]="isDropdownOpen" style="margin-top: 5px;">
+              keyboard_arrow_down
+            </mat-icon>
+          </a>
+          <input type="checkbox" id="showDropd" hidden>
+          <label for="showDropd" class="mobile-item" (click)="toggleDropdown()">{{'DASHBOARD_First.user_info_policies' |
+            pchangelanguage }}<mat-icon class=" arrow_rotate" [class.rotate]="isDropdownOpen" style="margin-top: 5px;">
+              keyboard_arrow_down
+            </mat-icon></label>
+          <ul class="drop-menu" [class.show]="isDropdownOpen">
+            <li class="demo-section"><a href="#" id="icons" target="_blank">
+                <img src="assets/icons/html5.svg" alt="HTML Solution" width="50px" height="50px">
+                <span> Passbook_1</span>
+              </a>
+            </li>
+
+            <li><a href="#" target="_blank" id="icons">
+                <img src="assets/icons/css.svg" alt="CSS Solution" width="50px" height="50px">
+                <span> CSS Hindi Course</span>
+              </a>
+            </li>
+
+            <li><a href="#" target="_blank" id="icons">
+                <img src="assets/icons/js.svg" alt="JavaScript Solution" width="50px" height="50px">
+                <span>JavaScript Hindi Course </span>
+              </a>
+            </li>
+
+
+            <li><a href="#" id="icons">
+                <img src="assets/icons/typescript.svg" alt="MongoDB " width="50px" height="50px">
+                <span>TypeScript Hindi Course</span>
+              </a>
+            </li>
+
+            <li><a href="#" id="icons">
+                <img src="assets/icons/angular.svg" alt="Angular Solution" width="50px" height="50px">
+                <span>Angular Hindi Course</span>
+              </a>
+            </li>
+
+            <li><a href="#" target="_blank" id="icons">
+                <img src="assets/icons/node-js.svg" alt="Node Js" width="50px" height="50px">
+                <span>Node js Hindi Course</span>
+              </a>
+            </li>
+
+            <li><a href="#" id="icons">
+                <img src="assets/icons/mongodb.svg" alt="MongoDB " width="50px" height="50px">
+                <span>MongoDB Hindi Course</span>
+              </a>
+            </li>
+
+            <li><a href="#" id="icons">
+                <img src="assets/icons/excel.svg" alt="MongoDB " width="50px" height="50px">
+                <span>Ad.Excel Hindi Course</span>
+              </a>
+            </li>
+          </ul>
         </li>
 
 
       </ul>
-      <label  for="menu-btn" class="btn menu-btn"><i><mat-icon>menu</mat-icon></i></label>
-  </div>
-</nav>
+      <label for="menu-btn" class="btn menu-btn"><i><mat-icon>menu</mat-icon></i></label>
+    </div>
+  </nav>
 </header>
 
 <!-- <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" />  -->
-
-
