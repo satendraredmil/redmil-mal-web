@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PchangelanguagePipe } from '../../../../shared/pipes/changelanguage/pchangelanguage.pipe';
+import { ServiceSliderComponent } from "../service-slider/service-slider.component";
 
 @Component({
   selector: 'app-service-list',
   standalone: true,
-  imports: [CommonModule, PchangelanguagePipe],
+  imports: [CommonModule, PchangelanguagePipe, ServiceSliderComponent],
   templateUrl: './service-list.component.html',
   styleUrl: './service-list.component.scss'
 })

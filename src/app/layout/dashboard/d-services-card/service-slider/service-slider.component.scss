@@ -1,13 +1,9 @@
 
 .container_Login {
     width: 100% !important;
-    max-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-    gap: 0px;
-    position: relative;
+    height: 100%;
+    margin: auto;
+    
     @media screen and (max-width:480px){
       width: 95% !important;
       margin: auto;
@@ -15,8 +11,9 @@
     }
     
     .slider-section {
-      flex: 1;
-      margin: 0% 0% !important;
+      width: 100%;
+
+      margin:auto !important;
       height: max-content;
 
       @media screen and (max-width:480px) {
