@@ -2,11 +2,17 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { PchangelanguagePipe } from '../../../../shared/pipes/changelanguage/pchangelanguage.pipe';
 import { ServiceSliderComponent } from "../service-slider/service-slider.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-service-list',
   standalone: true,
-  imports: [CommonModule, PchangelanguagePipe, ServiceSliderComponent],
+  imports: [
+    CommonModule, 
+    PchangelanguagePipe, 
+    ServiceSliderComponent,
+    RouterLink
+  ],
   templateUrl: './service-list.component.html',
   styleUrl: './service-list.component.scss'
 })
@@ -17,7 +23,7 @@ export class ServiceListComponent {
       "name": "Recharges",
       "List_of_recharges":[
         {
-          "Urlbase":"",
+          "Urlbase":"/recharge/mobile-prepaid",
           "message_eran":"Earn upto 6%",
           "center_image":"/assets/images/dashboard/Recharge_Prepaid.svg",
           "bottom_text":"Mobile Prepaid",
@@ -25,20 +31,20 @@ export class ServiceListComponent {
           status:true
         },
         {
-          "Urlbase":"",
+          "Urlbase":"/recharge/mobile-postpaid",
           "message_eran":"",
           "center_image":"/assets/images/dashboard/mobile_postpaid.svg",
           "bottom_text":"Mobile Postpaid",
            
         },
         {
-          "Urlbase":"",
+          "Urlbase":"/recharge/dth-recharge",
           "message_eran":"",
           "center_image":"/assets/images/dashboard/DTH.svg",
           "bottom_text":"DTH Recharge"
         },
         {
-          "Urlbase":"",
+          "Urlbase":"/recharge/fastag-recharge",
           "message_eran":"",
           "center_image":"/assets/images/dashboard/fastag_recharge.svg",
           "bottom_text":"Fastag Recharge"
@@ -63,7 +69,7 @@ export class ServiceListComponent {
       "name": "Banking Services",
       "List_of_recharges":[
         {
-          "Urlbase":"",
+          "Urlbase":"/mobile-prepaid",
           "message_eran":"Earn upto Rs. 15",
           "center_image":"/assets/images/dashboard/Mobile-Prepaid.png",
           "bottom_text":"Aadhaar ATM",

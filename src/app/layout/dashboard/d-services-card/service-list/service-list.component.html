@@ -10,7 +10,7 @@
                     </div>
                         <div class="img-container">
                             @for (subitem of item.List_of_recharges; track $index) {
-                            <a [href]="subitem.Urlbase">
+                            <a [routerLink]="subitem.Urlbase">
                                 <div class="img-loop">
                                     <div  *ngIf="subitem.status"  [class]="subitem.classadd">{{subitem.message_eran}}</div>
                                     <img class="center-image" [src]="subitem.center_image" alt="Image">

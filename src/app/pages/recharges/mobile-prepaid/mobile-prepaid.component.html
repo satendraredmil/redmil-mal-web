@@ -1,0 +1,149 @@
+<div class="recharge-container mx-auto">
+    <div class="recharge-row">
+      
+        <div class="recharge-card">
+            <!-- ****Mobile Prepaid Recharge**** -->
+            <div class="recharge-item-form recharge-item">
+                <div class="list-card-heading">
+                    <span class="line"></span>
+                    <span class="text">Mobile Prepaid Recharge</span>
+                    <span class="line"></span>
+                </div>
+
+                <form [formGroup]="mobileForm" (ngSubmit)="onSubmit()">
+                    <!-- Mobile Number Input with Aria Circle and Operator Dropdown -->
+                    <div class="row-container">
+                        <!-- Mobile Number Input -->
+                        <div class="circle-container">
+
+                            <input type="text" id="mobileNumber" formControlName="mobileNumber" class="circle-input"
+                                aria-label="" (keyup)="onMobileNumberChange()" />
+                            <label for="mobileNumber">Mobile Number</label>
+                            <div *ngIf="mobileForm.get('mobileNumber')?.touched && mobileForm.get('mobileNumber')?.invalid"
+                                class="error">
+                                Please enter a valid 10-digit mobile number.
+                            </div>
+                        </div>
+
+                        <!-- Operator Dropdown -->
+                        <div class="operator-container">
+                            <label for="operator">Select Operator</label>
+                            <select id="operator" formControlName="operator">
+                                <option value=""></option>
+                                <option *ngFor="let operator of operators" [value]="">{{ operator }}</option>
+                            </select>
+                            <div *ngIf="mobileForm.get('operator')?.touched && mobileForm.get('operator')?.invalid"
+                                class="error">
+                                Please select a mobile operator.
+                            </div>
+                        </div>
+
+
+
+                        <div class="operator-container">
+                            <label for="circle">Select Area circle</label>
+                            <select id="circle" formControlName="circle">
+                                <option value=""></option>
+                                <option *ngFor="let operator of operators" [value]="">{{ operator }}</option>
+                            </select>
+                            <div *ngIf="mobileForm.get('circle')?.touched && mobileForm.get('circle')?.invalid"
+                                class="error">
+                                Please select a mobile operator.
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Enter Amount and Browse Plan Button in Flex Layout -->
+                    <div class="amount-browse-container">
+                        <!-- Enter Amount Field -->
+                        <div class="amount-input">
+                            <label for="amount">Enter Amount</label>
+                            <input type="text" id="amount" formControlName="amount" placeholder="" />
+                        </div>
+
+                        <!-- Browse Plan Button (beside Enter Amount) -->
+                        <div class="browse-plan">
+                            <button type="button" (click)="browsePlan()">Browse Plan</button>
+                        </div>
+                        <div *ngIf="mobileForm.get('amount')?.touched && mobileForm.get('amount')?.invalid"
+                            class="error_2">
+                            Please enter a valid amount.
+                        </div>
+                    </div>
+
+
+                    <!-- Submit Button -->
+                    <button type="submit" [disabled]="mobileForm.invalid">PROCEED</button>
+                </form>
+
+
+                <div class="recharge-image-loop">
+                    <img src="/assets/images/dashboard/recharge_img.png" alt="">
+
+                </div>
+
+
+            </div>
+
+            <!-- ****Recent Transactions**** -->
+            <div class="recharge-item-transactions recharge-item">
+                <div class="list-card-heading">
+                    <span class="line"></span>
+                    <span class="text">Recent Transactions</span>
+                    <span class="line"></span>
+                </div>
+
+                @for (item of Recent_Transactions; track $index) {
+                    <div class="recent_transaction_card">
+                        <div class="class_transaction">
+                            <div class="recent_transaction_logo">
+                                <img [src]="item.logo_img" alt="">
+                            </div>
+                            <div class="recent_transaction_mobile">
+                                <span>{{item.partner_name}}</span>
+                                <p>{{item.Mobile_number}}</p>
+                            </div>
+                        </div>
+    
+                        <div class="class_transaction">
+                            <div class="recent_transaction_amount">
+                                <p>{{item.amount}}</p>
+                            </div>
+                            <div class="recent_transaction_line"></div>
+                            <div class="recent_transaction_status">
+                                <img [src]="item.status" alt="">
+                            </div>
+                        </div>
+                       
+                    </div>
+                }
+               
+
+            </div>
+
+              <!-- ****Commission Sheet**** -->
+            <div class="recharge-commission">
+                <div class="recharge-commission_item">
+                    <div class="list-card-heading">
+                        <span class="line"></span>
+                        <span class="text">Commission Sheet</span>
+                        <span class="line"></span>
+                    </div>
+
+                    <div class="recharge-commission_pdf">
+                        <button>OPEN</button>
+                        <img src="/assets/images/dashboard/pdf.png" alt="" srcset="">
+                    </div>
+                </div>
+                <div class="recharge-commission_item w-full">
+                    <div class="recharge-commission_pdf">
+                    <img src="/assets/images/dashboard/Thumbnail.png" alt="">
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        <!-- <app-service-slider></app-service-slider> -->
+    </div>
+</div>

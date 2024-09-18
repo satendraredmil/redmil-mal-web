@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { SchangelanguageService } from '../../core/services/changelanguage/schangelanguage.service';
-import { PchangelanguagePipe } from '../../shared/pipes/changelanguage/pchangelanguage.pipe';
-import { ThemeService } from '../../core/services/theme/theme.service';
+import { PchangelanguagePipe } from '../../../shared/pipes/changelanguage/pchangelanguage.pipe';
+import { SchangelanguageService } from '../../../core/services/changelanguage/schangelanguage.service';
+
 
 @Component({
   selector: 'app-header-page',

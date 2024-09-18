@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DFooterComponent } from './d-footer.component';
+import { MobilePostpaidComponent } from './mobile-postpaid.component';
 
-describe('DFooterComponent', () => {
-  let component: DFooterComponent;
-  let fixture: ComponentFixture<DFooterComponent>;
+describe('MobilePostpaidComponent', () => {
+  let component: MobilePostpaidComponent;
+  let fixture: ComponentFixture<MobilePostpaidComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DFooterComponent]
+      imports: [MobilePostpaidComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DFooterComponent);
+    fixture = TestBed.createComponent(MobilePostpaidComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

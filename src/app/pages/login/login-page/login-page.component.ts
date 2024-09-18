@@ -1,28 +1,29 @@
 import { Component, Renderer2 } from '@angular/core';
-import { HeaderPageComponent } from "../header-page/header-page.component";
-import { FooterPageComponent } from "../footer-page/footer-page.component";
-import { MateriallistModule } from '../../shared/materiallist/materiallist.module';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { PchangelanguagePipe } from '../../shared/pipes/changelanguage/pchangelanguage.pipe';
 import { Router } from '@angular/router';
-import { AuthenticationapiService } from '../../core/services/authenticatioapi/authenticationapi.service';
 import { ToastrService } from 'ngx-toastr';
-import { ValidateOTPAnotherDeviceLoginClass, ValidateUser, ValidateUserMpin } from '../../core/models/classes/BaseModel';
-import { GetlocationService } from '../../core/services/location/getlocation.service';
-import { DialogBoxComponent } from '../../shared/reusable-components/dialog-box/dialog-box.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ValidateUser, ValidateUserMpin, ValidateOTPAnotherDeviceLoginClass } from '../../../core/models/classes/BaseModel';
+import { AuthenticationapiService } from '../../../core/services/authenticatioapi/authenticationapi.service';
+import { GetlocationService } from '../../../core/services/location/getlocation.service';
+import { MateriallistModule } from '../../../shared/materiallist/materiallist.module';
+import { PchangelanguagePipe } from '../../../shared/pipes/changelanguage/pchangelanguage.pipe';
+import { DialogBoxComponent } from '../../../shared/reusable-components/dialog-box/dialog-box.component';
+import { FooterPageComponent } from '../footer-page/footer-page.component';
+import { HeaderPageComponent } from '../header-page/header-page.component';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
   imports: [
-    HeaderPageComponent,
-    FooterPageComponent,
-    MateriallistModule,
     CommonModule,
-    PchangelanguagePipe
-  ],
+    MateriallistModule,
+    PchangelanguagePipe,
+    DialogBoxComponent,
+    HeaderPageComponent,
+    FooterPageComponent
+],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss'
 })
