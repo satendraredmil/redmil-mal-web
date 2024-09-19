@@ -15,7 +15,6 @@
                     <div class="row-container">
                         <!-- Mobile Number Input -->
                         <div class="circle-container">
-
                             <input type="text" id="mobileNumber" formControlName="mobileNumber" class="circle-input"
                                 aria-label="" (keyup)="onMobileNumberChange()" />
                             <label for="mobileNumber">Mobile Number</label>
@@ -58,8 +57,8 @@
                     <div class="amount-browse-container">
                         <!-- Enter Amount Field -->
                         <div class="amount-input">
-                            <label for="amount">Enter Amount</label>
                             <input type="text" id="amount" formControlName="amount" placeholder="" />
+                            <label for="amount">Enter Amount</label>
                         </div>
 
                         <!-- Browse Plan Button (beside Enter Amount) -->
@@ -95,6 +94,7 @@
                     <span class="line"></span>
                 </div>
 
+                <div class="recent_transaction_card_extra">
                 @for (item of Recent_Transactions; track $index) {
                     <div class="recent_transaction_card">
                         <div class="class_transaction">
@@ -116,10 +116,9 @@
                                 <img [src]="item.status" alt="">
                             </div>
                         </div>
-                       
                     </div>
                 }
-               
+            </div>
 
             </div>
               <!-- ****Commission Sheet**** -->
@@ -151,8 +150,18 @@
            </div>
         </div>
        
-        <div>
+        <!-- <div>
             <app-service-slider></app-service-slider>
+        </div> -->
+    </div>
+</div>
+<div class="highest_commission">
+    <div class="highest_commission_row">
+        <div class="highest_item">
+            <h2>HIGHEST COMMISSION <br> IN RECHARGE MARKET</h2>
+        </div>
+        <div class="highest_item">
+            <img src="/assets/images/recharges/highest_img.png" alt="" srcset="">
         </div>
     </div>
 </div>
