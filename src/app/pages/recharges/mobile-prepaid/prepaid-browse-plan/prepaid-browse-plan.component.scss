@@ -1,0 +1,234 @@
+::ng-deep .mat-mdc-dialog-panel{
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 10% !important;
+    height: auto !important;
+    overflow: hidden !important;
+    border-radius: 0px !important;
+    margin: 2% 0%;
+}
+  
+  .container_browse{
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #FAFAFA !important;
+    overflow: hidden;
+    border-radius: 0px !important;
+  }
+  
+  .header_browse {
+    width: 95%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: transparent;
+   
+  }
+  
+  .header_browse h1 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #012643;
+  }
+  
+  .header_browse .close-icon {
+    cursor: pointer;
+    font-size: 20px;
+    color: #666;
+  }
+  
+  .tabs-container {
+    width: 93%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-radius: 40px;
+    padding: 10px 0px;
+    background-color: transparent;
+
+    @media screen and (max-width:480px) {
+      padding: 10px 15px;
+    }
+  }
+  
+  .tabs_browse {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    width: 95%;
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  .tabs_browse button {
+    flex: 0 0 auto;
+    margin: 0 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .nav-button {
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    cursor: pointer;
+  }
+  
+  .nav-button.left {
+    position: absolute;
+    left: 0;
+  }
+  
+  .nav-button.right {
+    position: absolute;
+    right: 0;
+  }
+  
+  
+  .tabs_browse button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #E1E1E1;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  
+  .tabs_browse button.active {
+    background-color: #012643;
+    color: #fff !important;
+  }
+  
+  .search-bar_browse {
+    width: 95%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+  }
+  
+  .search-bar_browse input {
+    padding: 5px 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding-left: 50px;
+    flex: 1;
+    color: #C5C5C5;
+  }
+  
+  .search-bar_browse button {
+    padding: 4px 4px;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    margin-left: 10px;
+    cursor: pointer;
+    position: absolute;
+    border-right: 2px solid #C5C5C5;
+  }
+  
+  .plans_browse {
+    width: 95%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px;
+    max-height: 450px !important;
+    overflow-y: scroll;
+
+    @media screen and (max-width:480px){
+      padding: 5px 15px;
+    }
+
+    &::-webkit-scrollbar {
+      width: 10px !important;
+      padding-top: 20px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+      background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+      background: #012643;
+      border-radius: 10px;
+      height: 50px;
+  }
+  }
+  
+  .plan_browse {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 10px;
+    background-color: #fff;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+
+    &:hover{
+      background-color: #F6F6F6;
+    }
+
+    .plan_browse_top_center{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+  }
+  }
+  
+  .plan_browse .price_browse {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: #E8F4FF;
+    padding: 4px 15px;
+    border-radius: 30px;
+  }
+  
+  .plan_browse .details_browse {
+    flex: 1;
+    margin: 0px 20px;
+    
+  }
+  
+  .plan_browse .details_browse h3 {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    
+  }
+  
+  .plan_browse .plan_browse_para{
+    width: 100%;
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #666;
+      width: 100%;
+    }
+  }
+   
+  
+  .plan_browse .button_browse {
+    padding: 5px 20px;
+    border: none;
+    background-color: #012643;
+    color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  

@@ -1,9 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { ServiceSliderComponent } from "../../../layout/dashboard/d-services-card/service-slider/service-slider.component";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MateriallistModule } from '../../../shared/materiallist/materiallist.module';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { PrepaidBrowsePlanComponent } from './prepaid-browse-plan/prepaid-browse-plan.component';
+import { AnimationItem } from 'lottie-web';
+import { LottieComponent, AnimationOptions } from 'ngx-lottie';
+import { FastagRechargeComponent } from "../fastag-recharge/fastag-recharge.component";
+import { FooterPageComponent } from "../../login/footer-page/footer-page.component";
 
 @Component({
   selector: 'app-mobile-prepaid',
@@ -11,8 +17,11 @@ import { HttpClient } from '@angular/common/http';
   imports: [
     ServiceSliderComponent,
     MateriallistModule,
-    CommonModule
-  ],
+    CommonModule,
+    LottieComponent,
+    FastagRechargeComponent,
+    FooterPageComponent
+],
   templateUrl: './mobile-prepaid.component.html',
   styleUrl: './mobile-prepaid.component.scss'
 })
@@ -21,8 +30,14 @@ export class MobilePrepaidComponent {
   mobileForm!: FormGroup;
   operators = ['Airtel', 'Jio', 'Vodafone', 'BSNL']; // Aap apne operators yahan daal sakte hain
   operatorFilled = false;
+  pricePlan:string =''
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(
+    private fb: FormBuilder, 
+    private http: HttpClient,
+    private dialog:MatDialog,
+    private eRef: ElementRef
+  ) { }
 
   ngOnInit(): void {
     this.mobileForm = this.fb.group({
@@ -32,6 +47,8 @@ export class MobilePrepaidComponent {
       amount: ['', [Validators.required, Validators.min(1)]], // Amount input validation
     });
   }
+
+  
 // Function to call API when mobile number is entered completely
 onMobileNumberChange() {
   const mobileNumber = this.mobileForm.get('mobileNumber')?.value;
@@ -59,7 +76,16 @@ callOperatorAPI(mobileNumber: string) {
 }
 
 browsePlan() {
-  alert('Browse Plan functionality goes here');
+  //alert('Browse Plan functionality goes here');
+  const dialogRef = this.dialog.open(PrepaidBrowsePlanComponent);
+
+  dialogRef.afterClosed().subscribe(result => {
+    if(result){
+      console.log(`Dialog result: ${result.price}`);
+      console.log(`Dialog result: ${result.validity}`);
+      this.mobileForm.patchValue({amount:result.price})
+    }
+  });
 }
 
 onSubmit() {
@@ -69,8 +95,6 @@ onSubmit() {
     console.log('Form is not valid');
   }
 }
-
-
 
 Recent_Transactions=[
   {
@@ -130,4 +154,13 @@ Recent_Transactions=[
     "status":"/assets/images/dashboard/transaction_pending.png"
   }
 ]
+
+
+//Animation for Error 
+options: AnimationOptions = {
+  path: '/assets/animation/Recharge_Animation_highest.json',
+};
+animationCreated(animationItem: AnimationItem): void {
+  // console.log("hhsdjksasjkda",animationItem);
+}
 }
