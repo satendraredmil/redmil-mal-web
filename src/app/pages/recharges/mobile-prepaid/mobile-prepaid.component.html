@@ -1,60 +1,63 @@
+<div class="recharge-container">
+    <div class="recharge-row">
+        <div class="recharge-card">
+            <!-- ****Mobile Prepaid Recharge**** -->
+            <div class="recharge-item-form">
+                <div class="list-card-heading">
+                    <span class="line"></span>
+                    <span class="text">Mobile Prepaid Recharge</span>
+                    <span class="line"></span>
+                </div>
 
-    <div class="recharge-container">
-        <div class="recharge-row">
-            <div class="recharge-card">
-                <!-- ****Mobile Prepaid Recharge**** -->
-                <div class="recharge-item-form">
-                    <div class="list-card-heading">
-                        <span class="line"></span>
-                        <span class="text">Mobile Prepaid Recharge</span>
-                        <span class="line"></span>
-                    </div>
-    
-                    <form [formGroup]="mobileForm" (ngSubmit)="onSubmit()">
-                        <!-- Mobile Number Input with Aria Circle and Operator Dropdown -->
-                        <div class="row-container">
-                            <!-- Mobile Number Input -->
-                            <div class="circle-container" style="position: relative;">
-                                <input type="text" id="mobileNumber" formControlName="mobileNumber" class="circle-input"
-                                    aria-label="" (keyup)="onMobileNumberChange()" />
-                                    <label for="mobileNumber">Mobile Number</label>
-                                <div *ngIf="mobileForm.get('mobileNumber')?.touched && mobileForm.get('mobileNumber')?.invalid"
-                                    class="error">
-                                    Please enter a valid 10-digit mobile number.
-                                </div>
+                <form [formGroup]="mobileForm" (ngSubmit)="onSubmit()">
+                    <!-- Mobile Number Input with Aria Circle and Operator Dropdown -->
+                    <div class="row-container">
+                        <!-- Mobile Number Input -->
+                        <div class="circle-container" style="position: relative;">
+                            <input type="text" id="mobileNumber" formControlName="mobileNumber" class="circle-input"
+                                aria-label="" (keyup)="onMobileNumberChange()" />
+                            <label for="mobileNumber">Mobile Number</label>
+                            <div *ngIf="mobileForm.get('mobileNumber')?.touched && mobileForm.get('mobileNumber')?.invalid"
+                                class="error">
+                                Please enter a valid 10-digit mobile number.
                             </div>
-    
-                            <!-- Operator Dropdown -->
-                            <div class="operator-container">
-                               
-                                <select id="operator" formControlName="operator">
-                                    <option value=""></option>
-                                    <option *ngFor="let operator of operators" [value]="">{{ operator }}</option>
-                                </select>
-                                <label for="operator">Select Operator</label>
-                                <div *ngIf="mobileForm.get('operator')?.touched && mobileForm.get('operator')?.invalid"
-                                    class="error">
-                                    Please select a mobile operator.
-                                </div>
+                        </div>
+
+                        <!-- Operator Dropdown -->
+                        <div class="operator-container">
+
+                            <select id="operator" formControlName="operator" [(ngModel)]="OpId"
+                                (click)="onOperatorChange()">
+                                <option value="Select Operator" disabled selected></option>
+                                <option *ngFor="let operator of operators" [value]="operator.Id">{{
+                                    operator.Operatorname}}</option>
+                            </select>
+                            <label for="operator">Select Operator</label>
+                            <div *ngIf="mobileForm.get('operator')?.touched && mobileForm.get('operator')?.invalid"
+                                class="error">
+                                Please select a mobile operator.
                             </div>
-    
-    
-    
-                            <div class="operator-container">
-                              
-                                <select id="circle" formControlName="circle">
-                                    <option value=""></option>
-                                    <option *ngFor="let operator of operators" [value]="">{{ operator }}</option>
-                                </select>
-                                <label for="circle">Select Area circle</label>
-                                <div *ngIf="mobileForm.get('circle')?.touched && mobileForm.get('circle')?.invalid"
-                                    class="error">
-                                    Please select a mobile operator.
-                                </div>
+                        </div>
+
+
+
+                        <div class="operator-container">
+
+                            <select id="circle" formControlName="circle" [(ngModel)]="Circle"
+                                (click)="onCircleChange($event.target)">
+                                <option value="Select Area circle" disabled selected></option>
+                                <option *ngFor="let operator of circles" [value]="operator.State">{{ operator.State}}
+                                </option>
+                            </select>
+                            <label for="circle">Select Area circle</label>
+                            <div *ngIf="mobileForm.get('circle')?.touched && mobileForm.get('circle')?.invalid"
+                                class="error">
+                                Please select a mobile operator.
                             </div>
-    
-                      
-    
+                        </div>
+
+
+
                         <!-- Enter Amount and Browse Plan Button in Flex Layout -->
                         <div class="amount-browse-container">
                             <!-- Enter Amount Field -->
@@ -62,7 +65,7 @@
                                 <input type="text" id="amount" formControlName="amount" placeholder="" />
                                 <label for="amount">Enter Amount</label>
                             </div>
-    
+
                             <!-- Browse Plan Button (beside Enter Amount) -->
                             <div class="browse-plan">
                                 <button type="button" (click)="browsePlan()">Browse Plan</button>
@@ -72,34 +75,34 @@
                                 Please enter a valid amount.
                             </div>
                         </div>
-    
+
                         <div class="operator-container">
-                        <!-- Submit Button -->
-                        <button type="submit" [disabled]="mobileForm.invalid">PROCEED</button>
+                            <!-- Submit Button -->
+                            <button type="submit" [disabled]="mobileForm.invalid">PROCEED</button>
                         </div>
                     </div>
-                    </form>
-    
-    
-                    <div class="recharge-image-loop">
-                        <img src="/assets/images/dashboard/recharge_img.png" alt="">
-    
-                    </div>
-    
-    
+                </form>
+
+
+                <div class="recharge-image-loop">
+                    <img src="/assets/images/dashboard/recharge_img.png" alt="">
+
                 </div>
-    
-               <div class="recharge-item">
-                 <!-- ****Recent Transactions**** -->
-                 <div class="recharge-item-transactions">
+
+
+            </div>
+
+            <div class="recharge-item">
+                <!-- ****Recent Transactions**** -->
+                <div class="recharge-item-transactions">
                     <div class="list-card-heading">
                         <span class="line"></span>
                         <span class="text">Recent Transactions</span>
                         <span class="line"></span>
                     </div>
-    
+
                     <div class="recent_transaction_card_extra">
-                    @for (item of Recent_Transactions; track $index) {
+                        @for (item of Recent_Transactions; track $index) {
                         <div class="recent_transaction_card">
                             <div class="class_transaction">
                                 <div class="recent_transaction_logo">
@@ -110,7 +113,7 @@
                                     <p>{{item.Mobile_number}}</p>
                                 </div>
                             </div>
-        
+
                             <div class="class_transaction">
                                 <div class="recent_transaction_amount">
                                     <p>{{item.amount}}</p>
@@ -121,11 +124,11 @@
                                 </div>
                             </div>
                         </div>
-                    }
+                        }
+                    </div>
+
                 </div>
-    
-                </div>
-                  <!-- ****Commission Sheet**** -->
+                <!-- ****Commission Sheet**** -->
                 <div class="recharge-commission">
                     <div class="recharge-commission_item">
                         <div class="list-card-heading">
@@ -133,7 +136,7 @@
                             <span class="text">Commission Sheet</span>
                             <span class="line"></span>
                         </div>
-    
+
                         <div class="recharge-commission_pdf">
                             <button>OPEN</button>
                             <img src="/assets/images/dashboard/pdf.png" alt="" srcset="">
@@ -146,26 +149,26 @@
                             <span class="line"></span>
                         </div>
                         <div class="recharge-commission_pdf">
-                        <img src="/assets/images/dashboard/Thumbnail.png" alt="">
+                            <img src="/assets/images/dashboard/Thumbnail.png" alt="">
                         </div>
                     </div>
-                   
-                </div>
-               </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="highest_commission">
-        <div class="highest_commission_row">
-            <div class="highest_item">
-                <span>Recharge from Redmil</span> <br> <span>and earn commission</span>
-                <h1>UPTO 6%</h1>
-            </div>
-            <div class="highest_item">
-                <ng-lottie [options]="options" (animationCreated)="animationCreated($event)"/> 
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+<div class="highest_commission">
+    <div class="highest_commission_row">
+        <div class="highest_item">
+            <span>Recharge from Redmil</span> <br> <span>and earn commission</span>
+            <h1>UPTO 6%</h1>
+        </div>
+        <div class="highest_item">
+            <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" />
+        </div>
+    </div>
+</div>
 
 <app-footer-page></app-footer-page>

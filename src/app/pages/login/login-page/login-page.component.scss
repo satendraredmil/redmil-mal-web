@@ -265,6 +265,71 @@
             padding: 2px 0px;
           }
         }
+
+
+        
+  
+  //Error css code headle here
+  /* Style for the error message */
+  .error-message {
+    color: red !important;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 0px;
+    display: block;
+  }
+
+  /* Style for invalid input fields */
+  input.ng-invalid.ng-touched {
+    border-color: red;
+    color: red !important;
+    box-shadow: 0 0 5px hwb(0 0% 0% / 0.5);
+    /* Add a subtle red glow to invalid input */
+  }
+
+  
+  /* Submit button styling */
+  button[type="submit"] {
+    background: #012643;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+ 
+
+  /* Active (enabled) button styling */
+  button[type="submit"] {
+    background: #012643;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+
+  /* Disabled button styling */
+  button[disabled] {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    box-shadow: none;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+
+  }
+
+  /* Hover effect for active button */
+  button[type="submit"]:hover:not([disabled]) {
+    background: #012643;
+  }
+
       }
 
       //forget Password and resent css code

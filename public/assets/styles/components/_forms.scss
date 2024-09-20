@@ -51,7 +51,7 @@
   //Error css code headle here
   /* Style for the error message */
   .error-message {
-    color: red;
+    color: red !important;
     text-align: center;
     font-size: 14px;
     margin-top: 0px;
@@ -61,6 +61,7 @@
   /* Style for invalid input fields */
   input.ng-invalid.ng-touched {
     border-color: red;
+    color: red !important;
     box-shadow: 0 0 5px hwb(0 0% 0% / 0.5);
     /* Add a subtle red glow to invalid input */
   }

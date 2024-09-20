@@ -8,5 +8,12 @@ export const APIEndPoint = {
     Mpin: `${environment.baseUrl}/Mpin`,
     SendAnotherDeviceLoginOtp: `${environment.baseUrl}/SendAnotherDeviceLoginOtp`,
     ValidateOTPAnotherDeviceLogin: `${environment.baseUrl}/ValidateOTPAnotherDeviceLogin`,
+  },
+
+  Rechargesapi:{
+    MyPayStoreGetCircle: `${environment.baseUrl}/MyPayStoreGetCircle`,
+    GetOperaterList:`${environment.baseUrl}/GetOperaterList`,
+    GetCircleList:`${environment.baseUrl}/GetCircleList`,
+    MyPayStoreBrowsPlan:`${environment.baseUrl}/MyPayStoreBrowsPlans`,
   }
 };

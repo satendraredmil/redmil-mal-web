@@ -282,6 +282,16 @@ export class LoginPageComponent {
           //Set sessionStorage
           sessionStorage.setItem("UserLogintoken", response.Data[0].UserLogintoken);
           localStorage.setItem("UserLogintoken", response.Data[0].UserLogintoken);
+          console.log("UserLogintoken",response.Data[0].UserLogintoken);
+
+          sessionStorage.setItem("Userid", response.Data[0].Id);
+          localStorage.setItem("Userid", response.Data[0].Id);
+          console.log("Userid",response.Data[0].Id);
+          
+
+          sessionStorage.setItem("UserLoginIDfortoken", response.Data[0].Id);
+          localStorage.setItem("UserLoginIDfortoken", response.Data[0].Id);
+          console.log("UserLoginIDfortoken",response.Data[0].Id);
           this._router.navigate(['/dashboard'])
         } else {
           console.log("jkdjdsk");

@@ -31,14 +31,14 @@ export class BaseModel_1 {
 
 
 
-export class BaseModel_2 {
+ export class BaseModel_2 {
     Id?: string;
-    Userid?: string;
+    Userid?: string | null;
     checksum?: string;
     Token?: string;  // Optional field
     Wallet?: boolean;
-    UserLogintoken?: string;  // Optional field
-    UserLoginIDfortoken?: string;  // Optional field
+    UserLogintoken?: string | null="";  // Optional field
+    UserLoginIDfortoken?: string | null="";  // Optional field
     Redmilweb?:string = 'Web'; //apichecking comsumer
     constructor(
       Id:string ="0",

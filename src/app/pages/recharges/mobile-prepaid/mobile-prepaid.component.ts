@@ -10,6 +10,8 @@ import { AnimationItem } from 'lottie-web';
 import { LottieComponent, AnimationOptions } from 'ngx-lottie';
 import { FastagRechargeComponent } from "../fastag-recharge/fastag-recharge.component";
 import { FooterPageComponent } from "../../login/footer-page/footer-page.component";
+import { MobilePrepaidService } from '../../../core/services/recharges/mobile-prepaid/mobile-prepaid.service';
+import { Recharges } from '../../../core/models/classes/recharges/MobileRecharge';
 
 @Component({
   selector: 'app-mobile-prepaid',
@@ -28,15 +30,26 @@ import { FooterPageComponent } from "../../login/footer-page/footer-page.compone
 export class MobilePrepaidComponent {
 
   mobileForm!: FormGroup;
-  operators = ['Airtel', 'Jio', 'Vodafone', 'BSNL']; // Aap apne operators yahan daal sakte hain
+  operators:any[] = []; // Aap apne operators yahan daal sakte hain
+  circles: any[] =[]; // Aap apne operators yahan daal sakte hain
+  circles_1 = ['UP West and Uttaranchal', 'Delhi', 'Vodafone', 'BSNL']; // Aap apne operators yahan daal sakte hain
   operatorFilled = false;
   pricePlan:string =''
+  Id:any = [];
+  Circle:string = "";
+  OpId:string =""
+  operatorsData:any[]=[];
+  circleData:any[]=[];
+  
+  
+  
 
   constructor(
     private fb: FormBuilder, 
     private http: HttpClient,
     private dialog:MatDialog,
-    private eRef: ElementRef
+    private eRef: ElementRef,
+    private rechargeapi:MobilePrepaidService
   ) { }
 
   ngOnInit(): void {
@@ -46,37 +59,84 @@ export class MobilePrepaidComponent {
       circle: ['', Validators.required], // Dropdown for operator
       amount: ['', [Validators.required, Validators.min(1)]], // Amount input validation
     });
+
+    const MobileRecharge: Recharges = new Recharges();
+    this.rechargeapi.GetOperaterList(MobileRecharge).subscribe((res)=>{
+      debugger
+      console.log("GetOperaterList", res.Data);
+      this.Id = res.Data.Id
+      this.operators = res.Data;
+    });
+
+    const GetCircleListData: Recharges = new Recharges();
+    this.rechargeapi.GetCircleList(GetCircleListData).subscribe((res)=>{
+      debugger
+      console.log("GetCircleList", res);
+      if (res.Data && res.Data.length > 0) {
+        this.circles = res.Data;
+      }
+     
+    });
   }
 
   
+  // First API to get circle data
+  getCircleList() {
+    const GetCircleListData: Recharges = new Recharges();
+    this.rechargeapi.GetCircleList(GetCircleListData).subscribe((res) => {
+      console.log('GetCircleList Response:', res);
+      if (res.Data && res.Data.circle) {
+        this.circles = [res.Data.circle]; // If circle exists, store it in the array
+      }
+    });
+  }
+  
+
 // Function to call API when mobile number is entered completely
 onMobileNumberChange() {
   const mobileNumber = this.mobileForm.get('mobileNumber')?.value;
 
+  const MobileRecharge: Recharges = new Recharges(mobileNumber);
+
   if (mobileNumber.length === 10) {
-    this.callOperatorAPI(mobileNumber); // Call the API when 10 digits are entered
+     // Call the API when 10 digits are entered
+     debugger
+     this.rechargeapi.MyPayStoreGetCircle(MobileRecharge).subscribe((res)=>{
+      console.log(res);
+      this.operatorsData = res.Data
+
+      // Circle data ko nikal kar set kar rahe hain
+      if (res.Data && res.Data.circle) {
+        this.Circle = res.Data.circle; // Yaha 'circle' ko set kar rahe hain jo ngModel ke sath bind hai
+        console.log(this.Circle);
+      }
+
+     });
   }
 }
 
-// Simulating an API call to get the operator based on mobile number
-callOperatorAPI(mobileNumber: string) {
-  // Example API URL, change this to your actual API
-  const apiUrl = `https://api.example.com/getOperator/${mobileNumber}`;
 
-  this.http.get(apiUrl).subscribe(
-    (response: any) => {
-      this.operators = response.operators; // Assume API returns an array of operators
-      this.operatorFilled = true;
-      this.mobileForm.get('operator')?.setValue(this.operators[0]); // Auto-fill the first operator
-    },
-    (error) => {
-      console.error('Error fetching operator data', error);
-    }
-  );
+ // Method to handle the selected value
+ onOperatorChange(): void {
+  console.log('Selected Operator:', this.OpId);
+  // Perform any additional logic with selected value
+}
+ // Method to handle the selected value
+ onCircleChange(selectedCircle: any): void {
+ this.Circle = selectedCircle;
+  console.log('Selected Operator:', this.Circle);
+  // Perform any additional logic with selected value
 }
 
 browsePlan() {
   //alert('Browse Plan functionality goes here');
+  const UserLogintoken = sessionStorage.getItem('UserLogintoken')?.toString();
+  const UserLoginIDfortoken  = sessionStorage.getItem('UserLoginIDfortoken')?.toString();
+debugger
+  const MyPayStoreBrowsPlansData: Recharges = new Recharges(this.mobileForm.get('mobileNumber')?.value, this.Circle,   UserLogintoken, UserLoginIDfortoken, this.OpId,);
+  this.rechargeapi.MyPayStoreBrowsPlans(MyPayStoreBrowsPlansData).subscribe((res)=>{
+    console.log("Plan", res);
+  })
   const dialogRef = this.dialog.open(PrepaidBrowsePlanComponent);
 
   dialogRef.afterClosed().subscribe(result => {

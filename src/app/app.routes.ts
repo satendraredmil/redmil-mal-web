@@ -14,7 +14,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./layout/dashboard/d-layout/d-layout.component').then(
         (D) => D.DLayoutComponent
-      ),
+      ), canActivate:[authGuard],
     children: [
       {
         path: 'dashboard',
