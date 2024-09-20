@@ -26,8 +26,8 @@
                         <!-- Operator Dropdown -->
                         <div class="operator-container">
 
-                            <select id="operator" formControlName="operator" [(ngModel)]="OpId"
-                                (click)="onOperatorChange()">
+                            <select id="operator" formControlName="operator" [(ngModel)]="SelectedOperatorName"
+                                (click)="onOperatorChange($event)">
                                 <option value="Select Operator" disabled selected></option>
                                 <option *ngFor="let operator of operators" [value]="operator.Id">{{
                                     operator.Operatorname}}</option>

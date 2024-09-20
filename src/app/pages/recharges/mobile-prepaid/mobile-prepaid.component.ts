@@ -38,7 +38,11 @@ export class MobilePrepaidComponent {
   Id:any = [];
   Circle:string = "";
   OpId:string =""
-  operatorsData:any[]=[];
+  OperatorName:string =""
+  SelectedOperatorName:string =""
+
+
+
   circleData:any[]=[];
   
   
@@ -59,39 +63,80 @@ export class MobilePrepaidComponent {
       circle: ['', Validators.required], // Dropdown for operator
       amount: ['', [Validators.required, Validators.min(1)]], // Amount input validation
     });
+  }
 
-    const MobileRecharge: Recharges = new Recharges();
-    this.rechargeapi.GetOperaterList(MobileRecharge).subscribe((res)=>{
-      debugger
-      console.log("GetOperaterList", res.Data);
-      this.Id = res.Data.Id
-      this.operators = res.Data;
-    });
 
+  GetCircleData(){
     const GetCircleListData: Recharges = new Recharges();
     this.rechargeapi.GetCircleList(GetCircleListData).subscribe((res)=>{
       debugger
       console.log("GetCircleList", res);
-      if (res.Data && res.Data.length > 0) {
+      if (res.Data && res.Data.length > 1) {
         this.circles = res.Data;
-      }
-     
-    });
-  }
 
-  
-  // First API to get circle data
-  getCircleList() {
-    const GetCircleListData: Recharges = new Recharges();
-    this.rechargeapi.GetCircleList(GetCircleListData).subscribe((res) => {
-      console.log('GetCircleList Response:', res);
-      if (res.Data && res.Data.circle) {
-        this.circles = [res.Data.circle]; // If circle exists, store it in the array
+        const newCircle = {
+          Id: 31,
+          State: this.Circle,
+          StateCode: "NX"
+        };
+    
+        this.circles.push(newCircle);
+        console.log("GetCircleListFinal", this.circles);
+        debugger;
+        this.onCircleChange(this.circles);
       }
     });
   }
-  
 
+  GetOperaterData(){
+    const MobileRecharge: Recharges = new Recharges();
+    this.rechargeapi.GetOperaterList(MobileRecharge).subscribe((res)=>{
+      debugger
+      console.log("GetOperaterList", res.Data);
+      this.operators = res.Data;
+
+
+
+      console.log("OperatorName", this.OperatorName);
+      console.log("OperatorName", this.operators);
+
+      console.log("OperatorName to lower", this.OperatorName);
+      if(this.OperatorName.includes('jio'))
+      {
+        this.OperatorName = 'jio'
+      }
+      else if(this.OperatorName.includes('airtel'))
+        {
+          this.OperatorName = 'airtel'
+        }
+
+      console.log("OperatorName to lower match", this.OperatorName);
+
+
+      const lowerCaseOperators = this.operators.map(operator => ({
+        ...operator,
+        Operatorname: operator.Operatorname.toLowerCase() // Convert to lowercase
+    }));
+    console.log("OperatorName to lowerCaseOperators", lowerCaseOperators);
+
+      this.OpId = lowerCaseOperators.find(item => item.Operatorname.includes(this.OperatorName))?.Id || ''; 
+      
+    console.log("OperatorName to this.OpId", this.OpId);
+
+
+    console.log("OperatorName toOrginal operator", this.operators);
+
+      this.SelectedOperatorName = this.operators.find(item => item.Id === this.OpId)?.Operatorname || ''; 
+      console.log("OperatorName to this.SelectedOperatorName", this.SelectedOperatorName);
+
+    });
+    debugger
+    this.onOperatorChange(this.SelectedOperatorName);
+
+  }
+  
+ 
+  
 // Function to call API when mobile number is entered completely
 onMobileNumberChange() {
   const mobileNumber = this.mobileForm.get('mobileNumber')?.value;
@@ -103,13 +148,18 @@ onMobileNumberChange() {
      debugger
      this.rechargeapi.MyPayStoreGetCircle(MobileRecharge).subscribe((res)=>{
       console.log(res);
-      this.operatorsData = res.Data
-
+     
       // Circle data ko nikal kar set kar rahe hain
       if (res.Data && res.Data.circle) {
         this.Circle = res.Data.circle; // Yaha 'circle' ko set kar rahe hain jo ngModel ke sath bind hai
+        this.OperatorName = res.Data.operator.toLowerCase();
         console.log(this.Circle);
+        console.log(this.OperatorName);
+        this.GetOperaterData();
+        this.GetCircleData();
+       
       }
+
 
      });
   }
@@ -117,10 +167,11 @@ onMobileNumberChange() {
 
 
  // Method to handle the selected value
- onOperatorChange(): void {
-  console.log('Selected Operator:', this.OpId);
-  // Perform any additional logic with selected value
-}
+ onOperatorChange(SelectedOperator: any): void {
+  this.SelectedOperatorName = SelectedOperator;
+   console.log('Selected Operator:', this.SelectedOperatorName);
+   // Perform any additional logic with selected value
+ }
  // Method to handle the selected value
  onCircleChange(selectedCircle: any): void {
  this.Circle = selectedCircle;
