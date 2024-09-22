@@ -3,9 +3,19 @@
     max-width: 1200px !important;
     margin: 10% !important;
     height: auto !important;
+    min-height: 600px !important;
+    max-height: 600px !important;
     overflow: hidden !important;
-    border-radius: 0px !important;
+    border-radius: 15px !important;
     margin: 2% 0%;
+    background-color: #FAFAFA !important;
+    overflow:hidden  !important;
+}
+
+::ng-deep .mat-mdc-dialog-component-host{
+  display: block !important;
+  background-color: #FAFAFA !important;
+  overflow:hidden  !important;
 }
   
   .container_browse{
@@ -16,7 +26,6 @@
     margin: auto;
     background-color: #FAFAFA !important;
     overflow: hidden;
-    border-radius: 0px !important;
   }
   
   .header_browse {
@@ -141,7 +150,7 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    padding: 5px 20px;
+    padding: 15px 20px;
     max-height: 450px !important;
     overflow-y: scroll;
 
@@ -155,11 +164,11 @@
   }
 
   &::-webkit-scrollbar-track {
-      background: transparent;
+      background: #E1E1E1;
   }
 
   &::-webkit-scrollbar-thumb {
-      background: #012643;
+      background: #00A9E1;
       border-radius: 10px;
       height: 50px;
   }

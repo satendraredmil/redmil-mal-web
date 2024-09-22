@@ -27,12 +27,12 @@
                         <div class="operator-container">
 
                             <select id="operator" formControlName="operator" [(ngModel)]="SelectedOperatorName"
-                                (click)="onOperatorChange($event)">
-                                <option value="Select Operator" disabled selected></option>
+                               >
+                                <option value="" disabled selected>Select Operator</option>
                                 <option *ngFor="let operator of operators" [value]="operator.Id">{{
                                     operator.Operatorname}}</option>
                             </select>
-                            <label for="operator">Select Operator</label>
+                            <!-- <label for="operator">Select Operator</label> -->
                             <div *ngIf="mobileForm.get('operator')?.touched && mobileForm.get('operator')?.invalid"
                                 class="error">
                                 Please select a mobile operator.
@@ -44,12 +44,13 @@
                         <div class="operator-container">
 
                             <select id="circle" formControlName="circle" [(ngModel)]="Circle"
-                                (click)="onCircleChange($event.target)">
-                                <option value="Select Area circle" disabled selected></option>
+                            class="dropdowncircle">
+                                <option value="" disabled selected>Select circle</option>
+                                
                                 <option *ngFor="let operator of circles" [value]="operator.State">{{ operator.State}}
                                 </option>
                             </select>
-                            <label for="circle">Select Area circle</label>
+                            <!-- <label for="circle">Select Area circle</label> -->
                             <div *ngIf="mobileForm.get('circle')?.touched && mobileForm.get('circle')?.invalid"
                                 class="error">
                                 Please select a mobile operator.

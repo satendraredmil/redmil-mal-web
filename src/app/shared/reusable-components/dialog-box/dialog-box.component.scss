@@ -1,7 +1,28 @@
+::ng-deep .mat-mdc-dialog-panel{
+  width: 100% !important;
+  max-width: 500px !important;
+  margin: 10% !important;
+  height: auto !important;
+  min-height: 400px !important;
+  max-height: 400px !important;
+  overflow: hidden !important;
+  border-radius: 15px !important;
+  margin: 2% 0%;
+  background-color: #FAFAFA !important;
+  overflow:hidden  !important;
+}
+
+::ng-deep .mat-mdc-dialog-component-host{
+display: block !important;
+background-color: #FAFAFA !important;
+overflow:hidden  !important;
+}
+
 .dialog-container {
   position: relative;
   padding: 20px;
   width: 100%;
+  max-width: 600px !important;
   max-width: -webkit-fill-available;
   color: #012643;
   text-align: center;
@@ -13,10 +34,11 @@
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
-  
-    img {
-      max-width: 100%;
-      height: auto;
+
+    .dialog_image_library {
+      width: 100%;
+      max-width: 150px;
+      height: 150px;
       border-radius: 8px;
     }
   }
@@ -41,6 +63,15 @@
     top: 10px;
     right: 10px;
     color: #333;
+  }
+
+  .btn{
+    background: #001b3f;
+    padding: 5px 20px;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: #fff;
   }
   
   @media (max-width: 480px) {

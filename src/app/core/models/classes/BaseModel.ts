@@ -62,6 +62,37 @@ export class BaseModel_1 {
 }
 
 
+
+export class BaseModel_3 {
+  Id?: string;
+  UserId?: string | null;
+  checksum?: string;
+  Token?: string;  // Optional field
+  Wallet?: boolean;
+  UserLogintoken?: string | null="";  // Optional field
+  UserLoginIDfortoken?: string | null="";  // Optional field
+  Redmilweb?:string = 'Web'; //apichecking comsumer
+  constructor(
+    Id:string ="0",
+    UserId: string = "NA",
+    checksum: string ="NA",
+    Wallet: boolean = false,
+    Token : string = "", 
+    UserLogintoken: string ="",
+    UserLoginIDfortoken : string = "",
+    Redmilweb:string = "Web"
+  ) {
+    this.Id = Id;
+    this.UserId = UserId;
+    this.checksum  = checksum ;
+    this.Wallet  = Wallet ;
+    this.Token  = Token ;
+    this.UserLogintoken  = UserLogintoken ;
+    this.UserLoginIDfortoken  = UserLoginIDfortoken ;
+    this.Redmilweb = Redmilweb
+  }
+}
+
 export class ValidateUser extends BaseModel_2 { 
   Mobile:string
 

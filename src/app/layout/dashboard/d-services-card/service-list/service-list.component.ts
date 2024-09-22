@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { PchangelanguagePipe } from '../../../../shared/pipes/changelanguage/pchangelanguage.pipe';
 import { ServiceSliderComponent } from "../service-slider/service-slider.component";
 import { RouterLink } from '@angular/router';
@@ -17,7 +17,12 @@ import { RouterLink } from '@angular/router';
   styleUrl: './service-list.component.scss'
 })
 export class ServiceListComponent {
+  @Output() formSelected = new EventEmitter<string>();
 
+  selectForm(formType: string) {
+    this.formSelected.emit(formType); // Emit the selected form type
+  }
+  
   All_services=[
     {
       "name": "Recharges",

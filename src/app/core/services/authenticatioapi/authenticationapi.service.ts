@@ -22,7 +22,7 @@ export class AuthenticationapiService {
 
   // Function to call the API with checksum and UserMobile
   validateUser( Data: ValidateUser,): Observable<any> {
-    debugger
+    // debugger
     // Create checksum using ChecksumService
     const input = this.checksumService.makeChecksumString(
       'User/ValidateUser', 
@@ -40,7 +40,6 @@ export class AuthenticationapiService {
 
   // Function to call the API with checksum and MPIN
   validateUserMPIN( DataMpin: ValidateUserMpin,): Observable<any> {
-    debugger
     // Create checksum using ChecksumService
     const input = this.checksumService.makeChecksumString('Mpin', 
       this.checksumService.checksumKey,

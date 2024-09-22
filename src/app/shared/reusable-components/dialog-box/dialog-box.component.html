@@ -8,8 +8,9 @@
     <br>
       <!-- Image (Dynamic) -->
       <div class="dialog-image">
-        <img [src]="data.imageUrl" alt="Image" />
+        <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" class="dialog_image_library"/>
       </div>
+      <br>
     <!-- Title (Dynamic) -->
     <h1 [ngClass]="{
       'success-class': data.status === 'Success',
@@ -19,15 +20,9 @@
     }" class="heading_dialog">
       {{ data.title }}
     </h1>
-  
-  
-  
     <!-- Message (Dynamic) -->
     <p>{{ data.message }}</p>
-
-     <!-- Message2 (Dynamic) -->
-     <p>{{ data.message }}</p>
-  
+     
     <!-- Additional Information (Dynamic) -->
     <p>{{ data.additionalInfo }}</p>
   
@@ -35,7 +30,9 @@
     <ul>
       <li *ngFor="let item of data.list">{{ item }}</li>
     </ul>
-
     <br>
+      <button class="btn" (click)="closeDialog()">
+        OK
+      </button>
   </div>
   

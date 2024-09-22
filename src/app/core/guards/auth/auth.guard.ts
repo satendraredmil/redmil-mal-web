@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  debugger
+  // debugger
   const _router = inject(Router);
 
   const localToken = localStorage.getItem('UserLogintoken');
@@ -12,7 +12,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   console.log('Session ID:', sessionToken);
   // If token is present in localStorage and sessionStorage, allow access
   if (localToken && sessionToken) {
-    debugger
+    // debugger
     return true;
   }
  // If token is in localStorage but not in sessionStorage, user opened a new window

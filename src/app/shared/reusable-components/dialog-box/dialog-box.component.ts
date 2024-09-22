@@ -12,12 +12,14 @@ import {
 } from '@angular/animations';
 import { MateriallistModule } from '../../materiallist/materiallist.module';
 import { CommonModule } from '@angular/common';
+import { AnimationOptions, LottieComponent } from 'ngx-lottie';
+import { AnimationItem } from 'lottie-web';
 
 
 @Component({
   selector: 'app-dialog-box',
   standalone: true,
-  imports: [MateriallistModule, CommonModule],
+  imports: [MateriallistModule, CommonModule, LottieComponent],
   templateUrl: './dialog-box.component.html',
   styleUrl: './dialog-box.component.scss',
   animations: [
@@ -81,9 +83,20 @@ import { CommonModule } from '@angular/common';
   ],
 })
 export class DialogBoxComponent { 
+
+  options!: AnimationOptions;
+  
   constructor(
     public dialogRef: MatDialogRef<DialogBoxComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { title: string,status: string, message: string,  imageUrl: string, additionalInfo: string, list: string[] }
+    @Inject(MAT_DIALOG_DATA) public data: { 
+      title: string,
+      status: string, 
+      message: string,  
+      animationPath: string; 
+      additionalInfo: string, 
+      list: string[],
+      
+    }
   ) {}
 
   ngOnInit(): void {
@@ -91,9 +104,21 @@ export class DialogBoxComponent {
     // setTimeout(() => {
     //   this.dialogRef.close(); // This will close the dialog
     // }, 3000); // Close after 3000 milliseconds (3 seconds)
+
+    this.options = {
+      path: this.data.animationPath // Use the passed animation path
+    };
+  }
+
+  animationCreated(animationItem: AnimationItem): void {
+    // console.log("Animation created:", animationItem);
   }
 
   closeDialog(): void {
     this.dialogRef.close();
   }
+
+ 
+ 
+
 }

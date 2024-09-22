@@ -10,10 +10,20 @@ export const APIEndPoint = {
     ValidateOTPAnotherDeviceLogin: `${environment.baseUrl}/ValidateOTPAnotherDeviceLogin`,
   },
 
+  Dashboard:{
+    GetUserSubscriptionDetails: `${environment.baseUrl}/GetUserSubscriptionDetails`,
+    GetUserProfile: `${environment.baseUrl}/GetUserProfile`,
+    notification_count: `${environment.baseUrl}/notification/count`,
+    GetContactListStatus: `${environment.baseUrl}/GetContactListStatus`,
+    Getbalance:`${environment.baseUrl}/Getbalance`,
+  },
+
   Rechargesapi:{
     MyPayStoreGetCircle: `${environment.baseUrl}/MyPayStoreGetCircle`,
     GetOperaterList:`${environment.baseUrl}/GetOperaterList`,
     GetCircleList:`${environment.baseUrl}/GetCircleList`,
     MyPayStoreBrowsPlan:`${environment.baseUrl}/MyPayStoreBrowsPlans`,
-  }
+    Recharge:`${environment.baseUrl}/MyPayStoreBrowsPlans`
+  },
+
 };

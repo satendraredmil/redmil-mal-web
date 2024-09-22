@@ -126,7 +126,6 @@ export class LoginPageComponent {
   onKeyPress(event: KeyboardEvent) {
     if (event.key === 'Enter' && this.passwordForm.valid) {
       this.submitPassword();
-      console.log("jjj");
     }
   }
 
@@ -183,13 +182,27 @@ export class LoginPageComponent {
             this.UserNameValidate = response.Data[0].Name
             this.UserMobileNumber = response.Data[0].Mobileno
             this.step = 2;
-          } else if (response.Statuscode === 'ERR') {
+          } 
+          else if (response.Statuscode === 'ERR') {
             this.dialog.open(DialogBoxComponent, {
               data: { 
                 status: 'Failed',
                 message: response.Message,  
-                imageUrl: '/assets/images/login/QR_code_for_mobile_app.svg',
-                additionalInfo: 'e.com/store/apps/details?id=com.wts.redmilapp&pli=1>App Link</a>.e.com/store/apps/details?id=com.wts.redmilapp&pli=1>App Link</a>e.com/store/apps/details?id=com.wts.redmilapp&pli=1>App Link</a>e.com/store/apps/details?id=com.wts.redmilapp&pli=1>App Link</a>',
+                additionalInfo: 'Sign-Up Failed Due to Suspicious Activity',
+                animationPath:'/assets/animation/Animation_Error.json'
+              },
+              panelClass: 'custom-dialog-container',
+              enterAnimationDuration: '400ms',
+              exitAnimationDuration: '300ms',
+            });
+          }
+          else if (response.Statuscode === 'UAB') {
+            this.dialog.open(DialogBoxComponent, {
+              data: { 
+                status: 'Failed',
+                message: response.Message,  
+                additionalInfo: 'Please contact our support team to restore access.',
+                animationPath:'/assets/animation/Animation_Error.json'
               },
               panelClass: 'custom-dialog-container',
               enterAnimationDuration: '400ms',
@@ -199,6 +212,17 @@ export class LoginPageComponent {
         },
         (error) => {
           console.error('API Error Login:', error); // Handle error
+          this.dialog.open(DialogBoxComponent, {
+            data: { 
+              status: 'Server Error',
+              message:"Oops! Something went wrong",  
+              additionalInfo: "We're experiencing some technical difficulties. Please try again later. If the problem persists, contact our support team for assistance.",
+              animationPath:'/assets/animation/Animation_Error.json'
+            },
+            panelClass: 'custom-dialog-container',
+            enterAnimationDuration: '400ms',
+            exitAnimationDuration: '300ms',
+          });
         }
       );
     }
@@ -211,19 +235,29 @@ export class LoginPageComponent {
 
     // If the form is valid, proceed to the next step (OTP)
     if (this.passwordForm.valid) {
-      debugger
+   
       console.log(this.passwordForm.value);
       const DataMpin: ValidateUserMpin = new ValidateUserMpin(this.passwordForm.get('Mpin')?.value, this.UserMobileNumber, "otpforweblogin");
       this.apiService.validateUserMPIN(DataMpin).subscribe(
         (response) => {
           // console.log('API Response:', response); // Handle the API response here
           if (response.Statuscode === "ODL") {
-            this.toastr.success(response.Message)
             this.UserMpin = DataMpin.Mpin
             this.passwordForm.reset()
             this.SendOtpcode();
-          } else {
-            console.log("jkdjdsk");
+           
+          } else{
+            this.dialog.open(DialogBoxComponent, {
+              data: { 
+                status: 'Failed',
+                message:"Incorrect MPIN",  
+                additionalInfo: "Please check your MPIN and try again.",
+                animationPath:'/assets/animation/Animation_Error.json'
+              },
+              panelClass: 'custom-dialog-container',
+              enterAnimationDuration: '400ms',
+              exitAnimationDuration: '300ms',
+            });
           }
         },
         (error) => {
@@ -239,7 +273,17 @@ export class LoginPageComponent {
     const DataMobile: ValidateUser = new ValidateUser(this.UserMobileNumber);
     this.apiService.UserSendOTP(DataMobile).subscribe((response) => {
       if (response.Statuscode === 'OSS')
-        this.toastr.success(response.Message)
+      this.dialog.open(DialogBoxComponent, {
+        data: { 
+          status: 'Success',
+          message:response.Message,  
+          additionalInfo: "Your OTP sent to your registered mobile number",
+          animationPath:'/assets/animation/Animation_Success.json'
+        },
+        panelClass: 'custom-dialog-container',
+        enterAnimationDuration: '400ms',
+        exitAnimationDuration: '300ms',
+      });
         this.step = 3;
     }, (error) => {
       console.log(`OTP API not working ${error}`);
@@ -256,8 +300,32 @@ export class LoginPageComponent {
       this.apiService.ValidateOTPAnotherDeviceLogin(DataOTPverify).subscribe((response) => {
         console.log('response:', response);
         if (response.Statuscode === "TXN") {
+          this.dialog.open(DialogBoxComponent, {
+            data: { 
+              status: 'Success',
+              message:response.Message,  
+              additionalInfo: "You can now proceed with the next steps",
+              animationPath:'/assets/animation/Animation_Success.json'
+            },
+            panelClass: 'custom-dialog-container',
+            enterAnimationDuration: '400ms',
+            exitAnimationDuration: '300ms',
+          });
           this.MpinCallFinal();
           //this.otpForm.reset();
+        }
+        else if (response.Statuscode === "ERR"){
+          this.dialog.open(DialogBoxComponent, {
+            data: { 
+              status: 'Failed',
+              message:response.Message,  
+              additionalInfo: "The OTP you entered is incorrect. Please check the OTP and try again.",
+              animationPath:'/assets/animation/Animation_Error.json'
+            },
+            panelClass: 'custom-dialog-container',
+            enterAnimationDuration: '400ms',
+            exitAnimationDuration: '300ms',
+          });
         }
       }, (error) => {
         this.toastr.error(error)
@@ -268,30 +336,27 @@ export class LoginPageComponent {
 
   // Function to submit the MpinCallFinal
   MpinCallFinal(): void {
-
-    debugger
     console.log(this.passwordForm.value);
     const DataMpin: ValidateUserMpin = new ValidateUserMpin(this.UserMpin, this.UserMobileNumber);
 
     this.apiService.validateUserMPIN(DataMpin).subscribe(
       (response) => {
-        debugger
+        // debugger
         console.log('API Response:', response); // Handle the API response here
         if (response.Statuscode === "TXN") {
-          this.toastr.success(response.Message)
-          //Set sessionStorage
+          //Set UserLogintoken
           sessionStorage.setItem("UserLogintoken", response.Data[0].UserLogintoken);
           localStorage.setItem("UserLogintoken", response.Data[0].UserLogintoken);
-          console.log("UserLogintoken",response.Data[0].UserLogintoken);
-
+          //Set Userid
           sessionStorage.setItem("Userid", response.Data[0].Id);
           localStorage.setItem("Userid", response.Data[0].Id);
-          console.log("Userid",response.Data[0].Id);
-          
-
+          //Set UserLoginIDfortoken
           sessionStorage.setItem("UserLoginIDfortoken", response.Data[0].Id);
           localStorage.setItem("UserLoginIDfortoken", response.Data[0].Id);
-          console.log("UserLoginIDfortoken",response.Data[0].Id);
+
+          sessionStorage.setItem("Name", response.Data[0].Name);
+          localStorage.setItem("Name", response.Data[0].Name);
+        
           this._router.navigate(['/dashboard'])
         } else {
           console.log("jkdjdsk");

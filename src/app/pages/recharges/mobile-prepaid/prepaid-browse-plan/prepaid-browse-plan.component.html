@@ -12,7 +12,7 @@
         </button>
 
         <div class="tabs_browse" #tabsContainer>
-            <button *ngFor="let tab of tabs" [class.active]="activeTab === tab" (click)="selectTab(tab)">
+            <button *ngFor="let tab of tabs" [class.active]="tab ===  activeTab" (click)="selectTab(tab)">
                 {{ tab }}
             </button>
         </div>
@@ -31,19 +31,26 @@
                     d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
             </svg>
         </button>
-    </div>
+    </div> 
 
     <div class="plans_browse">
-        <div class="plan_browse" *ngFor="let plan of filteredPlans">
-            <div class="plan_browse_top_center" (click)="selectPlan(plan)">
-                <div class="price_browse">₹{{ plan.price }}</div>
-                <div class="details_browse"><h3>{{ plan.validity }}</h3></div>
-                <button class="button_browse" >Select Plan</button>
-            </div>
-           
-            <div class="plan_browse_para">
-                <p>{{ plan.description }}</p>
+        <div *ngIf="filteredPlans.length > 0">
+            <div class="plan_browse"  (click)="selectPlan(plan)"  *ngFor="let plan of filteredPlans">
+                <div class="plan_browse_top_center">
+                    <div class="price_browse">₹{{ plan.Rs }}</div>
+                    <div class="details_browse"><h3>{{ plan.Validity }}</h3></div>
+                    <button class="button_browse" >Select Plan</button>
+                </div>
+               
+                <div class="plan_browse_para">
+                    <p>{{ plan.Desc }}</p>
+                </div>
             </div>
         </div>
+       
+         <!-- Agar koi plan available nahi hai -->
+     <div *ngIf="filteredPlans.length === 0">
+        <p>No plans available for this category.</p>
+    </div>
     </div>
 </div>
