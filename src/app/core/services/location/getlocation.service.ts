@@ -13,8 +13,11 @@ export class GetlocationService {
         navigator.geolocation.getCurrentPosition((position) => {
           resolve({
             latitude: position.coords.latitude,
-            longitude: position.coords.longitude
+            longitude: position.coords.longitude,
+            
           });
+          console.log(Geolocation);
+          console.log(position);
         }, (error) => {
           reject(error);
         });
@@ -23,4 +26,7 @@ export class GetlocationService {
       }
     });
   }
+
+
+
 }

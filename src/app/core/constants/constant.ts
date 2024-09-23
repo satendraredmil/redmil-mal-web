@@ -16,6 +16,8 @@ export const APIEndPoint = {
     notification_count: `${environment.baseUrl}/notification/count`,
     GetContactListStatus: `${environment.baseUrl}/GetContactListStatus`,
     Getbalance:`${environment.baseUrl}/Getbalance`,
+    notification_data:`${environment.baseUrl}/notification/data`,
+    notification_update:`${environment.baseUrl}/notification/update`
   },
 
   Rechargesapi:{

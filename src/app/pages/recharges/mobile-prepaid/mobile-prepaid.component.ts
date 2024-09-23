@@ -67,8 +67,7 @@ export class MobilePrepaidComponent {
   BindOperaterDataDropDown() {
     const MobileRecharge: Recharges = new Recharges();
     this.rechargeapi.GetOperaterList(MobileRecharge).subscribe((res) => {
-  
-      console.log('GetOperaterList', res.Data);
+     // console.log('GetOperaterList', res.Data);
       this.operators = res.Data;
     });
     this.SelectedOperatorName = '';
@@ -77,7 +76,7 @@ export class MobilePrepaidComponent {
   BindcircleDataDropDown() {
     const GetCircleListData: Recharges = new Recharges();
     this.rechargeapi.GetCircleList(GetCircleListData).subscribe((res) => {
-      console.log('GetCircleList', res);
+      //console.log('GetCircleList', res);
       if (res.Data) {
         this.circles = res.Data;
       }
@@ -123,7 +122,7 @@ export class MobilePrepaidComponent {
       StateCode: 'NX',
     };
     this.circles.push(newCircle);
-    console.log('GetCircleListFinal', this.circles);
+    //console.log('GetCircleListFinal', this.circles);
   }
 
   clearDropdown() {
@@ -145,13 +144,13 @@ export class MobilePrepaidComponent {
       debugger
       // Call the API when 10 digits are entered
       this.rechargeapi.MyPayStoreGetCircle(MobileRecharge).subscribe((res) => {
-        console.log(res);
+        //console.log(res);
         // Circle data ko nikal kar set kar rahe hain
         if (res.Data && res.Data.circle) {
           this.Circle = res.Data.circle; // Yaha 'circle' ko set kar rahe hain jo ngModel ke sath bind hai
           this.OperatorName = res.Data.operator.toLowerCase();
-          console.log(this.Circle);
-          console.log(this.OperatorName);
+          // console.log(this.Circle);
+          // console.log(this.OperatorName);
           this.GetOperaterData();
           this.GetCircleData();
         }

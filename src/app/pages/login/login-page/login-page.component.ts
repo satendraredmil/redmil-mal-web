@@ -81,10 +81,16 @@ export class LoginPageComponent {
   }
 
 
-  ngOnInit() {
+  async ngOnInit() {
     this.startAutoSlide();
     sessionStorage.clear();
     localStorage.clear();
+
+  
+    const location = await this.geolocationService.getUserLocation();
+    localStorage.setItem('userLocation', JSON.stringify(location));
+    console.log(location);
+    
   }
 
   ngOnDestroy() {
@@ -177,7 +183,7 @@ export class LoginPageComponent {
       const Data: ValidateUser = new ValidateUser(this.mobileForm.get('Mobile')?.value)
       this.apiService.validateUser(Data).subscribe(
         (response) => {
-          console.log('API Response:', response, Data); // Handle the API response here
+          //console.log('API Response:', response, Data); // Handle the API response here
           if (response.Statuscode === 'TXN') {
             this.UserNameValidate = response.Data[0].Name
             this.UserMobileNumber = response.Data[0].Mobileno
@@ -236,7 +242,7 @@ export class LoginPageComponent {
     // If the form is valid, proceed to the next step (OTP)
     if (this.passwordForm.valid) {
    
-      console.log(this.passwordForm.value);
+      //console.log(this.passwordForm.value);
       const DataMpin: ValidateUserMpin = new ValidateUserMpin(this.passwordForm.get('Mpin')?.value, this.UserMobileNumber, "otpforweblogin");
       this.apiService.validateUserMPIN(DataMpin).subscribe(
         (response) => {
@@ -336,13 +342,13 @@ export class LoginPageComponent {
 
   // Function to submit the MpinCallFinal
   MpinCallFinal(): void {
-    console.log(this.passwordForm.value);
+    //console.log(this.passwordForm.value);
     const DataMpin: ValidateUserMpin = new ValidateUserMpin(this.UserMpin, this.UserMobileNumber);
 
     this.apiService.validateUserMPIN(DataMpin).subscribe(
       (response) => {
         // debugger
-        console.log('API Response:', response); // Handle the API response here
+        //console.log('API Response:', response); // Handle the API response here
         if (response.Statuscode === "TXN") {
           //Set UserLogintoken
           sessionStorage.setItem("UserLogintoken", response.Data[0].UserLogintoken);
@@ -359,7 +365,7 @@ export class LoginPageComponent {
         
           this._router.navigate(['/dashboard'])
         } else {
-          console.log("jkdjdsk");
+          console.log("Api Error so please try A");
         }
       },
       (error) => {

@@ -1,3 +1,10 @@
+
+export interface ApiResponse<T>{
+  Statuscode?:boolean;
+  Message?:string;
+  Data:T;
+}
+
 export class BaseModel_1 {
   Id?: string;
   UserId?: string;
@@ -106,11 +113,6 @@ export class ValidateUser extends BaseModel_2 {
 }
 
 
-export interface ApiResponse<T>{
-  Statuscode?:boolean;
-  Message?:string;
-  Data:T;
-}
 
 export class ValidateUserMpin extends BaseModel_2 { 
   Mpin:string;
@@ -161,6 +163,19 @@ export class ValidateOTPAnotherDeviceLoginClass extends BaseModel_2 {
     this.Otp = Otp
     this.AppId = AppId
   }
+}
+
+export class GetContactListStatusService extends BaseModel_1{
+   ServiceName: string;
+
+   constructor(
+    ServiceName:string="Dashboard"
+   ){
+    super();
+     this.ServiceName = ServiceName;
+   }
+
+
 }
 
 

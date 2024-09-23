@@ -41,6 +41,7 @@ header {
     justify-content: space-around;
     align-items: center;
     gap: 0px;
+    z-index: 99;
 
     //all icons code starting
     .redmil-icons {
@@ -64,7 +65,8 @@ header {
       height: 32px !important;
     }
 
-    //whatsapp code starting
+    //whatsapp code Notification
+    
     .redmil-whatsapp {
       display: flex;
       justify-content: space-around;
@@ -73,11 +75,22 @@ header {
       cursor: pointer;
       padding: 0px 20px;
 
+
+
       a {
         text-decoration: none;
         color: #fff;
       }
+
+      .mat-icon{
+        color: #ffcc00 !important;
+        cursor: pointer;
+      }
+
+      
     }
+
+    
 
     .mobile-view {
       display: none;
@@ -87,6 +100,7 @@ header {
       display: block;
     }
 
+   
     ::ng-deep mat-expansion-panel,
     ng-trigger-bodyExpansion,
     ng-trigger {
@@ -98,9 +112,6 @@ header {
       height: 57px;
       box-shadow: none !important;
       border-radius: 0 !important;
-
-     
-
 
       .mat-expansion-panel-header {
         height: 100% !important;
@@ -133,8 +144,11 @@ header {
         }
       }
     }
+
+    
    
   }
+
   .active-bg {
     background-color: #f0f0f0 !important; /* You can change this color as needed */
   }
@@ -219,6 +233,95 @@ header {
 
   
 }
+
+
+::ng-deep .notification-menu{
+  background-color: #fff !important;
+  margin-left: 31px !important;
+  position: relative !important;
+  margin-top: 15px !important;
+  margin-right: -100px !important;
+  max-height: 450px !important;
+  max-width: 450px !important;
+  z-index: 1 !important;
+
+  // &::before{
+  //   content: "";
+  //   height: 14px;
+  //   background-color: #000000 !important;
+  //   width: calc(25px - 10px);
+  //   left: 40%;
+  //   top: -4px;
+  //   z-index: 2;
+  //   position: absolute;
+  // }
+}
+/* notification.component.scss */
+  .notification-menu {
+    min-width: 350px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .notification-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    gap: 20px;
+
+    &:hover{
+      background-color: #E7F6FF;
+    }
+  }
+  
+  .notification-image {
+    width: 170px;
+    height: 100px;
+    border-radius: 5%;
+    object-fit: fill;
+    margin-right: 0px;
+  }
+  
+  .notification-details {
+    flex: 1;
+  }
+  
+  .notification-title {
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .notification-author {
+    font-size: 12px;
+    color: gray;
+  }
+  
+  .notification-message {
+    font-size: 13px;
+    margin-top: 2px;
+  }
+  
+  .notification-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 0px;
+    padding: 10px 15px;
+    background: #00a9e1;
+    border-radius: 5px;
+    cursor: pointer !important;
+    transition: 1s ease-in-out;
+  }
+  
+  .notification-link:hover {
+    background-color: #012643;
+    color:#fff;
+  }
+  
+ 
+
+
 
 
 @media screen and (max-width:992px) {
@@ -411,6 +514,7 @@ header {
 
 
 }
+
 
 
 

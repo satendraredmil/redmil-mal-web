@@ -1,15 +1,16 @@
-import { Component, ElementRef, HostListener, signal } from '@angular/core';
+import { Component, ElementRef, HostListener, signal, ViewChild } from '@angular/core';
 import { SchangelanguageService } from '../../../core/services/changelanguage/schangelanguage.service';
 import { PchangelanguagePipe } from '../../../shared/pipes/changelanguage/pchangelanguage.pipe';
 import { MateriallistModule } from '../../../shared/materiallist/materiallist.module';
 import { DialogBoxComponent } from '../../../shared/reusable-components/dialog-box/dialog-box.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AnimationItem } from 'lottie-web';
-import { LottieComponent, AnimationOptions } from 'ngx-lottie';
+import { LottieComponent } from 'ngx-lottie';
 import { CommonModule } from '@angular/common';
 import { DatalimitPipe } from '../../../shared/pipes/datalength/datalimit.pipe';
-import { BaseModel_1, BaseModel_3 } from '../../../core/models/classes/BaseModel';
 import { DashboardService } from '../../../core/services/dashboard/dashboard.service';
+import { Router } from '@angular/router';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-d-header',
@@ -19,26 +20,30 @@ import { DashboardService } from '../../../core/services/dashboard/dashboard.ser
     MateriallistModule, 
     LottieComponent, 
     DatalimitPipe,
-    CommonModule],
+    CommonModule,
+    DatalimitPipe
+  ],
   templateUrl: './d-header.component.html',
   styleUrl: './d-header.component.scss'
 })
 export class DHeaderComponent {
-
+  ServiceName: string = 'Dashboard';
   UserNameheaderonset:any = "Ramesh Prashad";
   PlanName:string='';
+  GetBalanceData:any[]=[];
   NotificationCount:String='';
+  notificationsData:any[]=[];
+  notificationsDataPath: string = 'https://api.redmilbusinessmall.com/'; // Path for brand images
+
   panelOpenState:boolean = false;
   menuOpenState: boolean = false;
-
   isActive: boolean = false;
   isDarkMode: boolean = false;
   isDropdownOpen = false;
   isDropdownOpenMega = false;  // Variable to track dropdown state
   activeLink: string | null = null; // Track the active link
   isMenuOpen: boolean = false;
-  
-
+  @ViewChild('drawer') drawer!: MatDrawer;
 
 
   constructor(
@@ -46,7 +51,8 @@ export class DHeaderComponent {
     private translationService : SchangelanguageService,
     private dialog : MatDialog,
     private eRef: ElementRef,
-    private dashboard_api:DashboardService
+    private dashboard_api:DashboardService,
+    private route:Router
   ) {
     this.isActive = this.translationService.isActiveLanguage();
 
@@ -61,9 +67,13 @@ export class DHeaderComponent {
    this.GetUserSubscriptionDetails();
    this.GetUserProfile();
    this.notification_count();
-   //this.GetContactListStatus();
+   this.GetContactListStatus();
+   this.Getbalance();
+   this.notification_data();
+   this.notification_update();
   }
  
+  
 
   toggleLanguage() {
     this.isActive = !this.isActive; // Toggle the state
@@ -121,47 +131,65 @@ closeMenu() {
   }
 }
 
-
-//Api  call to get the menu data
+//Api Call Start Here for All Dashboard header 
+//Api call to get the GetUserSubscriptionDetails
 GetUserSubscriptionDetails(){
   this.dashboard_api.GetUserSubscriptionDetails().subscribe((res)=>{
       this.PlanName = res.Data[0].PlanName
   })
 }
 
-
-
-//Api  call to get the menu data
+//Api  call to get the GetUserProfile
 GetUserProfile(){
-  const UserLogintoken = sessionStorage.getItem('UserLogintoken')?.toString();
-  const UserLoginIDfortoken = sessionStorage.getItem('UserLoginIDfortoken')?.toString();
-  const GetUserProfileData: BaseModel_3 = new BaseModel_3(UserLogintoken,UserLoginIDfortoken);
-  this.dashboard_api.GetUserProfile(GetUserProfileData).subscribe((res)=>{
+  this.dashboard_api.GetUserProfile().subscribe((res)=>{
     this.UserNameheaderonset = res.Data[0].Name
   })
 }
 
-//Api  call to get the menu data
+//Api  call to get the notification_count
 notification_count(){
-  const UserLogintoken = sessionStorage.getItem('UserLogintoken')?.toString();
-  const UserLoginIDfortoken = sessionStorage.getItem('UserLoginIDfortoken')?.toString();
-  const notification_countData: BaseModel_3 = new BaseModel_3(UserLogintoken,UserLoginIDfortoken);
-  this.dashboard_api.notification_count(notification_countData).subscribe((res)=>{
+  this.dashboard_api.notification_count().subscribe((res)=>{
      this.NotificationCount = res.Data[0].COUNT  
   })
 }
 
-//Api  call to get the menu data
+//Api  call to get the GetContactListStatus
 GetContactListStatus(){
-  const UserLogintoken = sessionStorage.getItem('UserLogintoken')?.toString();
-  const UserLoginIDfortoken = sessionStorage.getItem('UserLoginIDfortoken')?.toString();
-  const GetContactListStatusData: BaseModel_1 = new BaseModel_1(UserLogintoken,UserLoginIDfortoken);
-  this.dashboard_api.GetContactListStatus(GetContactListStatusData).subscribe((res)=>{
-    console.log("kjgjd", res);
-    
+  this.dashboard_api.GetContactListStatus().subscribe((res)=>{
+    //console.log("GetContactListStatus", res); 
   })
 }
 
+//Api  call to get the Getbalance
+Getbalance(){
+  this.dashboard_api.Getbalance().subscribe((res)=>{
+    this.GetBalanceData = res.Data
+  })
+}
+
+//Api  call to get the Getbalance
+notification_data(){
+  this.dashboard_api.notification_data().subscribe((res)=>{
+    this.notificationsData = res.Data
+  })
+}
+
+//Api  call to get the Getbalance
+notification_update(){
+  this.dashboard_api.notification_update().subscribe((res)=>{
+    console.log("Updatenotification",res);
+    debugger
+  })
+}
+
+//Logout Method with remove everthing
+RemoveSession_Local(){
+  sessionStorage.removeItem('UserLogintoken');
+  sessionStorage.removeItem('UserLoginIDfortoken');
+  sessionStorage.clear();
+  localStorage.clear();
+  this.route.navigate(['/login']);
+}
 }
 
 

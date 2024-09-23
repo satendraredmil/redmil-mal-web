@@ -32,7 +32,7 @@
               <div class="dheader-icons"><img src="/assets/images/dashboard/cashwallet.svg" alt=""></div>
               <div class="dheader-text">
                 <div class="cashwallet">Cash-wallet-Balance</div>
-                <div class="cashwalletamount" style="color: #FFCC00;">₹ 120000.68</div>
+                <div class="cashwalletamount" style="color: #FFCC00;">₹ {{GetBalanceData[0]?.MainBal}}</div>
               </div>
             </div>
           </mat-panel-title>
@@ -43,21 +43,21 @@
             <img src="/assets/images/dashboard/wallettype1.png" alt="">
             <div class="linkclass">
               <span>Cash Wallet Balance</span>
-              <p>₹ 120000.68</p>
+              <p>₹ {{GetBalanceData[0]?.MainBal}}</p>
             </div>
           </button>
           <button mat-menu-item>
             <img src="/assets/images/dashboard/wallettyp2.png" alt="">
             <div class="linkclass">
               <span>Advance Limit Wallet</span>
-              <p>₹ 800</p>
+              <p>₹ {{GetBalanceData[0]?.AdBal}}</p>
             </div>
           </button>
           <button mat-menu-item>
             <img src="/assets/images/dashboard/wallettype3.png" alt="">
             <div class="linkclass">
               <span>Reward Wallet</span>
-              <p>₹ 200</p>
+              <p>₹ {{GetBalanceData[0]?.REReward}}</p>
             </div>
           </button>
         </mat-menu>
@@ -109,18 +109,44 @@
 
           <div class="user_link" mat-menu-item>
             <div class="user_link_icons"><img src="/assets/images/dashboard/logout.svg" alt=""></div>
-            <div class="user_link_href">Log out</div>
+            <div class="user_link_href" (click)="RemoveSession_Local()">Log out</div>
           </div>
 
         </mat-menu>
       </mat-expansion-panel>
     </mat-accordion>
 
+    <!-- this is a div for line only don't remove it -->
     <div class="redmil-iconss"> </div>
 
+    <!-- this is a div conatiner for Notification icons don't remove it  -->
     <div class="redmil-whatsapp">
-      <img src="/assets/images/dashboard/notification.svg" alt="">
-      {{NotificationCount}}
+      <div class="notification-wrapper" [matMenuTriggerFor]="notificationMenu">
+        <mat-icon matBadge="{{NotificationCount}}">notifications</mat-icon>
+      </div>
+      <mat-menu #notificationMenu="matMenu"class="notification-menu">
+        <h1 class="text-center p-2"><strong>Your offical notifications are here</strong></h1>
+        <ng-template matMenuContent>
+          <div *ngFor="let notification of notificationsData" >
+            <a href="">
+            <div class="notification-item">
+            <img [src]="notificationsDataPath + notification?.Image" alt="{{ notificationsData[0]?.Image }}" class="notification-image">
+            
+            <div class="notification-details gap-5">
+              <div class="notification-title">{{ notification.Title }}</div>
+              <div class="flex justify-start gap-5">
+                <div class="notification-author">By Redmil</div>
+                <div class="notification-author">Date {{notification?.CreatedOn | date:'yyyy-MM-dd' }}</div>
+              </div>
+              <div class="notification-message">{{ notification?.Body}}</div>
+            </div>
+            
+            <!-- <a [href]="notification.link" class="notification-link">View</a> -->
+          </div>
+        </a>
+        </div>
+        </ng-template>
+      </mat-menu>
     </div>
 
 
@@ -137,6 +163,7 @@
             }
         </div> -->
 
+   <!-- this is a  toggle menu button for translate language only don't remove it -->
     <div class="toggle-container" [class.active]="isActive" (click)="toggleLanguage()">
       <div class="toggle-button"></div>
     </div>
