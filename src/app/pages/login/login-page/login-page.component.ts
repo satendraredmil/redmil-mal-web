@@ -310,7 +310,7 @@ export class LoginPageComponent {
             data: { 
               status: 'Success',
               message:response.Message,  
-              additionalInfo: "You can now proceed with the next steps",
+              additionalInfo: "Now you can proceed to the next step like :- Recharge, Banking Services, Bill Payment, Travel, etc.",
               animationPath:'/assets/animation/Animation_Success.json'
             },
             panelClass: 'custom-dialog-container',

@@ -1,0 +1,79 @@
+
+.recharge-pup-container {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container_width {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        
+
+            .dialog-image {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            
+                .dialog_image_library {
+                  width: 25%;
+                  border-radius: 8px;
+                }
+              }
+
+              .status{
+                h2 {
+                    margin-bottom: 10px;
+                }
+              }
+            
+              .details_row{
+                display: flex;
+                flex-direction: column;
+                align-items: center;    
+                
+                .details_item{
+                    width: 100%;
+                }
+              }
+        }
+
+        
+
+
+       
+
+        .details {
+            text-align: left;
+        }
+
+        .details p {
+            margin: 5px 0;
+        }
+
+        .details strong {
+            display: inline-block;
+            width: 120px;
+        }
+
+        .close {
+            position: relative;
+            top: -10px;
+            left: 170px;
+            cursor: pointer;
+            font-size: 30px;
+        }
+

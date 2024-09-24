@@ -135,7 +135,6 @@ notification_data(): Observable<any> {
 }
 
 notification_update(): Observable<any> {
-  debugger
   const notification_updateData: BaseModel_3 = new BaseModel_3();
   notification_updateData.UserId  = sessionStorage.getItem('Userid')?.toString();
   notification_updateData.UserLogintoken = sessionStorage.getItem('UserLogintoken')?.toString();

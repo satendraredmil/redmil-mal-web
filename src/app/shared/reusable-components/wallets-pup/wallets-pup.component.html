@@ -1,0 +1,25 @@
+<div class="payment-moda-container">
+    <div class="payment-modal">
+        <div class="modal-content">
+            <span class="close-btn" mat-dialog-close>&times;</span>
+            <div class="secure-badge">
+                <img src="/assets/images/wallets/wallet_secure.png" alt="Secure Badge">
+            </div>
+            <h2>Select option to pay ₹{{data.amount}}</h2>
+            <div class="wallet-options">
+                <div class="wallet" [ngClass]="{'actives': selectedWallet === 'cash-wallet'}" (click)="selectWallet('cash-wallet')">
+                    <img src="/assets/images/dashboard/wallettype1.png" alt="Cash Wallet">
+                    <h3>Cash Wallet</h3>
+                    <p>Available Balance is: ₹{{cashWalletBalance}}</p>
+                </div>
+                <div class="wallet" [ngClass]="{'actives': selectedWallet === 'advance-wallet'}"
+                (click)="selectWallet('advance-wallet')">
+                    <img src="/assets/images/dashboard/wallettyp2.png" alt="Advance Wallet">
+                    <h3>Advance Wallet</h3>
+                    <p>Available Balance is: ₹{{advanceWalletBalance}}</p>
+                </div>
+            </div>
+            <button class="pay-btn" (click)="makePayment()">Pay ₹{{data.amount}}</button>
+        </div>
+    </div>
+</div>

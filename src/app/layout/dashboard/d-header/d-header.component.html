@@ -122,7 +122,7 @@
     <!-- this is a div conatiner for Notification icons don't remove it  -->
     <div class="redmil-whatsapp">
       <div class="notification-wrapper" [matMenuTriggerFor]="notificationMenu">
-        <mat-icon matBadge="{{NotificationCount}}">notifications</mat-icon>
+        <mat-icon role="img" matBadge="{{NotificationCount}}" class="mat-icon notranslate mat-badge" aria-hidden="false">notifications</mat-icon>
       </div>
       <mat-menu #notificationMenu="matMenu"class="notification-menu">
         <h1 class="text-center p-2"><strong>Your offical notifications are here</strong></h1>
@@ -130,10 +130,10 @@
           <div *ngFor="let notification of notificationsData" >
             <a href="">
             <div class="notification-item">
-            <img [src]="notificationsDataPath + notification?.Image" alt="{{ notificationsData[0]?.Image }}" class="notification-image">
+            <img [src]="notificationsDataPath + notification.Image" alt="{{ notification?.Image }}" class="notification-image">
             
             <div class="notification-details gap-5">
-              <div class="notification-title">{{ notification.Title }}</div>
+              <div class="notification-title">{{ notification?.Title }}</div>
               <div class="flex justify-start gap-5">
                 <div class="notification-author">By Redmil</div>
                 <div class="notification-author">Date {{notification?.CreatedOn | date:'yyyy-MM-dd' }}</div>

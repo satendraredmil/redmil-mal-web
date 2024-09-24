@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { APIEndPoint } from '../../../constants/constant';
 import { ChecksumService } from '../../checksum/checksum.service';
 import { Observable } from 'rxjs';
-import { BaseModel_2 } from '../../../models/classes/BaseModel';
+import { BaseModel_1, BaseModel_2 } from '../../../models/classes/BaseModel';
 
  // Set headers (adjust content-type based on your API)
  const headers = new HttpHeaders({
@@ -95,21 +95,46 @@ export class MobilePrepaidService {
 
 
     // Function to call the API with checksum and userSendOTP
-   Recharge( MyPayStoreBrowsPlansData: Recharges):Observable<any> {
-      MyPayStoreBrowsPlansData.Userid  = sessionStorage.getItem('Userid')?.toString();
+   Recharge( RechargesData: Recharges):Observable<any> {
+    RechargesData.Userid  = sessionStorage.getItem('Userid')?.toString();
+    RechargesData.UserLoginIDfortoken  = sessionStorage.getItem('UserLoginIDfortoken')?.toString();
+    RechargesData.UserLogintoken  = sessionStorage.getItem('UserLogintoken')?.toString();
+    debugger
       // Create checksum using ChecksumService
       const input = this.checksumService.makeChecksumString('Recharge', 
         this.checksumService.checksumKey,
-        MyPayStoreBrowsPlansData.Userid || 'NA',
-        MyPayStoreBrowsPlansData.Circle ,
-        MyPayStoreBrowsPlansData.OpId
-  
+        RechargesData.Userid || 'NA',
+        RechargesData.ServiceId,
+        RechargesData.OpId,
+        RechargesData.Mobileno || 'NA',
+        RechargesData.Mode,
+        RechargesData.Amount || '0',
+        RechargesData.Wallet || 'False',
        );
-       MyPayStoreBrowsPlansData.checksum = this.checksumService.convertStringToSHA512Hash(input);
+       RechargesData.checksum = this.checksumService.convertStringToSHA512Hash(input);
   
       // Make the POST request
-      return this.http.post(APIEndPoint.Rechargesapi.MyPayStoreBrowsPlan, MyPayStoreBrowsPlansData, { headers });
+      return this.http.post(APIEndPoint.Rechargesapi.Recharge, RechargesData, { headers });
     }
 
+
+     // Function to call the API with checksum and transactions_recentTransaction
+    transactions_recentTransaction(){
+      debugger
+      const transactions_recentTransactionData: BaseModel_1 = new BaseModel_1();
+      transactions_recentTransactionData.UserId  = sessionStorage.getItem('Userid')?.toString();
+      transactions_recentTransactionData.UserLoginIDfortoken  = sessionStorage.getItem('UserLoginIDfortoken')?.toString();
+      transactions_recentTransactionData.UserLogintoken  = sessionStorage.getItem('UserLogintoken')?.toString();
+      debugger
+        // Create checksum using ChecksumService
+        const input = this.checksumService.makeChecksumString('recentTransaction', 
+          this.checksumService.checksumKey,
+          transactions_recentTransactionData.UserId || 'NA',
+         );
+         transactions_recentTransactionData.Checksum = this.checksumService.convertStringToSHA512Hash(input);
+    
+        // Make the POST request
+        return this.http.post(APIEndPoint.Rechargesapi.transactions_recentTransaction, transactions_recentTransactionData, { headers });
+      }
 
 }

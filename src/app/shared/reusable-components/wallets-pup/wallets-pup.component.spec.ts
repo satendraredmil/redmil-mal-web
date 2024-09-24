@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogComComponent } from './dialog-com.component';
+import { WalletsPupComponent } from './wallets-pup.component';
 
-describe('DialogComComponent', () => {
-  let component: DialogComComponent;
-  let fixture: ComponentFixture<DialogComComponent>;
+describe('WalletsPupComponent', () => {
+  let component: WalletsPupComponent;
+  let fixture: ComponentFixture<WalletsPupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DialogComComponent]
+      imports: [WalletsPupComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DialogComComponent);
+    fixture = TestBed.createComponent(WalletsPupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

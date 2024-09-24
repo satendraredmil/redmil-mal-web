@@ -10,7 +10,7 @@ export class BaseModel_1 {
   UserId?: string;
   Checksum?: string;
   Token?: string;  // Optional field
-  Wallet?: boolean;
+  Wallet?: string;
   UserLogintoken?: string;  // Optional field
   UserLoginIDfortoken?: string;  // Optional field
   Redmilweb?:string = 'Web'; //checking api comsumer
@@ -19,7 +19,7 @@ export class BaseModel_1 {
     Id:string = "0",
     UserId: string ="0",
     Checksum: string ="NA",
-    Wallet: boolean =false,
+    Wallet: string ='False',
     Token : string = "NA",
     UserLogintoken: string ="NA",
     UserLoginIDfortoken: string ="NA",
@@ -43,7 +43,7 @@ export class BaseModel_1 {
     Userid?: string | null;
     checksum?: string;
     Token?: string;  // Optional field
-    Wallet?: boolean;
+    Wallet?: string;
     UserLogintoken?: string | null="";  // Optional field
     UserLoginIDfortoken?: string | null="";  // Optional field
     Redmilweb?:string = 'Web'; //apichecking comsumer
@@ -51,7 +51,7 @@ export class BaseModel_1 {
       Id:string ="0",
       Userid: string = "NA",
       checksum: string ="NA",
-      Wallet: boolean = false,
+      Wallet: string = 'False',
       Token : string = "", 
       UserLogintoken: string ="",
       UserLoginIDfortoken : string = "",
@@ -75,7 +75,7 @@ export class BaseModel_3 {
   UserId?: string | null;
   checksum?: string;
   Token?: string;  // Optional field
-  Wallet?: boolean;
+  Wallet?: string;
   UserLogintoken?: string | null="";  // Optional field
   UserLoginIDfortoken?: string | null="";  // Optional field
   Redmilweb?:string = 'Web'; //apichecking comsumer
@@ -83,7 +83,7 @@ export class BaseModel_3 {
     Id:string ="0",
     UserId: string = "NA",
     checksum: string ="NA",
-    Wallet: boolean = false,
+    Wallet: string = 'False',
     Token : string = "", 
     UserLogintoken: string ="",
     UserLoginIDfortoken : string = "",

@@ -1,10 +1,11 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, ElementRef, Input } from '@angular/core';
 import { ServiceSliderComponent } from '../../../layout/dashboard/d-services-card/service-slider/service-slider.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MateriallistModule } from '../../../shared/materiallist/materiallist.module';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PrepaidBrowsePlanComponent } from './prepaid-browse-plan/prepaid-browse-plan.component';
 import { AnimationItem } from 'lottie-web';
 import { LottieComponent, AnimationOptions } from 'ngx-lottie';
@@ -12,6 +13,9 @@ import { FastagRechargeComponent } from '../fastag-recharge/fastag-recharge.comp
 import { FooterPageComponent } from '../../login/footer-page/footer-page.component';
 import { MobilePrepaidService } from '../../../core/services/recharges/mobile-prepaid/mobile-prepaid.service';
 import { Recharges } from '../../../core/models/classes/recharges/MobileRecharge';
+import { WalletsPupComponent } from '../../../shared/reusable-components/wallets-pup/wallets-pup.component';
+import { DashboardService } from '../../../core/services/dashboard/dashboard.service';
+import { RechargepupComponent } from '../../../shared/reusable-components/rechargepup/rechargepup.component';
 
 @Component({
   selector: 'app-mobile-prepaid',
@@ -28,7 +32,6 @@ import { Recharges } from '../../../core/models/classes/recharges/MobileRecharge
   styleUrl: './mobile-prepaid.component.scss',
 })
 export class MobilePrepaidComponent {
-
   @Input() formType: string | null = null;
 
   mobileForm!: FormGroup;
@@ -41,12 +44,16 @@ export class MobilePrepaidComponent {
   OperatorName: string = '';
   SelectedOperatorName: string = '';
   circleData: any[] = [];
-  BrowsePlanData:any ;
+  BrowsePlanData: any;
+  RechargeValueData: any[] = [];
+  DialogRef: any;
 
   constructor(
     private fb: FormBuilder,
     private dialog: MatDialog,
-    private rechargeapi: MobilePrepaidService
+    private rechargeapi: MobilePrepaidService,
+    private dashboardapi:DashboardService,
+    private toster:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -62,12 +69,13 @@ export class MobilePrepaidComponent {
 
     this.BindOperaterDataDropDown();
     this.BindcircleDataDropDown();
+    this.Maketransactions_recentTransaction();
   }
 
   BindOperaterDataDropDown() {
     const MobileRecharge: Recharges = new Recharges();
     this.rechargeapi.GetOperaterList(MobileRecharge).subscribe((res) => {
-     // console.log('GetOperaterList', res.Data);
+      // console.log('GetOperaterList', res.Data);
       this.operators = res.Data;
     });
     this.SelectedOperatorName = '';
@@ -85,7 +93,6 @@ export class MobilePrepaidComponent {
   }
 
   GetOperaterData() {
-    debugger
     if (this.OperatorName.includes('jio')) {
       this.OperatorName = 'jio';
     } else if (this.OperatorName.includes('airtel')) {
@@ -141,7 +148,6 @@ export class MobilePrepaidComponent {
     const MobileRecharge: Recharges = new Recharges(mobileNumber);
     this.clearDropdown();
     if (mobileNumber.length === 10) {
-      debugger
       // Call the API when 10 digits are entered
       this.rechargeapi.MyPayStoreGetCircle(MobileRecharge).subscribe((res) => {
         //console.log(res);
@@ -151,6 +157,7 @@ export class MobilePrepaidComponent {
           this.OperatorName = res.Data.operator.toLowerCase();
           // console.log(this.Circle);
           // console.log(this.OperatorName);
+
           this.GetOperaterData();
           this.GetCircleData();
         }
@@ -158,48 +165,113 @@ export class MobilePrepaidComponent {
     }
   }
 
-  browsePlan() {
-    //alert('Browse Plan functionality goes here');
-    const UserLogintoken = sessionStorage.getItem('UserLogintoken')?.toString();
-    const UserLoginIDfortoken = sessionStorage
-      .getItem('UserLoginIDfortoken')
-      ?.toString();
-    const MyPayStoreBrowsPlansData: Recharges = new Recharges(
-      this.mobileForm.get('mobileNumber')?.value,
-      this.Circle,
-      UserLogintoken,
-      UserLoginIDfortoken,
-      this.OpId
-    );
-    this.rechargeapi
-      .MyPayStoreBrowsPlans(MyPayStoreBrowsPlansData)
-      .subscribe((res) => {
-        console.log('Plan', res);
-        if(res.Statuscode==='TXN')
-        {
-          this.BrowsePlanData = res
-        const dialogRef = this.dialog.open(PrepaidBrowsePlanComponent,{
-          data:{BrowsePlan:this.BrowsePlanData}
-        });
+ browsePlan() {
+  if (this.mobileForm.get('mobileNumber')?.value && this.mobileForm.get('operator')?.valid &&  this.mobileForm.get('circle')?.valid) {
 
-        dialogRef.afterClosed().subscribe((result) => {
-          if (result) {
-            console.log(`Dialog result: ${result.Rs}`);
-            console.log(`Dialog result: ${result.Validity}`);
-            this.mobileForm.patchValue({ amount: result.Rs });
-          }
-        });
-      }
+//alert('Browse Plan functionality goes here');
+const UserLogintoken = sessionStorage.getItem('UserLogintoken')?.toString();
+const UserLoginIDfortoken = sessionStorage.getItem('UserLoginIDfortoken')?.toString();
+const MyPayStoreBrowsPlansData: Recharges = new Recharges(
+  this.mobileForm.get('mobileNumber')?.value,
+  this.Circle,
+  UserLogintoken,
+  UserLoginIDfortoken,
+  this.OpId
+);
+this.rechargeapi
+  .MyPayStoreBrowsPlans(MyPayStoreBrowsPlansData)
+  .subscribe((res) => {
+    console.log('Plan', res);
+    if (res.Statuscode === 'TXN') {
+      this.BrowsePlanData = res;
+      const dialogRef = this.dialog.open(PrepaidBrowsePlanComponent, {
+        data: { BrowsePlan: this.BrowsePlanData },
       });
- 
+
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          console.log(`Dialog result: ${result.Rs}`);
+          console.log(`Dialog result: ${result.Validity}`);
+          this.mobileForm.patchValue({ amount: result.Rs });
+        }
+      });
+    } else if(res.Statuscode==='ERR'){
+      this.toster.error(res.Message, 'Please enter mobile number')
+    }
+  });
+    }
+    else if (!this.mobileForm.get('mobileNumber')?.value)
+    {
+      this.toster.error('Please enter valid mobile number !') 
+    }
+    else if (!this.mobileForm.get('operator')?.value)
+      {
+        this.toster.error('Please select operator !') 
+      }
+      else if (!this.mobileForm.get('circle')?.value)
+        {
+          this.toster.error('Please select circle !') 
+        }
+    else{
+      this.toster.error('Please fill all details')
+    }
+    
   }
 
-  onSubmit() {
+  onSubmitwithRecharge() {
     if (this.mobileForm.valid) {
-      console.log('Form Submitted', this.mobileForm.value);
+      console.log('Form Submjsgdjsitted', this.mobileForm.value);
+      this.RechargeValueData = this.mobileForm.value;
+      const dialogRefs = this.dialog.open(WalletsPupComponent, {
+        data: { amount: this.mobileForm.value.amount },
+      });
+      dialogRefs.afterClosed().subscribe((result) => {
+        if (result) {
+          debugger
+          console.log(`Dialog result: ${result}`);
+          const makeRechargedata: Recharges = new Recharges()
+          makeRechargedata.Mobileno=this.mobileForm.value.mobileNumber;
+          makeRechargedata.ServiceId="21";
+          makeRechargedata.OpId=this.mobileForm.value.operator;
+          makeRechargedata.Amount=this.mobileForm.value.amount;
+          if (result === 'cash-wallet') {
+            makeRechargedata.Wallet= 'True';
+          }   
+          this.rechargeapi.Recharge(makeRechargedata).subscribe((res)=>{
+            console.log('Recharge', res);
+            if(res.StatusCode==='TXN'){
+              this.dialog.open(RechargepupComponent, {
+                data: {
+                  status: res.Statuscode,
+                  MobileNo: res.Data[0].Mobileno,
+                  amount: res.Data[0].Amount,
+                  TxnID: res.Data[0].TRefId,
+                  Date: res.Data[0].Reqdate,
+                  message:res.Message,
+                  animationPath:'/assets/animation/Animation_Success.json',
+                  additionalInfo: 'Thank you for using our service.',
+                }
+              });
+            } 
+          })
+        }
+      });
     } else {
       console.log('Form is not valid');
     }
+  }
+
+  openPaymentDialog(amount: number): void {
+    this.dialog.open(WalletsPupComponent, {
+      data: { amount: amount },
+    });
+  }
+
+  Maketransactions_recentTransaction(){
+    debugger
+    this.rechargeapi.transactions_recentTransaction().subscribe((res)=>{
+      console.log('Recent Transaction', res);
+    })
   }
 
   Recent_Transactions = [
@@ -265,6 +337,7 @@ export class MobilePrepaidComponent {
   options: AnimationOptions = {
     path: '/assets/animation/Recharge_Animation_highest.json',
   };
+
   animationCreated(animationItem: AnimationItem): void {
     // console.log("hhsdjksasjkda",animationItem);
   }

@@ -19,13 +19,18 @@ export class Recharges extends BaseModel_2 {
     AppVersion:string;
     Circle:string;
     OpId:string;
-  
+    Mode:string;
+    Amount?:string;
+    Mobileno?:string
     constructor(
-      MobileNo: string ="",
+      MobileNo:string ="",
       ServiceId:string="",
       AppVersion:string = "788",
       Circle:string="",
-      OpId:string =""
+      OpId:string ="",
+      Mode:string="Web",
+      Amount:string ="0",
+      Mobileno:string =''
     ) {
       super(); // Call the constructor of the base class
       this.MobileNo = MobileNo;
@@ -33,6 +38,9 @@ export class Recharges extends BaseModel_2 {
       this.AppVersion = AppVersion;
       this.Circle = Circle;
       this.OpId = OpId;
+      this.Mode = Mode;
+      this.Amount = Amount;
+      this.Mobileno = Mobileno
     }
   }
   

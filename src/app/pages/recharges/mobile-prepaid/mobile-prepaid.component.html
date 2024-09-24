@@ -9,7 +9,7 @@
                     <span class="line"></span>
                 </div>
 
-                <form [formGroup]="mobileForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="mobileForm" (ngSubmit)="onSubmitwithRecharge()">
                     <!-- Mobile Number Input with Aria Circle and Operator Dropdown -->
                     <div class="row-container">
                         <!-- Mobile Number Input -->
@@ -33,7 +33,7 @@
                                     operator.Operatorname}}</option>
                             </select>
                             <!-- <label for="operator">Select Operator</label> -->
-                            <div *ngIf="mobileForm.get('operator')?.touched && mobileForm.get('operator')?.invalid"
+                            <div *ngIf="mobileForm.get('operator')?.touched && mobileForm.get('operator')?.invalid "
                                 class="error">
                                 Please select a mobile operator.
                             </div>

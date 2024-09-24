@@ -167,18 +167,17 @@ Getbalance(){
   })
 }
 
-//Api  call to get the Getbalance
+//Api  call to get the notification_data
 notification_data(){
   this.dashboard_api.notification_data().subscribe((res)=>{
     this.notificationsData = res.Data
   })
 }
 
-//Api  call to get the Getbalance
+//Api  call to get the notification_update
 notification_update(){
   this.dashboard_api.notification_update().subscribe((res)=>{
-    console.log("Updatenotification",res);
-    debugger
+    // console.log("Updatenotification",res);
   })
 }
 

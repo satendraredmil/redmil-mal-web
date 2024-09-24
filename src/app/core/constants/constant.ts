@@ -25,7 +25,8 @@ export const APIEndPoint = {
     GetOperaterList:`${environment.baseUrl}/GetOperaterList`,
     GetCircleList:`${environment.baseUrl}/GetCircleList`,
     MyPayStoreBrowsPlan:`${environment.baseUrl}/MyPayStoreBrowsPlans`,
-    Recharge:`${environment.baseUrl}/MyPayStoreBrowsPlans`
+    Recharge:`${environment.baseUrl}/Recharge`,
+    transactions_recentTransaction:`${environment.baseUrl}/transactions/recentTransaction`
   },
 
 };

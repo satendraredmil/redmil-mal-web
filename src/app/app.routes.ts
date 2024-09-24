@@ -1,8 +1,7 @@
 import { Routes } from '@angular/router';
-
-import { DLayoutComponent } from './layout/dashboard/d-layout/d-layout.component';
 import { authGuard } from './core/guards/auth/auth.guard';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
+import { RechargepupComponent } from './shared/reusable-components/rechargepup/rechargepup.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -64,9 +63,16 @@ export const routes: Routes = [
             './pages/recharges/fastag-recharge/fastag-recharge.component'
           ).then((Fastag) => Fastag.FastagRechargeComponent),
       },
+
+      
     ],
   },
 
-
+  //Fastag Recharge Route
+  {
+    path: 'recharge/fastag',
+    title: 'Fastag ~ Redmil',
+    component:RechargepupComponent
+  },
   { path: '**', redirectTo: '/login' },
 ];

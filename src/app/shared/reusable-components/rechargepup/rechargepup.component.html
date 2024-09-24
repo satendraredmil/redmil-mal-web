@@ -1,0 +1,57 @@
+<div class="recharge-pup-container">
+    <div class="container_width">
+        <div class="closed-btn">
+            <span class="close" (click)="closeDialog()">&times;</span>
+        </div>
+        <div class="dialog-image">
+            <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" class="dialog_image_library" />
+        </div>
+
+        <div class="status py-1">
+            <h2 [ngClass]="{
+                'success-class': data.status === 'Success',
+                'pending-class': data.status === 'Pending',
+                'failed-class': data.status === 'Failed',
+                'error-class': data.status === 'Error'
+              }">{{data.status}}</h2>
+        </div>
+
+        <div class="amount py-1">
+            <p>{{data.amount}}</p>
+        </div>
+        <div class="container">
+        <div class="row">
+            <div class="col-12 ">
+                <div class="row py-1">
+                    <div class="col-6 text-left">Txn ID:</div>
+                    <div class="col-6 text-left">{{data.TxnID}}</div>
+                </div>
+
+                <div class="row py-1">
+                    <div class="col-6 text-left">Mobile No:</div>
+                    <div class="col-6 text-left">{{data.MobileNo}}</div>
+                </div>
+
+                <div class="row py-1">
+                    <div class="col-6 text-left">Date:</div>
+                    <div class="col-6 text-left">{{data.Date | date:'dd/mm/yyyy'}}</div>
+                </div>
+
+                <div class="row py-1">
+                    <div class="col-6 text-left">Time:</div>
+                    <div class="col-6 text-left">{{data.Time | date:'hh:mm a'}}</div>
+                </div>
+
+                <div class="row py-1">
+                    <div class="col-6 text-left">Remark:</div>
+                    <div class="col-6 text-left">{{data.message}}</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+

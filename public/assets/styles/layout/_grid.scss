@@ -1,24 +1,179 @@
 /* Grid system styles */
 
+/* Base styles for larger screens (desktop) */
+.container-fluid {
+  width: 100%;
+  margin: 0 auto;
+  padding:15px;
+}
+
 .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+  max-width: 1200px !important;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  // gap: 15px;
+}
+
+
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12 {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* Column widths based on a 12-column grid */
+.col-1 {
+  flex: 0 0 8.33%;
+  max-width: 8.33%;
+}
+.col-2 {
+  flex: 0 0 16.66%;
+  max-width: 16.66%;
+}
+.col-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+.col-4 {
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+}
+.col-5 {
+  flex: 0 0 41.66%;
+  max-width: 41.66%;
+}
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+.col-7 {
+  flex: 0 0 58.33%;
+  max-width: 58.33%;
+}
+.col-8 {
+  flex: 0 0 66.66%;
+  max-width: 66.66%;
+}
+.col-9 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+.col-10 {
+  flex: 0 0 83.33%;
+  max-width: 83.33%;
+}
+.col-11 {
+  flex: 0 0 91.66%;
+  max-width: 91.66%;
+}
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+/* Clearfix for the row */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Media queries for responsive layout */
+/* Tablet view (screens larger than 768px but less than 992px) */
+@media (max-width: 992px) {
+  /* For tablets, adjust column widths */
+  .col-1,
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
   }
-  
+
+  .col-7,
+  .col-8,
+  .col-9,
+  .col-10,
+  .col-11,
+  .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Mobile view (screens smaller than 768px) */
+@media (max-width: 768px) {
+  /* On mobile, all columns take full width */
+  .col-1,
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .col-7,
+  .col-8,
+  .col-9,
+  .col-10,
+  .col-11,
+  .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Very small devices (screens smaller than 480px) */
+@media (max-width: 480px) {
+  .container, .container-fluid {
+    padding-left: 10px;
+    padding-right:10px;
+  }
+
+  /* On very small devices, all columns stack vertically */
+  .col-1,
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6
+  .col-7,
+  .col-8,
+  .col-9,
+  .col-10,
+  .col-11,
+  .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  /* Reduce padding for better fit on small screens */
   .row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -15px;
+    margin-left: -10px;
+    margin-right: -10px;
   }
-  
-  .col {
-    padding: 0 15px;
-    flex: 1;
-  
-    &--half {
-      flex: 0 0 50%;
-    }
-  }
-  
+}

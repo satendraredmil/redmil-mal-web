@@ -100,11 +100,6 @@ export class DialogBoxComponent {
   ) {}
 
   ngOnInit(): void {
-    // // Automatically close the dialog after 3 seconds
-    // setTimeout(() => {
-    //   this.dialogRef.close(); // This will close the dialog
-    // }, 3000); // Close after 3000 milliseconds (3 seconds)
-
     this.options = {
       path: this.data.animationPath // Use the passed animation path
     };
