@@ -3,6 +3,7 @@ import { MateriallistModule } from '../../materiallist/materiallist.module';
 import { CommonModule } from '@angular/common';
 import { DashboardService } from '../../../core/services/dashboard/dashboard.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-wallets-pup',
@@ -22,7 +23,8 @@ export class WalletsPupComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) 
     public data: { amount: number },
     private balance_api:DashboardService,
-    public dialogRef: MatDialogRef<WalletsPupComponent>
+    public dialogRef: MatDialogRef<WalletsPupComponent>,
+    private toster:ToastrService
   ){
     this.transactionAmount = data.amount;
   }
@@ -59,7 +61,8 @@ export class WalletsPupComponent implements OnInit{
         this.cashWalletBalance -= this.transactionAmount;
         this.dialogRef.close(this.selectedWallet);
       } else {
-        alert('Insufficient balance in Cash Wallet');
+        this.toster.warning('Insufficient balance in Cash Wallet')
+      
       }
     } else if (this.selectedWallet === 'advance-wallet') {
       if (this.advanceWalletBalance >= this.transactionAmount) {
@@ -68,10 +71,11 @@ export class WalletsPupComponent implements OnInit{
         alert('Payment successful from Advance Wallet');
         this.dialogRef.close(this.selectedWallet)
       } else {
-        alert('Insufficient balance in Advance Wallet');
+        this.toster.warning('Insufficient balance in Advance Wallet')
       }
     } else {
-      alert('Please select a wallet to proceed');
+    
+      this.toster.warning('Please select a wallet to proceed')
     }
   }
 }

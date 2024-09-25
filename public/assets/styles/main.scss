@@ -10,6 +10,7 @@
 @import 'utils/variables';
 @import 'utils/mixins';
 @import 'utils/helpers';
+@import 'utils/animations';
 
 body.light-theme {
     @include theme(light);

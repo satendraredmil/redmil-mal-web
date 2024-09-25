@@ -119,17 +119,14 @@ export class MobilePrepaidService {
 
 
      // Function to call the API with checksum and transactions_recentTransaction
-    transactions_recentTransaction(){
-      debugger
-      const transactions_recentTransactionData: BaseModel_1 = new BaseModel_1();
+    transactions_recentTransaction(transactions_recentTransactionData: BaseModel_1):Observable<any>{
       transactions_recentTransactionData.UserId  = sessionStorage.getItem('Userid')?.toString();
       transactions_recentTransactionData.UserLoginIDfortoken  = sessionStorage.getItem('UserLoginIDfortoken')?.toString();
       transactions_recentTransactionData.UserLogintoken  = sessionStorage.getItem('UserLogintoken')?.toString();
-      debugger
         // Create checksum using ChecksumService
         const input = this.checksumService.makeChecksumString('recentTransaction', 
           this.checksumService.checksumKey,
-          transactions_recentTransactionData.UserId || 'NA',
+          transactions_recentTransactionData.UserId || 'NA'
          );
          transactions_recentTransactionData.Checksum = this.checksumService.convertStringToSHA512Hash(input);
     

@@ -100,6 +100,42 @@ export class BaseModel_3 {
   }
 }
 
+
+
+export class transactions_report extends BaseModel_1{
+  PageNumber: number;
+  FromDate: string;
+  ToDate: string;
+  SortBy:string;
+  ServiceType:string;
+  Report?:boolean;
+  Status?:string;
+
+  constructor(
+    PageNumber: number=0,
+    FromDate: string='',
+    ToDate: string='',
+    SortBy:string='',
+    ServiceType:string='',
+    Report:boolean=false,
+    Status:string=''
+
+  ) {
+    super();
+    this.PageNumber = PageNumber;
+    this.FromDate = FromDate;
+    this.ToDate = ToDate;
+    this.SortBy = SortBy;
+    this.ServiceType = ServiceType;
+    this.Report = Report;
+    this.Status = Status;
+  }
+}
+
+
+
+
+
 export class ValidateUser extends BaseModel_2 { 
   Mobile:string
 

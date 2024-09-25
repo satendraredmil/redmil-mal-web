@@ -16,6 +16,7 @@ import { Recharges } from '../../../core/models/classes/recharges/MobileRecharge
 import { WalletsPupComponent } from '../../../shared/reusable-components/wallets-pup/wallets-pup.component';
 import { DashboardService } from '../../../core/services/dashboard/dashboard.service';
 import { RechargepupComponent } from '../../../shared/reusable-components/rechargepup/rechargepup.component';
+import { transactions_report } from '../../../core/models/classes/BaseModel';
 
 @Component({
   selector: 'app-mobile-prepaid',
@@ -32,7 +33,7 @@ import { RechargepupComponent } from '../../../shared/reusable-components/rechar
   styleUrl: './mobile-prepaid.component.scss',
 })
 export class MobilePrepaidComponent {
-  @Input() formType: string | null = null;
+
 
   mobileForm!: FormGroup;
   operators: any[] = []; // Aap apne operators yahan daal sakte hain
@@ -47,6 +48,8 @@ export class MobilePrepaidComponent {
   BrowsePlanData: any;
   RechargeValueData: any[] = [];
   DialogRef: any;
+  RecentTransactions: any[]=[];
+  Recent_TransactionsDataPath: string = 'https://api.redmilbusinessmall.com/'; // Path for brand images
 
   constructor(
     private fb: FormBuilder,
@@ -61,7 +64,7 @@ export class MobilePrepaidComponent {
       operator: ['', Validators.required], // Dropdown for operator
       mobileNumber: [
         '',
-        [Validators.required, Validators.pattern('^[0-9]{10}$')],
+        [Validators.required, Validators.pattern('^[0-9]{10}$'), Validators.minLength(10)],
       ], // 10 digit validation
       circle: ['', Validators.required], // Dropdown for operator
       amount: ['', [Validators.required, Validators.min(1)]], // Amount input validation
@@ -69,7 +72,6 @@ export class MobilePrepaidComponent {
 
     this.BindOperaterDataDropDown();
     this.BindcircleDataDropDown();
-    this.Maketransactions_recentTransaction();
   }
 
   BindOperaterDataDropDown() {
@@ -267,71 +269,8 @@ this.rechargeapi
     });
   }
 
-  Maketransactions_recentTransaction(){
-    debugger
-    this.rechargeapi.transactions_recentTransaction().subscribe((res)=>{
-      console.log('Recent Transaction', res);
-    })
-  }
 
-  Recent_Transactions = [
-    {
-      logo_img: '/assets/images/dashboard/jio_logo.png',
-      partner_name: 'JIO Prepaid',
-      Mobile_number: 7275432835,
-      amount: '₹49',
-      status: '/assets/images/dashboard/transaction_succes.png',
-    },
-    {
-      logo_img: '/assets/images/dashboard/jio_logo.png',
-      partner_name: 'JIO Prepaid',
-      Mobile_number: 7275432835,
-      amount: '₹4449',
-      status: '/assets/images/dashboard/transaction_succes.png',
-    },
-    {
-      logo_img: '/assets/images/dashboard/jio_logo.png',
-      partner_name: 'JIO Prepaid',
-      Mobile_number: 7275432835,
-      amount: '₹444449',
-      status: '/assets/images/dashboard/transaction_failed.png',
-    },
-    {
-      logo_img: '/assets/images/dashboard/jio_logo.png',
-      partner_name: 'JIO Prepaid',
-      Mobile_number: 7275432835,
-      amount: '₹49',
-      status: '/assets/images/dashboard/transaction_failed.png',
-    },
-    {
-      logo_img: '/assets/images/dashboard/jio_logo.png',
-      partner_name: 'JIO Prepaid',
-      Mobile_number: 7275432835,
-      amount: '₹444449',
-      status: '/assets/images/dashboard/transaction_pending.png',
-    },
-    {
-      logo_img: '/assets/images/dashboard/jio_logo.png',
-      partner_name: 'JIO Prepaid',
-      Mobile_number: 7275432835,
-      amount: '₹49',
-      status: '/assets/images/dashboard/transaction_pending.png',
-    },
-    {
-      logo_img: '/assets/images/dashboard/jio_logo.png',
-      partner_name: 'JIO Prepaid',
-      Mobile_number: 7275432835,
-      amount: '₹49',
-      status: '/assets/images/dashboard/transaction_pending.png',
-    },
-    {
-      logo_img: '/assets/images/dashboard/jio_logo.png',
-      partner_name: 'JIO Prepaid',
-      Mobile_number: 7275432835,
-      amount: '₹49',
-      status: '/assets/images/dashboard/transaction_pending.png',
-    },
-  ];
+
 
   //Animation for Error
   options: AnimationOptions = {

@@ -177,8 +177,6 @@ export class LoginPageComponent {
 
     // If the form is valid, proceed to the next step (Password)
     if (this.mobileForm.valid) {
-      
-      debugger
       console.log(this.mobileForm.value);
       const Data: ValidateUser = new ValidateUser(this.mobileForm.get('Mobile')?.value)
       this.apiService.validateUser(Data).subscribe(
@@ -278,19 +276,14 @@ export class LoginPageComponent {
   SendOtpcode(): void {
     const DataMobile: ValidateUser = new ValidateUser(this.UserMobileNumber);
     this.apiService.UserSendOTP(DataMobile).subscribe((response) => {
-      if (response.Statuscode === 'OSS')
-      this.dialog.open(DialogBoxComponent, {
-        data: { 
-          status: 'Success',
-          message:response.Message,  
-          additionalInfo: "Your OTP sent to your registered mobile number",
-          animationPath:'/assets/animation/Animation_Success.json'
-        },
-        panelClass: 'custom-dialog-container',
-        enterAnimationDuration: '400ms',
-        exitAnimationDuration: '300ms',
-      });
+      console.log("otp", response);
+      
+      if (response.Statuscode === 'OSS'){
+        this.toastr.success('Otp Sent Successfully')
         this.step = 3;
+      }else if (response.Statuscode === 'ERR') {
+        this.toastr.error(response.Message)
+      } 
     }, (error) => {
       console.log(`OTP API not working ${error}`);
     })
@@ -306,17 +299,7 @@ export class LoginPageComponent {
       this.apiService.ValidateOTPAnotherDeviceLogin(DataOTPverify).subscribe((response) => {
         console.log('response:', response);
         if (response.Statuscode === "TXN") {
-          this.dialog.open(DialogBoxComponent, {
-            data: { 
-              status: 'Success',
-              message:response.Message,  
-              additionalInfo: "Now you can proceed to the next step like :- Recharge, Banking Services, Bill Payment, Travel, etc.",
-              animationPath:'/assets/animation/Animation_Success.json'
-            },
-            panelClass: 'custom-dialog-container',
-            enterAnimationDuration: '400ms',
-            exitAnimationDuration: '300ms',
-          });
+          this.toastr.success(response.Message)
           this.MpinCallFinal();
           //this.otpForm.reset();
         }

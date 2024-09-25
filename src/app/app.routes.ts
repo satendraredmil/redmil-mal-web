@@ -5,7 +5,7 @@ import { RechargepupComponent } from './shared/reusable-components/rechargepup/r
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginPageComponent, title:"Login | Redmil Business Mall" },
+  { path: 'login', component: LoginPageComponent, title: "Login | Redmil Business Mall" },
 
   //Dashboard Start
   {
@@ -13,7 +13,8 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./layout/dashboard/d-layout/d-layout.component').then(
         (D) => D.DLayoutComponent
-      ), canActivate:[authGuard],
+      ), 
+      //canActivate: [authGuard],
     children: [
       {
         path: 'dashboard',
@@ -24,19 +25,27 @@ export const routes: Routes = [
           ).then((C) => C.DDashboardPageComponent),
       },
 
-      //Mobile Prepaid Route
+      //Recharge Route start here
       {
-        path: 'recharge/mobile-prepaid',
+        path: 'recharge',
         title: 'Mobile Prepaid Recharge ~ Redmil',
         loadComponent: () =>
           import(
-            './pages/recharges/mobile-prepaid/mobile-prepaid.component'
-          ).then((Prepaid) => Prepaid.MobilePrepaidComponent),
-      },
-
-      //Mobile Postpaid Route
+            './pages/recharges/layout-recharge/layout-recharge.component'
+          ).then((L) => L.LayoutRechargeComponent),
+        children: [
+          //Mobile Prepaid Route
+          {
+            path: 'mobile-prepaid',
+            title: 'Mobile Prepaid Recharge ~ Redmil',
+            loadComponent: () =>
+              import(
+                './pages/recharges/mobile-prepaid/mobile-prepaid.component'
+              ).then((Prepaid) => Prepaid.MobilePrepaidComponent),
+          },
+           //Mobile Postpaid Route
       {
-        path: 'recharge/mobile-postpaid',
+        path: 'mobile-postpaid',
         title: 'Mobile Postpaid Recharge ~ Redmil',
         loadComponent: () =>
           import(
@@ -46,7 +55,7 @@ export const routes: Routes = [
 
       //DTH Recharge Route
       {
-        path: 'recharge/dth-recharge',
+        path: 'dth-recharge',
         title: 'DTH Recharge',
         loadComponent: () =>
           import('./pages/recharges/dth-recharge/dth-recharge.component').then(
@@ -56,15 +65,21 @@ export const routes: Routes = [
 
       //Fastag Recharge Route
       {
-        path: 'recharge/fastag-recharge',
+        path: 'fastag-recharge',
         title: 'Fastag Recharge ~ Redmil',
         loadComponent: () =>
           import(
             './pages/recharges/fastag-recharge/fastag-recharge.component'
           ).then((Fastag) => Fastag.FastagRechargeComponent),
       },
+        ]
+      },
 
-      
+
+
+
+
+
     ],
   },
 
@@ -72,7 +87,7 @@ export const routes: Routes = [
   {
     path: 'recharge/fastag',
     title: 'Fastag ~ Redmil',
-    component:RechargepupComponent
+    component: RechargepupComponent
   },
   { path: '**', redirectTo: '/login' },
 ];

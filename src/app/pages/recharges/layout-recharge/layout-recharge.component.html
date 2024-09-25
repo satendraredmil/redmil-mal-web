@@ -1,0 +1,147 @@
+<div class="container-fluid">
+    <div class="container">
+    <div class="row">
+
+        <div class="col-2" style="background-color: #fff;">
+            <div class="container-fuild">
+                <div class="sidebar">
+                    <h2>Recharges</h2>
+                    <ul>
+                      <li>
+                        <a routerLink="/recharge/mobile-prepaid" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"> 
+                          <img src="/assets/images/dashboard/Recharge_Prepaid.svg" alt="Prepaid Icon" class="icon"> Prepaid 
+                        </a>
+                      </li>
+                      <li>
+                        <a routerLink="/recharge/mobile-postpaid" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">
+                          <img src="/assets/images/dashboard/mobile_postpaid.svg" alt="Postpaid Icon" class="icon"> Postpaid 
+                        </a>
+                      </li>
+                      <li>
+                        <a routerLink="/recharge/dth-recharge" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"> 
+                          <img src="/assets/images/services/DTHRecharge.svg" alt="DTH Icon" class="icon"> DTH 
+                        </a>
+                      </li>
+                      
+                      <!-- Dropdown Menu for Commission -->
+                      <li class="dropdown" (click)="toggleDropdownComm()">
+                        <a>
+                          <img src="/assets/images/recharges/commission.png" alt="Commission Icon" class="icon"> Commission 
+                          <span class="arrow">
+                            <mat-icon [class.rotate]="isDropdownOpenComm"> keyboard_arrow_down </mat-icon>
+                          </span>
+                        </a>
+                        <ul [class.show]="isDropdownOpenComm">
+                          <li><a routerLink="/mobile-prepaid">Prepaid</a></li>
+                          <li><a routerLink="/mobile-postpaid">Postpaid</a></li>
+                          <li><a href="/dth-recharge">DTH</a></li>
+                        </ul>
+                      </li>
+                  
+                      <!-- Dropdown Menu for How to work -->
+                      <li class="dropdown" (click)="toggleDropdownHow()">
+                        <a>
+                          <img src="/assets/images/recharges/business_report.png" alt="How to work Icon" class="icon"> How to work 
+                          <span class="arrow">
+                            <mat-icon [class.rotate]="isDropdownOpenHow"> keyboard_arrow_down </mat-icon>
+                          </span>
+                        </a>
+                        <ul [class.show]="isDropdownOpenHow">
+                          <li><a href="#">Prepaid</a></li>
+                          <li><a href="#">Postpaid</a></li>
+                          <li><a href="#">DTH</a></li>
+                        </ul>
+                      </li>
+                  
+                      <!-- Business Report -->
+                      <li class="dropdown" (click)="toggleDropdownBus()">
+                        <a>
+                          <img src="/assets/images/recharges/how_to_work.png" alt="Business Report Icon" class="icon"> Business Report 
+                          <span class="arrow">
+                            <mat-icon [class.rotate]="isDropdownOpenBus"> keyboard_arrow_down </mat-icon>
+                          </span>
+                        </a>
+                        <ul [class.show]="isDropdownOpenBus">
+                            <li><a href="#">Prepaid</a></li>
+                            <li><a href="#">Postpaid</a></li>
+                            <li><a href="#">DTH</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  
+            </div>    
+        </div>
+        <div class="col-10 col-padding">
+           
+            <div class="row">
+                <div class="col-8 col-padding">
+                    <router-outlet></router-outlet>
+                </div>
+            <div class="col-4 col-padding">
+                <div class="recharge-item">
+                    <!-- ****Recent Transactions**** -->
+                    <div class="recharge-item-transactions">
+                        <div class="list-card-heading">
+                            <span class="line"></span>
+                            <span class="text">Recent Transactions</span>
+                            <span class="line"></span>
+                        </div>
+    
+                        <div class="recent_transaction_card_extra">
+                            @for (item of RecentTransactions; track item) {
+                            <div class="recent_transaction_card">
+                                <div class="class_transaction">
+                                    <div class="recent_transaction_logo">
+                                        <img [src]="Recent_TransactionsDataPath + item?.Img" alt="">
+                                    </div>
+                                    <div class="recent_transaction_mobile">
+                                        <span>{{item?.Operatorname}}</span>
+                                        <p>{{item.Mobileno}}</p>
+                                    </div>
+                                </div>
+    
+                                <div class="class_transaction">
+                                    <div class="recent_transaction_amount">
+                                        <p class="amount">₹ {{item?.Amount}}</p>
+                                        <p style="margin-top: 6px;">{{item?.Reqdate | date:'M/d/yyyy, h:mm a'}}</p>
+                                    </div>
+                                    
+                                    <div class="recent_transaction_line"></div>
+                                    <div class="recent_transaction_status">
+                                        <img [src]="item?.StatusImage" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+    
+                    </div> 
+                </div>
+           
+            </div>
+            </div>
+            
+        </div>
+</div>
+
+<div class="highest_commission">
+    <div class="highest_commission_row">
+        <div class="highest_item">
+            <span>Recharge from Redmil</span> <br> <span>and earn commission</span>
+            <h1>UPTO 6%</h1>
+        </div>
+        <div class="highest_item">
+            <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" />
+        </div>
+    </div>
+</div>
+</div>
+
+
+</div>
+
+

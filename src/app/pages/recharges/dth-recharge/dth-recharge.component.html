@@ -1,1 +1,65 @@
-<p>dth-recharge works!</p>
+<div class="recharge-item-form">
+    <div class="list-card-heading">
+        <span class="line"></span>
+        <span class="text">DTH Recharge</span>
+        <span class="line"></span>
+    </div>
+
+    <form [formGroup]="mobileForm" (ngSubmit)="onSubmitwithRecharge()">
+        <!-- Mobile Number Input with Aria Circle and Operator Dropdown -->
+        <div class="row-container">
+            <!-- Mobile Number Input -->
+            <div class="circle-container" style="position: relative;">
+                <input type="text" id="mobileNumber" formControlName="mobileNumber" class="circle-input" aria-label=""
+                    (keyup)="onMobileNumberChange()" />
+                <label for="mobileNumber">Customer ID</label>
+                <div *ngIf="mobileForm.get('mobileNumber')?.touched && mobileForm.get('mobileNumber')?.invalid"
+                    class="error">
+                    Please enter a valid 10-digit mobile number.
+                </div>
+            </div>
+
+            <!-- Operator Dropdown -->
+            <div class="operator-container">
+
+                <select id="operator" formControlName="operator" [(ngModel)]="SelectedOperatorName">
+                    <option value="" disabled selected>Select Operator</option>
+                    <option *ngFor="let operator of operators" [value]="operator.Id">{{
+                        operator.Operatorname}}</option>
+                </select>
+                <!-- <label for="operator">Select Operator</label> -->
+                <div *ngIf="mobileForm.get('operator')?.touched && mobileForm.get('operator')?.invalid " class="error">
+                    Please select a mobile operator.
+                </div>
+            </div>
+
+            <!-- Enter Amount and Browse Plan Button in Flex Layout -->
+            <div class="amount-browse-container">
+                <!-- Enter Amount Field -->
+                <div class="amount-input">
+                    <input type="text" id="amount" formControlName="amount" placeholder="" />
+                    <label for="amount">Enter Amount</label>
+                </div>
+
+                <!-- Browse Plan Button (beside Enter Amount) -->
+                <div class="browse-plan">
+                    <button type="button" (click)="browsePlan()">Browse Plan</button>
+                </div>
+                <div *ngIf="mobileForm.get('amount')?.touched && mobileForm.get('amount')?.invalid" class="error_2">
+                    Please enter a valid amount.
+                </div>
+            </div>
+
+            <div class="operator-container">
+                <!-- Submit Button -->
+                <button type="submit" [disabled]="mobileForm.invalid">PROCEED</button>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="recharge-image-loop">
+        <img src="/assets/images/dashboard/recharge_img.png" alt="">
+    </div>
+
+</div>

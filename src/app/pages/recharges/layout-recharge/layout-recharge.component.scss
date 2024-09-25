@@ -1,0 +1,356 @@
+ 
+
+    .col-padding{
+        padding-right: 5px !important;
+        padding-left: 5px !important;
+    }
+ 
+
+ //Highest Commission design css start
+ .highest_commission {
+    width: 100%;
+    height: auto;
+    background-color: #F0F0F0;
+    padding: 30px 0px;
+    @media screen and (max-width:480px) {
+        width: 100%;
+        height: auto;
+        background-color: #F0F0F0;
+        padding: 0px 0px;
+    }
+
+    .highest_commission_row {
+        width: 90%;
+        max-width: 1400px !important;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+
+        @media screen and (max-width:768px) {
+            width: 90%;
+            max-width: 1400px !important;
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+        }
+
+        @media screen and (max-width:480px) {
+            width: 90%;
+            height: auto;
+            margin: auto;
+            display: block;
+            position: relative;
+        }
+
+        .highest_item {
+            color: #012643;
+
+            span {
+                font-size: 70px;
+
+            }
+
+            h1 {
+                font-size: 70px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+
+            @media screen and (max-width:1280px) {
+                span {
+                    font-size: 55px;
+
+                }
+
+                h1 {
+                    font-size: 70px;
+                    font-weight: bold;
+                    text-align: center;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            @media screen and (max-width:768px) {
+                flex-basis: 50%;
+
+                span {
+                    font-size: 35px;
+
+                }
+
+                h1 {
+                    font-size: 50px;
+                    font-weight: bold;
+                    text-align: center;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            @media screen and (max-width:480px) {
+                width: 100%;
+                margin: auto;
+                text-align: center;
+                span {
+                    font-size: 35px;
+
+                }
+
+                h1 {
+                    font-size: 50px;
+                    font-weight: bold;
+                    text-align: center;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+.sidebar {
+    padding: 0px;
+   
+    h2{
+        text-align: left;
+        padding: 20px 0px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #012643;
+        margin-left: 16px !important;
+     
+    }
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  li {
+    margin: 10px 0;
+  }
+  
+  a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  a:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+  
+  .dropdown ul {
+    display: none;
+    list-style-type: none;
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+  
+  .dropdown ul.show {
+    display: block;
+  }
+  
+  .arrow {
+    margin-left: auto;
+  }
+  
+  li a .arrow {
+    font-size: 14px;
+  }
+
+  .rotate {
+    transform: rotate(180deg);
+  }
+
+
+  //Transcation and Few video div 
+.recharge-item {
+    height: 100%;
+    flex-basis: 54%;
+    gap: 15px;
+    max-height: 520px;
+    margin: 10px;
+
+    @media screen and (max-width:768px) {
+        display: flex;
+        justify-content: space-between;
+    }
+    @media screen and (max-width:480px) {
+        display: block;
+        justify-content: space-between;
+    }
+
+    .recharge-item-transactions {
+        background-color: #fff;
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2509803922);
+        border-radius: 25px;
+        padding: 15px 0px;
+        min-height: 520px !important;
+
+        @media screen and (max-width:768px) {
+            width: 50%;
+        }
+        @media screen and (max-width:480px) {
+            width: 100%;
+        }
+
+        .recent_transaction_card_extra {
+            overflow-y: scroll;
+            max-height: 450px;
+
+            &::-webkit-scrollbar {
+                width: 10px !important;
+                padding-top: 20px !important;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: #012643;
+                border-radius: 10px;
+                height: 50px;
+            }
+
+            .recent_transaction_card {
+                width: 95%;
+                height: 77px;
+                margin: 15px auto;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 5px 10px;
+                background-color: #F6F6F6;
+                border-radius: 13px;
+                position: relative;
+                max-height: 520px;
+                
+
+                /* custom scroll bar */
+
+
+                .recent_transaction_logo{
+
+                    img{
+                        width: 35px;
+                        height: 35px;
+                    }
+                }
+
+                .class_transaction {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 25px;
+
+                }
+
+                .recent_transaction_mobile {
+                    span {
+                        font-size: 12px;
+                        color: #012643;
+                        font-weight: 600;
+                    }
+                   
+                }
+                .recent_transaction_amount {
+                    display: flex;
+                    flex-direction: column;
+                    .amount {
+                        font-weight: 800;
+                        color: #012643;
+                        text-align: center;
+                    }
+                    p{
+                        font-weight: 100;
+                        font-size: 12px;
+                    }
+                }
+               
+
+                .recent_transaction_line {
+                    width: 2px;
+                    background-color: #E5E3E3;
+                    height: 24px;
+                    position: absolute;
+                    right: 45px;
+                }
+            }
+        }
+
+    }
+
+    
+}
+
+
+.list-card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 1%;
+    color: #012643;
+    font-weight: 600;
+    padding: 10px 10px;
+
+    .text {
+        padding: 0 10px;
+        /* Adjust the spacing between the text and lines */
+        white-space: nowrap;
+        /* Prevents text from wrapping */
+    }
+
+    .line {
+        width: 70px;
+        height: 1px;
+        background-color: #DCDCDC;
+
+        /* You can change the color if needed */
+        @media screen and (max-width:1040px) {
+            width: 40px;
+        }
+
+        @media screen and (max-width:992px) {
+            width: 30px;
+        }
+    }
+}
+    
+  

@@ -18,7 +18,15 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(), 
     provideAnimationsAsync(),
     provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
-    provideToastr(),
+    provideToastr({
+      timeOut: 8000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar: true,
+      easeTime: 300,           // Ease-in time for animation (optional)
+      closeButton: true,        // Add close button
+      tapToDismiss: true, 
+    }),
     provideLottieOptions({
       player: () => player,
     }),
