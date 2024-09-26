@@ -9,7 +9,7 @@
         <!-- Mobile Number Input with Aria Circle and Operator Dropdown -->
         <div class="row-container">
             <!-- Mobile Number Input -->
-            <div class="circle-container" style="position: relative;">
+            <!-- <div class="circle-container" >
                 <input type="text" id="mobileNumber" formControlName="mobileNumber" class="circle-input" aria-label=""
                     />
                 <label for="mobileNumber">Mobile Number</label>
@@ -17,7 +17,22 @@
                     class="error">
                     Please enter a valid 10-digit mobile number.
                 </div>
+            </div> -->
+
+              <!-- Enter Amount and Browse Plan Button in Flex Layout -->
+              <div class="mobile-browse-container" style="position: relative;">
+                <!-- Enter Amount Field -->
+                <div class="amount-input">
+                    <input type="text" id="mobileNumber" formControlName="mobileNumber" placeholder="" />
+                    <label for="mobileNumber" class="classerror">Mobile Number</label>
+                </div>
+
+                <div *ngIf="mobileForm.get('mobileNumber')?.touched && mobileForm.get('mobileNumber')?.invalid"
+                class="error">
+                Please enter a valid 10-digit mobile number.
             </div>
+            </div>
+
 
           <!-- Operator Dropdown -->
           <div class="operator-container">
@@ -31,7 +46,7 @@
             <div *ngIf="mobileForm.get('operator')?.touched && mobileForm.get('operator')?.invalid " class="error">
                 Please select a mobile operator.
             </div>
-        </div>
+          </div>
 
             <!-- Enter Amount and Browse Plan Button in Flex Layout -->
             <div class="amount-browse-container">
