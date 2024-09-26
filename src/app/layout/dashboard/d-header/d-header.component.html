@@ -66,6 +66,7 @@
 
     <div class="redmil-iconss"> </div>
 
+    <!-- this is a User Profile conatiner for User Profile don't remove it  -->
     <mat-accordion>
       <mat-expansion-panel (opened)="panelOpenState=(true)" (closed)="panelOpenState=(false)"
         [matMenuTriggerFor]="menu1">
@@ -107,9 +108,9 @@
             <div class="user_link_href">Delete my account</div>
           </div>
 
-          <div class="user_link" mat-menu-item>
+          <div class="user_link" mat-menu-item (click)="RemoveSession_Local()">
             <div class="user_link_icons"><img src="/assets/images/dashboard/logout.svg" alt=""></div>
-            <div class="user_link_href" (click)="RemoveSession_Local()">Log out</div>
+            <div class="user_link_href" >Log out</div>
           </div>
 
         </mat-menu>
@@ -119,7 +120,7 @@
     <!-- this is a div for line only don't remove it -->
     <div class="redmil-iconss"> </div>
 
-    <!-- this is a div conatiner for Notification icons don't remove it  -->
+    <!-- this is a notifications conatiner for Notification icons don't remove it  -->
     <div class="redmil-whatsapp">
       <div class="notification-wrapper" [matMenuTriggerFor]="notificationMenu">
         <mat-icon role="img" matBadge="{{NotificationCount}}" class="mat-icon notranslate mat-badge" aria-hidden="false">notifications</mat-icon>

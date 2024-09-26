@@ -98,7 +98,7 @@ export class MobilePrepaidService {
     RechargesData.Userid  = sessionStorage.getItem('Userid')?.toString();
     RechargesData.UserLoginIDfortoken  = sessionStorage.getItem('UserLoginIDfortoken')?.toString();
     RechargesData.UserLogintoken  = sessionStorage.getItem('UserLogintoken')?.toString();
-    debugger
+    // debugger
       // Create checksum using ChecksumService
       const input = this.checksumService.makeChecksumString('Recharge', 
         this.checksumService.checksumKey,

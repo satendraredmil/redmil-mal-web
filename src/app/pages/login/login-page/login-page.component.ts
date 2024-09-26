@@ -80,11 +80,20 @@ export class LoginPageComponent {
     });
   }
 
+  
 
   async ngOnInit() {
     this.startAutoSlide();
-    sessionStorage.clear();
-    localStorage.clear();
+    
+    // All Remove from Local and session Storage
+    sessionStorage.removeItem("UserLogintoken");
+    localStorage.removeItem("UserLogintoken");
+    sessionStorage.removeItem("Userid");
+    localStorage.removeItem("Userid");
+    sessionStorage.removeItem("UserLoginIDfortoken");
+    localStorage.removeItem("UserLoginIDfortoken");
+    sessionStorage.removeItem("Name");
+    localStorage.removeItem("Name");
 
   
     const location = await this.geolocationService.getUserLocation();

@@ -11,7 +11,7 @@
     align-items: center;
     background-color: #fff;
     border: 2px solid #C7C7C7;
-    padding: 10px;
+
 }
 
 .alerts-right {
@@ -24,7 +24,7 @@
 
 .alert-scroll {
     overflow: hidden;
-    height: 40px; /* Adjust the height as needed */
+    height: 45px; /* Adjust the height as needed */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -33,7 +33,7 @@
 .align-middle {
     display: inline-block;
     white-space: nowrap;
-    animation: scroll 10s linear infinite;
+    animation: scroll 5s linear infinite;
 }
 
 @keyframes scroll {

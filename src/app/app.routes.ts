@@ -1,10 +1,9 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth/auth.guard';
 import { LoginPageComponent } from './pages/login/login-page/login-page.component';
-import { RechargepupComponent } from './shared/reusable-components/rechargepup/rechargepup.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent, title: "Login | Redmil Business Mall" },
 
   //Dashboard Start
@@ -91,5 +90,5 @@ export const routes: Routes = [
   // },
 
 
-  { path: '**', redirectTo: '/login' },
+  { path: '**', redirectTo: '/dashboard' },
 ];

@@ -58,7 +58,7 @@ export class AuthenticationapiService {
 
    // Function to call the API with checksum and userSendOTP
    UserSendOTP( DataOTP: ValidateUser): Observable<any> {
-    debugger
+    // debugger
 
     // Create checksum using ChecksumService
     const input = this.checksumService.makeChecksumString('SendAnotherDeviceLoginOtp', 
@@ -75,7 +75,7 @@ export class AuthenticationapiService {
 
   // Function to call the API with checksum and ValidateOTPAnotherDeviceLogin
   ValidateOTPAnotherDeviceLogin(ValidateOTP:ValidateOTPAnotherDeviceLoginClass): Observable<any>{
-    debugger
+    // debugger
 
     // Create checksum using ChecksumService
     const input = this.checksumService.makeChecksumString('ValidateOTPAnotherDeviceLogin', 

@@ -9,28 +9,7 @@ import { BehaviorSubject, map } from 'rxjs';
 export class SchangelanguageService {
 
   private isBrowser: boolean = false;
-//   private defaultLang = 'en';
 
-  //   constructor(private translate: TranslateService) {
-  //     const savedLang = localStorage.getItem('lang') || this.defaultLang;
-  //     this.setLanguage(savedLang);
-  //   }
-
-  //   setLanguage(lang: string) {
-  //     this.translate.use(lang);
-  //     localStorage.setItem('lang', lang);
-  //   }
-
-  //   getLanguage(): string {
-  //     return localStorage.getItem('lang') || this.defaultLang;
-  //   }
-
-  //   toggleLanguage() {
-  //     const newLang = this.getLanguage() === 'en' ? 'es' : 'en';
-  //     this.setLanguage(newLang);
-  //     return newLang;
-  //   }
-  // }
 
   private http = inject(HttpClient);
   private translations = new BehaviorSubject<any>({});

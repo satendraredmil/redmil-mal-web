@@ -183,10 +183,15 @@ notification_update(){
 
 //Logout Method with remove everthing
 RemoveSession_Local(){
-  sessionStorage.removeItem('UserLogintoken');
-  sessionStorage.removeItem('UserLoginIDfortoken');
-  sessionStorage.clear();
-  localStorage.clear();
+    // All Remove from Local and session Storage
+    sessionStorage.removeItem("UserLogintoken");
+    localStorage.removeItem("UserLogintoken");
+    sessionStorage.removeItem("Userid");
+    localStorage.removeItem("Userid");
+    sessionStorage.removeItem("UserLoginIDfortoken");
+    localStorage.removeItem("UserLoginIDfortoken");
+    sessionStorage.removeItem("Name");
+    localStorage.removeItem("Name");
   this.route.navigate(['/login']);
 }
 }
