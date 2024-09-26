@@ -282,7 +282,7 @@
   /* Style for invalid input fields */
   input.ng-invalid.ng-touched {
     border-color: red;
-    color: red !important;
+
     box-shadow: 0 0 5px hwb(0 0% 0% / 0.5);
     /* Add a subtle red glow to invalid input */
   }
@@ -764,22 +764,11 @@
       }
     }
 
-    //Error css code headle here
-    /* Style for the error message */
-    .error-message {
-      color: red;
-      /* Set error message text color to red */
-      font-size: 14px;
-      /* Set the font size for error messages */
-      margin-top: 5px;
-      /* Add some spacing above the error message */
-      display: block;
-      /* Ensure the error message is on a new line */
-    }
+
 
     /* Style for invalid input fields */
     input.ng-invalid.ng-touched {
-      border-color: red;
+      //border-color: red;
       /* Highlight the input field border in red if invalid */
       box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
       /* Add a subtle red glow to invalid input */

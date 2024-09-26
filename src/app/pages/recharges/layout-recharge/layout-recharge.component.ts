@@ -92,9 +92,9 @@ export class LayoutRechargeComponent {
           if (item.Status === 'Success') {
             item.StatusImage = '/assets/images/dashboard/transaction_succes.png'; // Success image ka path
           } else if (item.Status === 'Failure') {
-            item.StatusImage = '/assets/images/dashboard/transaction_pending.png'; // Failure image ka path
-          } else {
-            item.StatusImage = 'path/to/default/image.png'; // Default image
+            item.StatusImage = '/assets/images/dashboard/transaction_failed.png'; // Failure image ka path
+          } else{
+            item.StatusImage = '/assets/images/dashboard/transaction_pending.png'; // Default image
           }
           return item; // Updated item return karna
         });

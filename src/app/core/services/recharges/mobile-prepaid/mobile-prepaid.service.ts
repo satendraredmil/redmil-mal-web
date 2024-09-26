@@ -47,8 +47,6 @@ export class MobilePrepaidService {
    // Function to call the API with checksum and userSendOTP
    GetOperaterList(BaseModel_21:Recharges):Observable<any> {
     BaseModel_21.Userid  = sessionStorage.getItem('Userid')?.toString();
-    BaseModel_21.ServiceId  = "21";
-
     // Create checksum using ChecksumService
     const input = this.checksumService.makeChecksumString('GetOperaterList', 
       this.checksumService.checksumKey,
@@ -77,7 +75,8 @@ export class MobilePrepaidService {
   // Function to call the API with checksum and userSendOTP
   MyPayStoreBrowsPlans( MyPayStoreBrowsPlansData: Recharges):Observable<any> {
     MyPayStoreBrowsPlansData.Userid  = sessionStorage.getItem('Userid')?.toString();
-
+    MyPayStoreBrowsPlansData.UserLogintoken = sessionStorage.getItem('UserLogintoken')?.toString();
+    MyPayStoreBrowsPlansData.UserLoginIDfortoken = sessionStorage.getItem('UserLoginIDfortoken')?.toString();
     
     // Create checksum using ChecksumService
     const input = this.checksumService.makeChecksumString('MyPayStoreBrowsPlan', 

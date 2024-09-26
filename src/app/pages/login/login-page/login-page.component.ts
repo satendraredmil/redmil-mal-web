@@ -64,12 +64,12 @@ export class LoginPageComponent {
     this.mobileForm = this.fb.group({
       Mobile: [
         '',
-        [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(10), Validators.maxLength(10)],
+        [Validators.required, Validators.pattern(/^[6-9][0-9]*$/), Validators.minLength(10), Validators.maxLength(10)],
       ],
     });
 
     this.passwordForm = this.fb.group({
-      Mpin: ['', Validators.pattern(/^[0-9]{4,6}$/)],
+      Mpin: ['', Validators.pattern(/^[0-9]{6}$/)],
     });
 
     this.otpForm = this.fb.group({

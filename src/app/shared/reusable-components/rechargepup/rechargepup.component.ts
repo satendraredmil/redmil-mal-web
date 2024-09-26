@@ -26,6 +26,9 @@ export class RechargepupComponent {
     @Optional()  public dialogRef: MatDialogRef<RechargepupComponent>,  // Inject the MatDialogRef
     @Optional()  @Inject(MAT_DIALOG_DATA) public data: {
       title: string,
+      ServiceId:number,
+      Statuscode: string,
+      Id : string,  
       status: string, 
       MobileNo: string,
       amount: string,
@@ -33,6 +36,7 @@ export class RechargepupComponent {
       Date: string,
       Time: string,
       message: string,
+      img:string,
       animationPath: string,
       additionalInfo: string,
     }

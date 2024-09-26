@@ -23,7 +23,7 @@
        "MOBILE_valid":"कृपया मान्य 10-अंकों का मोबाइल नंबर दर्ज करें",
        "MOBILE_numeric":"केवल मोबाइल नंबर दर्ज करें",
        "PIN_required":"पिन नंबर आवश्यक है",
-       "PIN_valid":"पिन कम से कम 4 अंकों का होना चाहिए",
+       "PIN_valid":"पिन कम से कम 6 अंकों का होना चाहिए",
        "PIN_numeric":"केवल पिन नंबर ही दर्ज करें",
        "OTP_required":"सभी OTP फ़ील्ड आवश्यक हैं"
        
@@ -132,4 +132,6 @@
         "Saving Accounts":"Saving Accounts",
         "Salary Accounts":"Salary Accounts"
     }
+
+
 }

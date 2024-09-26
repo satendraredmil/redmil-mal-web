@@ -20,9 +20,9 @@
         "LOGIN_OTP_VERIFY":"Verify OTP",
         "MOBILE_required":"Mobile number is required",
         "MOBILE_valid":"Enter a valid 10-digit mobile number",
-        "MOBILE_numeric":"Only numeric values are allowed",
+        "MOBILE_numeric":"Enter a valid 10-digit mobile number",
         "PIN_required":"PIN is required",
-        "PIN_valid":"PIN must be at least 4 digits",
+        "PIN_valid":"PIN must be at least 6 digits",
         "PIN_numeric":"Only numeric values are allowed",
         "OTP_required":"All OTP fields are required"
     },

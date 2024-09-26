@@ -11,47 +11,67 @@
             <h2 [ngClass]="{
                 'success-class': data.status === 'Success',
                 'pending-class': data.status === 'Pending',
-                'failed-class': data.status === 'Failed',
+                'failed-class': data.status === 'Failure',
                 'error-class': data.status === 'Error'
-              }">{{data.status}}</h2>
+              }">{{data.message}}</h2>
         </div>
 
         <div class="amount py-1">
-            <p>{{data.amount}}</p>
+            <p [ngClass]="{
+                'success-class': data.status === 'Success',
+                'pending-class': data.status === 'Pending',
+                'failed-class': data.status === 'Failure',
+                'error-class': data.status === 'Error'
+
+              }">₹{{data.amount}}
+            </p>
+
+            <!-- <img *ngIf="data.status==='Success'" src="/assets/images/dashboard/transaction_succes.png" alt="">
+            <img *ngIf="data.status==='Pending'" src="/assets/images/dashboard/transaction_pending.png" alt="">
+            <img *ngIf="data.status==='Failure'" src="/assets/images/dashboard/transaction_failed.png" alt=""> -->
+
         </div>
         <div class="container">
-        <div class="row">
-            <div class="col-12 ">
-                <div class="row py-1">
-                    <div class="col-6 text-left">Txn ID:</div>
-                    <div class="col-6 text-left">{{data.TxnID}}</div>
-                </div>
+            <div class="row">
+                <div class="col-12 col-padding">
+                    <div class="row py-1">
+                        <div class="col-6  text-left"><b>Txn ID:</b></div>
+                        <div class="col-6  text-left">{{data.Id}}</div>
+                    </div>
 
-                <div class="row py-1">
-                    <div class="col-6 text-left">Mobile No:</div>
-                    <div class="col-6 text-left">{{data.MobileNo}}</div>
-                </div>
+                    <div class="row py-1">
+                        <div class="col-6  text-left" *ngIf="data.ServiceId===22 || data.ServiceId=== 21"><b>Mobile
+                                No:</b></div>
+                        <div class="col-6  text-left" *ngIf="data.ServiceId===23"><b>DTH Id:</b></div>
+                        <div class="col-6  text-left">{{data.MobileNo}}</div>
+                    </div>
 
-                <div class="row py-1">
-                    <div class="col-6 text-left">Date:</div>
-                    <div class="col-6 text-left">{{data.Date | date:'dd/mm/yyyy'}}</div>
-                </div>
+                    <div class="row py-1">
+                        <div class="col-6  text-left"><b>Date:</b></div>
+                        <div class="col-6  text-left">{{data.Date | date:'dd/mm/yyyy'}}</div>
+                    </div>
 
-                <div class="row py-1">
-                    <div class="col-6 text-left">Time:</div>
-                    <div class="col-6 text-left">{{data.Time | date:'hh:mm a'}}</div>
-                </div>
+                    <div class="row py-1">
+                        <div class="col-6  text-left"><b>Time:</b></div>
+                        <div class="col-6  text-left">{{data.Date | date:'hh:mm a'}}</div>
+                    </div>
+                    <div class="row py-1">
+                        <div class="col-6  text-left"><b>Status:</b></div>
+                        <div class="col-6  text-left">{{data.status}}</div>
+                    </div>
+                    <div class="row py-1">
+                        <div class="col-6  text-left"><b>Operator Reference No:</b></div>
+                        <div class="col-6  text-left">{{data.TxnID}}</div>
+                    </div>
 
-                <div class="row py-1">
-                    <div class="col-6 text-left">Remark:</div>
-                    <div class="col-6 text-left">{{data.message}}</div>
-                </div>
 
+
+                </div>
             </div>
         </div>
-    </div>
+
+        <button class="btn" (click)="closeDialog()">
+            OK
+          </button>
     </div>
 </div>
-
-
-

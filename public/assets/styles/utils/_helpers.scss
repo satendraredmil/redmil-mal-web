@@ -37,20 +37,21 @@
   //Dynamic Classes for Dialog Box
   .success-class {
     color: green;
+    font-weight: bold;
   }
   
   .pending-class {
     color: orange;
-    background-color: #fff5e0;
+    font-weight: bold;
   }
   
   .failed-class {
     color: red;
-    background-color: #ffe0e0;
+    font-weight: bold;
   }
   
   .error-class {
     color: darkred;
-    background-color: #ffe0e0;
+    font-weight: bold;
   }
   

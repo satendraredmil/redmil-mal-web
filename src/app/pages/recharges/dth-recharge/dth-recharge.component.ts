@@ -12,6 +12,9 @@ import { RechargepupComponent } from '../../../shared/reusable-components/rechar
 import { WalletsPupComponent } from '../../../shared/reusable-components/wallets-pup/wallets-pup.component';
 import { PrepaidBrowsePlanComponent } from '../mobile-prepaid/prepaid-browse-plan/prepaid-browse-plan.component';
 import { MateriallistModule } from '../../../shared/materiallist/materiallist.module';
+import { DthBrowseplanComponent } from './dth-browseplan/dth-browseplan.component';
+import { DialogBoxComponent } from '../../../shared/reusable-components/dialog-box/dialog-box.component';
+import { log } from 'console';
 
 @Component({
   selector: 'app-dth-recharge',
@@ -54,16 +57,15 @@ export class DthRechargeComponent {
         '',
         [Validators.required, Validators.pattern('^[0-9]{10}$')],
       ], // 10 digit validation
-      circle: ['', Validators.required], // Dropdown for operator
-      amount: ['', [Validators.required, Validators.min(1)]], // Amount input validation
+      amount: ['', [Validators.required, Validators.min(0)]], // Amount input validation
     });
 
     this.BindOperaterDataDropDown();
-    this.BindcircleDataDropDown();
   }
 
   BindOperaterDataDropDown() {
     const MobileRecharge: Recharges = new Recharges();
+    MobileRecharge.ServiceId  = "23";
     this.rechargeapi.GetOperaterList(MobileRecharge).subscribe((res) => {
       // console.log('GetOperaterList', res.Data);
       this.operators = res.Data;
@@ -71,56 +73,7 @@ export class DthRechargeComponent {
     this.SelectedOperatorName = '';
   }
 
-  BindcircleDataDropDown() {
-    const GetCircleListData: Recharges = new Recharges();
-    this.rechargeapi.GetCircleList(GetCircleListData).subscribe((res) => {
-      //console.log('GetCircleList', res);
-      if (res.Data) {
-        this.circles = res.Data;
-      }
-    });
-    this.Circle = '';
-  }
-
-  GetOperaterData() {
-    if (this.OperatorName.includes('jio')) {
-      this.OperatorName = 'jio';
-    } else if (this.OperatorName.includes('airtel')) {
-      this.OperatorName = 'airtel';
-    }
-    if (this.OperatorName.includes('bsnl')) {
-      this.OperatorName = 'bsnl';
-    } else if (this.OperatorName.includes('idea')) {
-      this.OperatorName = 'idea';
-    }
-    if (this.OperatorName.includes('mtnl')) {
-      this.OperatorName = 'mtnl';
-    } else if (
-      this.OperatorName.includes('vodafone') ||
-      this.OperatorName.includes('vi')
-    ) {
-      this.OperatorName = 'vodafone';
-    }
-    const lowerCaseOperators = this.operators.map((operator) => ({
-      ...operator,
-      Operatorname: operator.Operatorname.toLowerCase(), // Convert to lowercase
-    }));
-    this.OpId =
-      lowerCaseOperators.find((item) =>
-        item.Operatorname.includes(this.OperatorName)
-      )?.Id || '';
-    this.SelectedOperatorName = this.OpId;
-  }
-
-  GetCircleData() {
-    const newCircle = {
-      Id: 31,
-      State: this.Circle,
-      StateCode: 'NX',
-    };
-    this.circles.push(newCircle);
-    //console.log('GetCircleListFinal', this.circles);
-  }
+ 
 
   clearDropdown() {
     const index = this.circles.findIndex((circle) => circle.Id === 31);
@@ -132,57 +85,50 @@ export class DthRechargeComponent {
     this.mobileForm.patchValue({ amount: '' });
   }
 
-  // Function to call API when mobile number is entered completely
-  onMobileNumberChange() {
-    const mobileNumber = this.mobileForm.get('mobileNumber')?.value;
-    const MobileRecharge: Recharges = new Recharges(mobileNumber);
-    this.clearDropdown();
-    if (mobileNumber.length === 10) {
-      // Call the API when 10 digits are entered
-      this.rechargeapi.MyPayStoreGetCircle(MobileRecharge).subscribe((res) => {
-        //console.log(res);
-        // Circle data ko nikal kar set kar rahe hain
-        if (res.Data && res.Data.circle) {
-          this.Circle = res.Data.circle; // Yaha 'circle' ko set kar rahe hain jo ngModel ke sath bind hai
-          this.OperatorName = res.Data.operator.toLowerCase();
-          // console.log(this.Circle);
-          // console.log(this.OperatorName);
-
-          this.GetOperaterData();
-          this.GetCircleData();
-        }
-      });
-    }
-  }
 
  browsePlan() {
-  if (this.mobileForm.get('mobileNumber')?.value && this.mobileForm.get('operator')?.valid &&  this.mobileForm.get('circle')?.valid) {
-
+  if (this.mobileForm.get('operator')?.valid) {
+    
 //alert('Browse Plan functionality goes here');
-const UserLogintoken = sessionStorage.getItem('UserLogintoken')?.toString();
-const UserLoginIDfortoken = sessionStorage.getItem('UserLoginIDfortoken')?.toString();
-const MyPayStoreBrowsPlansData: Recharges = new Recharges(
-  this.mobileForm.get('mobileNumber')?.value,
-  this.Circle,
-  UserLogintoken,
-  UserLoginIDfortoken,
-  this.OpId
-);
+const MyPayStoreBrowsPlansData: Recharges = new Recharges();
+MyPayStoreBrowsPlansData.Mobileno=this.mobileForm.get('mobileNumber')?.value,
+MyPayStoreBrowsPlansData.OpId=this.mobileForm.get('operator')?.value,
+
+this.OpId = this.mobileForm.get('operator')?.value
+console.log(MyPayStoreBrowsPlansData);
+
 this.rechargeapi
   .MyPayStoreBrowsPlans(MyPayStoreBrowsPlansData)
   .subscribe((res) => {
     console.log('Plan', res);
     if (res.Statuscode === 'TXN') {
       this.BrowsePlanData = res;
-      const dialogRef = this.dialog.open(PrepaidBrowsePlanComponent, {
+      const dialogRef = this.dialog.open(DthBrowseplanComponent, {
         data: { BrowsePlan: this.BrowsePlanData },
       });
 
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          console.log(`Dialog result: ${result.Rs}`);
-          console.log(`Dialog result: ${result.Validity}`);
-          this.mobileForm.patchValue({ amount: result.Rs });
+          console.log(`Dialog result: ${result.desc}`);
+          console.log(`Dialog result: ${result.month1}`);
+          if(result.month1!=null)
+          {
+            this.mobileForm.patchValue({ amount: result.month1 });
+          }
+          else if(result.month3!=null)
+            {
+              this.mobileForm.patchValue({ amount: result.month3 });
+            }
+            else if(result.month6!=null)
+              {
+                this.mobileForm.patchValue({ amount: result.month6 });
+              }
+              else if(result.year1!=null)
+                {
+                  this.mobileForm.patchValue({ amount: result.year1 });
+                }
+
+          
         }
       });
     } else if(res.Statuscode==='ERR'){
@@ -190,18 +136,12 @@ this.rechargeapi
     }
   });
     }
-    else if (!this.mobileForm.get('mobileNumber')?.value)
-    {
-      this.toster.error('Please enter valid mobile number !') 
-    }
+    
     else if (!this.mobileForm.get('operator')?.value)
       {
         this.toster.error('Please select operator !') 
       }
-      else if (!this.mobileForm.get('circle')?.value)
-        {
-          this.toster.error('Please select circle !') 
-        }
+    
     else{
       this.toster.error('Please fill all details')
     }
@@ -221,28 +161,59 @@ this.rechargeapi
           console.log(`Dialog result: ${result}`);
           const makeRechargedata: Recharges = new Recharges()
           makeRechargedata.Mobileno=this.mobileForm.value.mobileNumber;
-          makeRechargedata.ServiceId="21";
+          makeRechargedata.ServiceId="23";
           makeRechargedata.OpId=this.mobileForm.value.operator;
           makeRechargedata.Amount=this.mobileForm.value.amount;
           if (result === 'cash-wallet') {
             makeRechargedata.Wallet= 'True';
           }   
           this.rechargeapi.Recharge(makeRechargedata).subscribe((res)=>{
-            console.log('Recharge', res);
-            if(res.StatusCode==='TXN'){
+            console.log(Array.isArray(res.Data));
+            console.log(res.Data);
+            debugger;
+            let animationPath1='/assets/animation/Animation_Success.json';
+              if(res.Data[0].Status === 'Pending')
+              {
+                animationPath1='/assets/animation/Animation_Pending.json';
+              }
+              else if(res.Statuscode === 'ERR' || res.Data[0].Status === 'Failure')
+              {
+                animationPath1='/assets/animation/Animation_Error.json';
+              }
+            if(Array.isArray(res.Data))
+            {
+              
               this.dialog.open(RechargepupComponent, {
                 data: {
-                  status: res.Statuscode,
+                  ServiceId:23,
+                  Statuscode: res.Statuscode,
+                  Id: res.Data[0].Id,
+                  status: res.Data[0].Status,
                   MobileNo: res.Data[0].Mobileno,
                   amount: res.Data[0].Amount,
                   TxnID: res.Data[0].TRefId,
                   Date: res.Data[0].Reqdate,
-                  message:res.Message,
-                  animationPath:'/assets/animation/Animation_Success.json',
-                  additionalInfo: 'Thank you for using our service.',
+                  message:res.Data[0].Response,
+                  animationPath:animationPath1,
+                  //additionalInfo: 'Thank you for using our service.',
                 }
               });
-            } 
+              this.mobileForm.reset();
+            }
+            else{
+              this.dialog.open(DialogBoxComponent, {
+                data: { 
+                  message: res.Message,  
+                  animationPath:animationPath1
+                },
+                panelClass: 'custom-dialog-container',
+                enterAnimationDuration: '400ms',
+                exitAnimationDuration: '300ms',
+              });
+            }
+            console.log('Rechargesss', res);
+           
+            
           })
         }
       });

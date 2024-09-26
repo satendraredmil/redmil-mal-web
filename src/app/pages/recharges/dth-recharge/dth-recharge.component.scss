@@ -181,9 +181,11 @@
         select:focus {
             outline: 2.91px solid #012643 !important;
             box-shadow: 0px 0px 8px #021c30;
-            background-color: inherit;
+            background-color: transparent;
             /* Prevent background change */
         }
+
+        
 
         select option[value=""][disabled][selected][hidden] {
             display: none;

@@ -1,179 +1,292 @@
 <div class="login-page relative">
-  <div class="header-page fixed top-0 left-0  w-full">
+  <div class="header-page fixed top-0 left-0 w-full">
     <app-header-page></app-header-page>
   </div>
 
   <div class="main-login w-full flex justify-center items-center">
     <div class="container_Login">
-
       <div class="Mobile_social">
         <div class="mobile_whatapp">
-          <img src="/assets/icons/social/whatsapp.svg" alt="">
+          <img src="/assets/icons/social/whatsapp.svg" alt="" />
           <a href="">91 8182 838489</a>
         </div>
 
         <div class="mobile_social_link">
-          <a href="https://www.instagram.com/redmilbusinessmall/"><img src="/assets/icons/social/instagram.svg"
-              alt=""></a>
-          <a href="https://www.facebook.com/RedmilGroup"><img src="/assets/icons/social/facebook.svg" alt=""></a>
-          <a href="https://www.youtube.com/channel/UCgB1a9t-FKtYoG39QrBtgJQ"><img src="/assets/icons/social/youtube.svg"
-              alt=""></a>
-          <a href="https://www.linkedin.com/company/redmil-group/posts/?feedView=all"><img
-              src="/assets/icons/social/linkedin.svg" alt=""></a>
+          <a href="https://www.instagram.com/redmilbusinessmall/"
+            ><img src="/assets/icons/social/instagram.svg" alt=""
+          /></a>
+          <a href="https://www.facebook.com/RedmilGroup"
+            ><img src="/assets/icons/social/facebook.svg" alt=""
+          /></a>
+          <a href="https://www.youtube.com/channel/UCgB1a9t-FKtYoG39QrBtgJQ"
+            ><img src="/assets/icons/social/youtube.svg" alt=""
+          /></a>
+          <a
+            href="https://www.linkedin.com/company/redmil-group/posts/?feedView=all"
+            ><img src="/assets/icons/social/linkedin.svg" alt=""
+          /></a>
         </div>
       </div>
-
 
       <div class="slider-section">
         <div class="slider">
           <div class="slides">
-            <div class="slide" *ngFor="let slide of slides; let i = index" [class.active]="i === currentIndex">
-              <img [src]="slide.image" [alt]="slide.title">
+            <div
+              class="slide"
+              *ngFor="let slide of slides; let i = index"
+              [class.active]="i === currentIndex"
+            >
+              <img [src]="slide.image" [alt]="slide.title" />
             </div>
           </div>
           <div class="dots">
-            <span *ngFor="let slide of slides; let i = index" [class.active]="i === currentIndex"
-              (click)="goToSlide(i)"></span>
+            <span
+              *ngFor="let slide of slides; let i = index"
+              [class.active]="i === currentIndex"
+              (click)="goToSlide(i)"
+            ></span>
           </div>
         </div>
       </div>
-
 
       <div class="form-section">
         <!-- Footer with Social Media Links and Copyright -->
         <div class="form_flex">
           <!-- Step 1: Mobile Number Form with Icon -->
           <div *ngIf="step === 1" class="class_90">
-            <h2 class="step_first">{{'HEADER.LOGIN_FORM_TOP_MESSAGE'| pchangelanguage}}</h2>
+            <h2 class="step_first">
+              {{ "HEADER.LOGIN_FORM_TOP_MESSAGE" | pchangelanguage }}
+            </h2>
             <form [formGroup]="mobileForm" (ngSubmit)="submitMobile()">
               <div class="input-container">
                 <!-- Mobile Icon (Font Awesome or SVG) -->
-               
+
                 <div class="form-group">
-                  <img src="/assets/images/login/person_user_icons.svg" alt="" class="icon">
-                <input id="mobile" type="text" formControlName="Mobile" maxlength="10"
-                  placeholder=""  (keypress)="validateNumber($event)"/>
-                  <label for="mobile">{{'HEADER.LOGIN_FORM_MOBILE'| pchangelanguage}}</label>
+                  <img
+                    src="/assets/images/login/person_user_icons.svg"
+                    alt=""
+                    class="icon"
+                  />
+                  <input
+                    id="mobile"
+                    type="text"
+                    formControlName="Mobile"
+                    maxlength="10"
+                    placeholder=""
+                    (keypress)="validateNumber($event)"
+                  />
+                  <label for="mobile">{{
+                    "HEADER.LOGIN_FORM_MOBILE" | pchangelanguage
+                  }}</label>
                 </div>
               </div>
               <!-- Validation messages -->
-              <div *ngIf="mobileForm.get('mobile')?.touched && mobileForm.get('mobile')?.errors?.['required']"
-                class="error-message">
-                {{'HEADER.MOBILE_required' | pchangelanguage}}
+              <div
+                *ngIf="mobileForm.get('Mobile')?.touched && 
+              mobileForm.get('Mobile')?.touched && 
+              mobileForm.get('Mobile')?.errors?.['required']"
+                class="error-message"
+              >
+                {{ "HEADER.MOBILE_required" | pchangelanguage }}
               </div>
 
-              <div *ngIf="mobileForm.get('mobile')?.touched && mobileForm.get('mobile')?.errors?.['pattern']" class="error-message">
-               {{'HEADER.MOBILE_numeric' | pchangelanguage }}
+              <div
+                *ngIf="mobileForm.get('Mobile')?.invalid && mobileForm.get('Mobile')?.errors?.['pattern']"
+                class="error-message"
+              >
+                {{ "HEADER.MOBILE_numeric" | pchangelanguage }}
               </div>
 
-              <div *ngIf="mobileForm.get('mobile')?.touched && mobileForm.get('mobile')?.errors?.['minlength']"
-                class="error-message">
-                {{'HEADER.MOBILE_valid' | pchangelanguage}}
+              <div
+                *ngIf="mobileForm.get('Mobile')?.touched && mobileForm.get('Mobile')?.errors?.['minlength']"
+                class="error-message"
+              >
+                {{ "HEADER.MOBILE_valid" | pchangelanguage }}
               </div>
               <!-- Submit button -->
-              <button type="submit" [disabled]="mobileForm.invalid">Next</button>
+              <button type="submit" [disabled]="mobileForm.invalid">
+                Next
+              </button>
             </form>
           </div>
 
           <!-- Step 2: PIN Form with Icon -->
           <div *ngIf="step === 2">
-            <h2 class="step_first">{{'HEADER.LOGIN_FORM_TOP_MESSAGE'| pchangelanguage}}</h2>
+            <h2 class="step_first">
+              {{ "HEADER.LOGIN_FORM_TOP_MESSAGE" | pchangelanguage }}
+            </h2>
             <form [formGroup]="passwordForm" (ngSubmit)="submitPassword()">
               <div class="input-container">
                 <!-- PIN Icon (Font Awesome or SVG) -->
                 <div class="form-group">
-                  <img src="/assets/images/login/lock_icons.svg" alt="" class="icon">
+                  <img
+                    src="/assets/images/login/lock_icons.svg"
+                    alt=""
+                    class="icon"
+                  />
 
-                <input id="password" 
-                type="password" 
-                formControlName="Mpin" 
-                maxlength="6"
-                placeholder="" 
-                (keypress)="validateNumber($event)"  
-                (keydown)="onKeyPress($event)" required=""/>
-                <label for="mobile">{{'HEADER.LOGIN_FORM_PIN' | pchangelanguage}}</label>
-              </div>
+                  <input
+                    id="password"
+                    type="password"
+                    formControlName="Mpin"
+                    maxlength="6"
+                    minlength="6"
+                    placeholder=""
+                    (keypress)="validateNumber($event)"
+                    (keydown)="onKeyPress($event)"
+                    required=""
+                  />
+                  <label for="mobile">{{
+                    "HEADER.LOGIN_FORM_PIN" | pchangelanguage
+                  }}</label>
+                </div>
               </div>
               <!-- Validation messages -->
-              <div *ngIf="passwordForm.get('password')?.touched && passwordForm.get('password')?.errors?.['required']"
-                class="error-message">
-                {{'HEADER.PIN_required' | pchangelanguage}}
+              <div
+                *ngIf="passwordForm.get('Mpin')?.touched && passwordForm.get('Mpin')?.errors?.['required']"
+                class="error-message"
+              >
+                {{ "HEADER.PIN_required" | pchangelanguage }}
               </div>
-              <div *ngIf="passwordForm.get('password')?.touched && passwordForm.get('password')?.errors?.['pattern']" 
-              class="error-message">
-                <!-- Only numeric values are allowed -->
-                {{'HEADER.PIN_numeric' | pchangelanguage}}
+              <!-- <div
+                *ngIf="passwordForm.get('Mpin')?.invalid && passwordForm.get('Mpin')?.errors?.['pattern']"
+                class="error-message"
+              >
+               
+                {{ "HEADER.PIN_numeric" | pchangelanguage }}
+              </div> -->
+
+              <div
+                *ngIf="passwordForm.get('Mpin')?.touched && passwordForm.get('Mpin')?.errors?.['minlength']"
+                class="error-message"
+              >
+                {{ "HEADER.PIN_valid" | pchangelanguage }}
               </div>
 
-              <div *ngIf="passwordForm.get('password')?.touched && passwordForm.get('password')?.errors?.['minlength']"
-              class="error-message">
-              {{'HEADER.PIN_valid' | pchangelanguage}}
-              </div>
-            
-              <div *ngIf="passwordForm.get('password')?.touched && passwordForm.get('password')?.errors?.['maxlength']"
-              class="error-message">
+              <div
+                *ngIf="passwordForm.get('Mpin')?.touched && passwordForm.get('Mpin')?.errors?.['maxlength']"
+                class="error-message"
+              >
                 PIN must be at most 6 digits
               </div>
               <!-- Submit button -->
-              <button type="submit" [disabled]="passwordForm.invalid">Next</button>
+              <button type="submit" [disabled]="passwordForm.invalid">
+                Next
+              </button>
             </form>
           </div>
 
           <!-- Step 3: OTP Form with Four Input Fields -->
           <div *ngIf="step === 3">
             <div class="third_setp">
-              <h3>WELCOME, {{UserNameValidate}}</h3>
-              <p>{{'HEADER.LOGIN_FORM_OTP_Message' | pchangelanguage}} 
-                  {{UserMobileNumber[6]}}{{UserMobileNumber[7]}}{{UserMobileNumber[8]}}{{UserMobileNumber[9]}}
-                {{'HEADER.LOGIN_FORM_OTP_Message_1' | pchangelanguage}}</p>
+              <h3>WELCOME, {{ UserNameValidate }}</h3>
+              <p>
+                {{ "HEADER.LOGIN_FORM_OTP_Message" | pchangelanguage }}
+                {{ UserMobileNumber[6] }}{{ UserMobileNumber[7]
+                }}{{ UserMobileNumber[8] }}{{ UserMobileNumber[9] }}
+                {{ "HEADER.LOGIN_FORM_OTP_Message_1" | pchangelanguage }}
+              </p>
             </div>
 
             <form [formGroup]="otpForm" (ngSubmit)="submitOtp()">
               <div class="otp-container">
-
                 <!-- Four individual OTP input fields -->
-                <input id="otp1" type="text" formControlName="otp1" placeholder="" maxlength="1"
-                  (input)="onOtpInput($event, 1)" pattern="[0-9]*" required=""/>
-                <input id="otp2" type="text" formControlName="otp2" placeholder="" maxlength="1"
-                  (input)="onOtpInput($event, 2)" (keydown)="moveToPrev($event, 'otp2', 'otp1')" pattern="[0-9]*" required=""/>
-                <input id="otp3" type="text" formControlName="otp3" placeholder="" maxlength="1"
-                  (input)="onOtpInput($event, 3)" (keydown)="moveToPrev($event, 'otp3', 'otp2')" pattern="[0-9]*" required=""/>
-                <input id="otp4" type="text" formControlName="otp4" placeholder="" maxlength="1"
-                  (input)="onOtpInput($event, 4)" (keydown)="moveToPrev($event, 'otp4', 'otp3')" pattern="[0-9]*" required=""/>
-                  
+                <input
+                  id="otp1"
+                  type="text"
+                  formControlName="otp1"
+                  placeholder=""
+                  maxlength="1"
+                  (input)="onOtpInput($event, 1)"
+                  pattern="[0-9]*"
+                  required=""
+                />
+                <input
+                  id="otp2"
+                  type="text"
+                  formControlName="otp2"
+                  placeholder=""
+                  maxlength="1"
+                  (input)="onOtpInput($event, 2)"
+                  (keydown)="moveToPrev($event, 'otp2', 'otp1')"
+                  pattern="[0-9]*"
+                  required=""
+                />
+                <input
+                  id="otp3"
+                  type="text"
+                  formControlName="otp3"
+                  placeholder=""
+                  maxlength="1"
+                  (input)="onOtpInput($event, 3)"
+                  (keydown)="moveToPrev($event, 'otp3', 'otp2')"
+                  pattern="[0-9]*"
+                  required=""
+                />
+                <input
+                  id="otp4"
+                  type="text"
+                  formControlName="otp4"
+                  placeholder=""
+                  maxlength="1"
+                  (input)="onOtpInput($event, 4)"
+                  (keydown)="moveToPrev($event, 'otp4', 'otp3')"
+                  pattern="[0-9]*"
+                  required=""
+                />
               </div>
               <!-- Validation messages -->
               <div
-                *ngIf="otpForm.invalid && (otpForm.get('otp1')?.touched || otpForm.get('otp2')?.touched || otpForm.get('otp3')?.touched || otpForm.get('otp4')?.touched)"
-                class="error-message">
-                {{'HEADER.OTP_required' | pchangelanguage}}
+                *ngIf="
+                  otpForm.invalid &&
+                  (otpForm.get('otp1')?.touched ||
+                    otpForm.get('otp2')?.touched ||
+                    otpForm.get('otp3')?.touched ||
+                    otpForm.get('otp4')?.touched)
+                "
+                class="error-message"
+              >
+                {{ "HEADER.OTP_required" | pchangelanguage }}
               </div>
               <!-- Submit button -->
-              <button type="submit" [disabled]="otpForm.invalid">{{'HEADER.LOGIN_OTP_VERIFY' | pchangelanguage}}</button>
+              <button type="submit" [disabled]="otpForm.invalid">
+                {{ "HEADER.LOGIN_OTP_VERIFY" | pchangelanguage }}
+              </button>
             </form>
           </div>
-
 
           <!-- Forget Password text with Icon -->
           <div class="forget-password" *ngIf="step === 1">
             <!-- Mobile Icon (Font Awesome or SVG) -->
-            <img src="/assets/images/login/qlock-icons.svg" alt="Forget Password" />
+            <img
+              src="/assets/images/login/qlock-icons.svg"
+              alt="Forget Password"
+            />
 
-            <a href="#">{{'HEADER.LOGIN_FORM_Forgot_PIN' | pchangelanguage}}</a>
+            <a href="#">{{
+              "HEADER.LOGIN_FORM_Forgot_PIN" | pchangelanguage
+            }}</a>
           </div>
           <!-- Forget Password text with Icon -->
           <div class="forget-password" *ngIf="step === 2">
             <!-- Mobile Icon (Font Awesome or SVG) -->
-            <img src="/assets/images/login/qlock-icons.svg" alt="Forget Password" />
+            <img
+              src="/assets/images/login/qlock-icons.svg"
+              alt="Forget Password"
+            />
 
-            <a href="#">{{'HEADER.LOGIN_FORM_Forgot_PIN' | pchangelanguage}}</a>
+            <a href="#">{{
+              "HEADER.LOGIN_FORM_Forgot_PIN" | pchangelanguage
+            }}</a>
           </div>
 
           <div class="resent-password" *ngIf="step === 3">
             <!-- Mobile Icon (Font Awesome or SVG) -->
             <img src="/assets/images/login/resent_otp.svg" alt="Resent OTP" />
 
-            <a (click)="SendOtpcode()">{{'HEADER.LOGIN_FORM_FORGET' | pchangelanguage}}</a>
+            <a (click)="SendOtpcode()">{{
+              "HEADER.LOGIN_FORM_FORGET" | pchangelanguage
+            }}</a>
           </div>
         </div>
 
@@ -183,22 +296,20 @@
             <p>
               <a href="">
                 <span>SCAN TO INSTALL</span>
-                <br>
-                <strong style="letter-spacing: 1px;">REDMIL APP</strong>
+                <br />
+                <strong style="letter-spacing: 1px">REDMIL APP</strong>
               </a>
             </p>
           </div>
           <div class="QR_image">
-            <img src="/assets/images/login/QR_code_for_mobile_app.svg" alt="">
+            <img src="/assets/images/login/QR_code_for_mobile_app.svg" alt="" />
           </div>
         </div>
-
       </div>
-
-      </div>
+    </div>
   </div>
 
   <div class="login-footer">
-   <app-footer-page></app-footer-page>
+    <app-footer-page></app-footer-page>
   </div>
 </div>

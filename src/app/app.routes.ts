@@ -14,7 +14,7 @@ export const routes: Routes = [
       import('./layout/dashboard/d-layout/d-layout.component').then(
         (D) => D.DLayoutComponent
       ), 
-      //canActivate: [authGuard],
+      canActivate: [authGuard],
     children: [
       {
         path: 'dashboard',
@@ -83,11 +83,13 @@ export const routes: Routes = [
     ],
   },
 
-  //Fastag Recharge Route
-  {
-    path: 'recharge/fastag',
-    title: 'Fastag ~ Redmil',
-    component: RechargepupComponent
-  },
+  // //Fastag Recharge Route
+  // {
+  //   path: 'recharge/fastag',
+  //   title: 'Fastag ~ Redmil',
+  //   component: RechargepupComponent
+  // },
+
+
   { path: '**', redirectTo: '/login' },
 ];

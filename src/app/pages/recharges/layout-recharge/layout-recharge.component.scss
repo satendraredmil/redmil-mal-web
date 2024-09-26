@@ -140,62 +140,69 @@
         font-weight: bold;
         color: #012643;
         margin-left: 16px !important;
-     
     }
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  li {
-    margin: 10px 0;
-  }
-  
-  a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-  
-  a:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .icon {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-  }
-  
-  .dropdown ul {
-    display: none;
-    list-style-type: none;
-    padding-left: 20px;
-    margin-top: 10px;
-  }
-  
-  .dropdown ul.show {
-    display: block;
-  }
-  
-  .arrow {
-    margin-left: auto;
-  }
-  
-  li a .arrow {
-    font-size: 14px;
-  }
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
 
-  .rotate {
-    transform: rotate(180deg);
+        li {
+            margin: 10px 0;
+            cursor: pointer;
+            a {
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: #333;
+                font-size: 18px;
+                padding: 5px 10px;
+                border-radius: 5px;
+
+                .icon {
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 10px;
+                  }
+
+                &:hover{
+                    background-color: #f0f0f0;
+                }
+              }
+
+              .rotate {
+                transform: rotate(180deg);
+              }
+          }
+      }
+
+      .dropdown ul {
+        display: none;
+        list-style-type: none;
+        padding-left: 20px;
+        margin-top: 10px;
+        transition: 1s ease-in;
+      }
+      
+      .dropdown ul.show {
+        display: block;
+        transition: 2s ease;
+      }
+      
+      .arrow {
+        margin-left: auto;
+      }
+      
+      li a .arrow {
+        font-size: 14px;
+      }
   }
+  
+
+
+  
+ 
+
+ 
 
 
   //Transcation and Few video div 

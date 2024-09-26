@@ -17,6 +17,7 @@ import { WalletsPupComponent } from '../../../shared/reusable-components/wallets
 import { DashboardService } from '../../../core/services/dashboard/dashboard.service';
 import { RechargepupComponent } from '../../../shared/reusable-components/rechargepup/rechargepup.component';
 import { transactions_report } from '../../../core/models/classes/BaseModel';
+import { DialogBoxComponent } from '../../../shared/reusable-components/dialog-box/dialog-box.component';
 
 @Component({
   selector: 'app-mobile-prepaid',
@@ -76,6 +77,7 @@ export class MobilePrepaidComponent {
 
   BindOperaterDataDropDown() {
     const MobileRecharge: Recharges = new Recharges();
+    MobileRecharge.ServiceId  = "21";
     this.rechargeapi.GetOperaterList(MobileRecharge).subscribe((res) => {
       // console.log('GetOperaterList', res.Data);
       this.operators = res.Data;
@@ -241,20 +243,46 @@ this.rechargeapi
           }   
           this.rechargeapi.Recharge(makeRechargedata).subscribe((res)=>{
             console.log('Recharge', res);
-            if(res.StatusCode==='TXN'){
-              this.dialog.open(RechargepupComponent, {
-                data: {
-                  status: res.Statuscode,
-                  MobileNo: res.Data[0].Mobileno,
-                  amount: res.Data[0].Amount,
-                  TxnID: res.Data[0].TRefId,
-                  Date: res.Data[0].Reqdate,
-                  message:res.Message,
-                  animationPath:'/assets/animation/Animation_Success.json',
-                  additionalInfo: 'Thank you for using our service.',
+            let animationPath1='/assets/animation/Animation_Success.json';
+                if(res.Data[0].Status === 'Pending')
+                {
+                  animationPath1='/assets/animation/Animation_Pending.json';
                 }
-              });
-            } 
+                else if(res.Statuscode === 'ERR' || res.Data[0].Status === 'Failure')
+                {
+                  animationPath1='/assets/animation/Animation_Error.json';
+                }
+            if(Array.isArray(res.Data))
+              {
+                
+                this.dialog.open(RechargepupComponent, {
+                  data: {
+                    ServiceId:21,
+                    Statuscode: res.Statuscode,
+                    Id: res.Data[0].Id,
+                    status: res.Data[0].Status,
+                    MobileNo: res.Data[0].Mobileno,
+                    amount: res.Data[0].Amount,
+                    TxnID: res.Data[0].TRefId,
+                    Date: res.Data[0].Reqdate,
+                    message:res.Data[0].Response,
+                    animationPath:animationPath1,
+                    //additionalInfo: 'Thank you for using our service.',
+                  }
+                });
+                this.mobileForm.reset();
+              }
+              else{
+                this.dialog.open(DialogBoxComponent, {
+                  data: { 
+                    message: res.Message,  
+                    animationPath:animationPath1
+                  },
+                  panelClass: 'custom-dialog-container',
+                  enterAnimationDuration: '400ms',
+                  exitAnimationDuration: '300ms',
+                });
+              }
           })
         }
       });

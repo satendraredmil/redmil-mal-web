@@ -10,8 +10,7 @@
         <div class="row-container">
             <!-- Mobile Number Input -->
             <div class="circle-container" style="position: relative;">
-                <input type="text" id="mobileNumber" formControlName="mobileNumber" class="circle-input" aria-label=""
-                    (keyup)="onMobileNumberChange()" />
+                <input type="text" id="mobileNumber" formControlName="mobileNumber" class="circle-input" aria-label="" />
                 <label for="mobileNumber">Customer ID</label>
                 <div *ngIf="mobileForm.get('mobileNumber')?.touched && mobileForm.get('mobileNumber')?.invalid"
                     class="error">

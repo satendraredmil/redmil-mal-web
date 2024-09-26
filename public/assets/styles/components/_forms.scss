@@ -61,7 +61,6 @@
   /* Style for invalid input fields */
   input.ng-invalid.ng-touched {
     border-color: red;
-    color: red !important;
     box-shadow: 0 0 5px hwb(0 0% 0% / 0.5);
     /* Add a subtle red glow to invalid input */
   }
@@ -109,3 +108,13 @@
     background: #012643;
   }
 
+/* For Chrome, Edge, Safari (removing yellow autofill background) */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  box-shadow: 0 0 0 1000px white inset !important;
+}
+
+/* For Firefox */
+input:-moz-autofill {
+  box-shadow: 0 0 0 1000px white inset !important;
+}

@@ -15,8 +15,8 @@ import { ToastrService } from 'ngx-toastr';
 export class WalletsPupComponent implements OnInit{
 
   transactionAmount: number = 0; // Transaction amount will be dynamic
-  cashWalletBalance: number = 1500; // Dynamic balance for cash wallet
-  advanceWalletBalance: number = 100; // Dynamic balance for advance wallet
+  cashWalletBalance: number = 0; // Dynamic balance for cash wallet
+  advanceWalletBalance: number = 0; // Dynamic balance for advance wallet
   selectedWallet: string = ''; // To track which wallet is selected
 
   constructor(

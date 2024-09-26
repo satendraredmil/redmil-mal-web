@@ -1,10 +1,10 @@
 ::ng-deep .mat-mdc-dialog-panel{
   width: 100% !important;
-  max-width: 500px !important;
+  max-width: 450px !important;
+  min-width: 400px !important;
   margin: 10% !important;
   height: auto !important;
-  min-height: 400px !important;
-  max-height: 400px !important;
+ 
   overflow: hidden !important;
   border-radius: 15px !important;
   margin: 2% 0%;
@@ -36,10 +36,9 @@ overflow:hidden  !important;
     margin-bottom: 20px;
 
     .dialog_image_library {
-      width: 100%;
-      max-width: 150px;
-      height: 150px;
+      width: 20%;
       border-radius: 8px;
+      
     }
   }
   
@@ -67,11 +66,13 @@ overflow:hidden  !important;
 
   .btn{
     background: #001b3f;
-    padding: 5px 20px;
+    padding: 8px 50px;
     letter-spacing: 1px;
     margin-top: 10px;
     border-radius: 5px;
     color: #fff;
+    font-weight: bold;
+
   }
   
   @media (max-width: 480px) {
